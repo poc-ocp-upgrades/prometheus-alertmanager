@@ -13,6 +13,8 @@ import (
 func TestAlertMerge(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := time.Now()
 	pairs := []struct{ A, B, Res *Alert }{{A: &Alert{Alert: model.Alert{StartsAt: now.Add(-2 * time.Minute), EndsAt: now.Add(2 * time.Minute)}, UpdatedAt: now, Timeout: true}, B: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now.Add(time.Minute), Timeout: true}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-2 * time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now.Add(time.Minute), Timeout: true}}, {A: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now, Timeout: true}, B: &Alert{Alert: model.Alert{StartsAt: now, EndsAt: now.Add(2 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(2 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}}, {A: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now}, B: &Alert{Alert: model.Alert{StartsAt: now, EndsAt: now.Add(2 * time.Minute)}, UpdatedAt: now.Add(time.Minute), Timeout: true}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now.Add(time.Minute), Timeout: true}}, {A: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now}, B: &Alert{Alert: model.Alert{StartsAt: now, EndsAt: now.Add(2 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}}, {A: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now}, B: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(4 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-time.Minute), EndsAt: now.Add(4 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}}, {A: &Alert{Alert: model.Alert{StartsAt: now.Add(-3 * time.Minute), EndsAt: now.Add(-time.Minute)}, UpdatedAt: now}, B: &Alert{Alert: model.Alert{StartsAt: now.Add(-2 * time.Minute), EndsAt: now.Add(time.Minute)}, UpdatedAt: now.Add(time.Minute)}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-3 * time.Minute), EndsAt: now.Add(time.Minute)}, UpdatedAt: now.Add(time.Minute)}}, {A: &Alert{Alert: model.Alert{StartsAt: now.Add(-2 * time.Minute), EndsAt: now.Add(3 * time.Minute)}, UpdatedAt: now}, B: &Alert{Alert: model.Alert{StartsAt: now.Add(-2 * time.Minute), EndsAt: now}, UpdatedAt: now.Add(time.Minute)}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-2 * time.Minute), EndsAt: now}, UpdatedAt: now.Add(time.Minute)}}, {A: &Alert{Alert: model.Alert{StartsAt: now.Add(-3 * time.Minute), EndsAt: now.Add(-time.Minute)}, UpdatedAt: now.Add(-time.Minute)}, B: &Alert{Alert: model.Alert{StartsAt: now.Add(-4 * time.Minute), EndsAt: now.Add(-2 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}, Res: &Alert{Alert: model.Alert{StartsAt: now.Add(-4 * time.Minute), EndsAt: now.Add(-1 * time.Minute)}, UpdatedAt: now.Add(time.Minute)}}}
 	for i, p := range pairs {
@@ -28,6 +30,8 @@ func TestAlertMerge(t *testing.T) {
 	}
 }
 func TestCalcSilenceState(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -46,6 +50,8 @@ func TestCalcSilenceState(t *testing.T) {
 func TestSilenceExpired(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := time.Now()
 	silence := Silence{StartsAt: now, EndsAt: now}
 	require.True(t, silence.Expired())
@@ -55,6 +61,8 @@ func TestSilenceExpired(t *testing.T) {
 	require.False(t, silence.Expired())
 }
 func TestAlertSliceSort(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

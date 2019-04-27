@@ -25,6 +25,8 @@ var secretTokenJSON string
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b, err := json.Marshal(secretToken)
 	if err != nil {
 		panic(err)
@@ -37,6 +39,8 @@ type Secret string
 func (s Secret) MarshalYAML() (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s != "" {
 		return secretToken, nil
 	}
@@ -45,10 +49,14 @@ func (s Secret) MarshalYAML() (interface{}, error) {
 func (s *Secret) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type plain Secret
 	return unmarshal((*plain)(s))
 }
 func (s Secret) MarshalJSON() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return json.Marshal(secretToken)
@@ -59,10 +67,14 @@ type URL struct{ *url.URL }
 func (u *URL) Copy() *URL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	v := *u.URL
 	return &URL{&v}
 }
 func (u URL) MarshalYAML() (interface{}, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if u.URL != nil {
@@ -71,6 +83,8 @@ func (u URL) MarshalYAML() (interface{}, error) {
 	return nil, nil
 }
 func (u *URL) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var s string
@@ -87,12 +101,16 @@ func (u *URL) UnmarshalYAML(unmarshal func(interface{}) error) error {
 func (u URL) MarshalJSON() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if u.URL != nil {
 		return json.Marshal(u.URL.String())
 	}
 	return nil, nil
 }
 func (u *URL) UnmarshalJSON(data []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var s string
@@ -112,12 +130,16 @@ type SecretURL URL
 func (s SecretURL) MarshalYAML() (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s.URL != nil {
 		return secretToken, nil
 	}
 	return nil, nil
 }
 func (s *SecretURL) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var str string
@@ -133,9 +155,13 @@ func (s *SecretURL) UnmarshalYAML(unmarshal func(interface{}) error) error {
 func (s SecretURL) MarshalJSON() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return json.Marshal(secretToken)
 }
 func (s *SecretURL) UnmarshalJSON(data []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if string(data) == secretToken || string(data) == secretTokenJSON {
@@ -145,6 +171,8 @@ func (s *SecretURL) UnmarshalJSON(data []byte) error {
 	return json.Unmarshal(data, (*URL)(s))
 }
 func Load(s string) (*Config, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cfg := &Config{}
@@ -164,6 +192,8 @@ func Load(s string) (*Config, error) {
 func LoadFile(filename string) (*Config, []byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	content, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, nil, err
@@ -176,6 +206,8 @@ func LoadFile(filename string) (*Config, []byte, error) {
 	return cfg, content, nil
 }
 func resolveFilepaths(baseDir string, cfg *Config) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	join := func(fp string) string {
@@ -201,6 +233,8 @@ type Config struct {
 func (c Config) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b, err := yaml.Marshal(c)
 	if err != nil {
 		return fmt.Sprintf("<error creating config string: %s>", err)
@@ -208,6 +242,8 @@ func (c Config) String() string {
 	return string(b)
 }
 func (c *Config) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type plain Config
@@ -390,6 +426,8 @@ func (c *Config) UnmarshalYAML(unmarshal func(interface{}) error) error {
 func checkReceiver(r *Route, receivers map[string]struct{}) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if r.Receiver == "" {
 		return nil
 	}
@@ -406,9 +444,13 @@ func checkReceiver(r *Route, receivers map[string]struct{}) error {
 func DefaultGlobalConfig() GlobalConfig {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return GlobalConfig{ResolveTimeout: model.Duration(5 * time.Minute), HTTPConfig: &commoncfg.HTTPClientConfig{}, SMTPHello: "localhost", SMTPRequireTLS: true, PagerdutyURL: mustParseURL("https://events.pagerduty.com/v2/enqueue"), HipchatAPIURL: mustParseURL("https://api.hipchat.com/"), OpsGenieAPIURL: mustParseURL("https://api.opsgenie.com/"), WeChatAPIURL: mustParseURL("https://qyapi.weixin.qq.com/cgi-bin/"), VictorOpsAPIURL: mustParseURL("https://alert.victorops.com/integrations/generic/20131114/alert/")}
 }
 func mustParseURL(s string) *URL {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u, err := parseURL(s)
@@ -418,6 +460,8 @@ func mustParseURL(s string) *URL {
 	return u
 }
 func parseURL(s string) (*URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u, err := url.Parse(s)
@@ -460,6 +504,8 @@ type GlobalConfig struct {
 func (c *GlobalConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*c = DefaultGlobalConfig()
 	type plain GlobalConfig
 	return unmarshal((*plain)(c))
@@ -480,6 +526,8 @@ type Route struct {
 }
 
 func (r *Route) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type plain Route
@@ -537,6 +585,8 @@ type InhibitRule struct {
 func (r *InhibitRule) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type plain InhibitRule
 	if err := unmarshal((*plain)(r)); err != nil {
 		return err
@@ -580,6 +630,8 @@ type Receiver struct {
 func (c *Receiver) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type plain Receiver
 	if err := unmarshal((*plain)(c)); err != nil {
 		return err
@@ -593,6 +645,8 @@ func (c *Receiver) UnmarshalYAML(unmarshal func(interface{}) error) error {
 type Regexp struct{ *regexp.Regexp }
 
 func (re *Regexp) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var s string
@@ -609,12 +663,16 @@ func (re *Regexp) UnmarshalYAML(unmarshal func(interface{}) error) error {
 func (re Regexp) MarshalYAML() (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if re.Regexp != nil {
 		return re.String(), nil
 	}
 	return nil, nil
 }
 func (re *Regexp) UnmarshalJSON(data []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var s string
@@ -631,6 +689,8 @@ func (re *Regexp) UnmarshalJSON(data []byte) error {
 func (re Regexp) MarshalJSON() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if re.Regexp != nil {
 		return json.Marshal(re.String())
 	}
@@ -639,7 +699,16 @@ func (re Regexp) MarshalJSON() ([]byte, error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

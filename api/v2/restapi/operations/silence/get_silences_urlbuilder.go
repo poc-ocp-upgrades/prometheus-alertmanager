@@ -16,15 +16,21 @@ type GetSilencesURL struct {
 func (o *GetSilencesURL) WithBasePath(bp string) *GetSilencesURL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetBasePath(bp)
 	return o
 }
 func (o *GetSilencesURL) SetBasePath(bp string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o._basePath = bp
 }
 func (o *GetSilencesURL) Build() (*url.URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var result url.URL
@@ -52,6 +58,8 @@ func (o *GetSilencesURL) Build() (*url.URL, error) {
 func (o *GetSilencesURL) Must(u *url.URL, err error) *url.URL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err != nil {
 		panic(err)
 	}
@@ -63,9 +71,13 @@ func (o *GetSilencesURL) Must(u *url.URL, err error) *url.URL {
 func (o *GetSilencesURL) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return o.Must(o.Build()).String()
 }
 func (o *GetSilencesURL) BuildFull(scheme, host string) (*url.URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if scheme == "" {
@@ -83,6 +95,8 @@ func (o *GetSilencesURL) BuildFull(scheme, host string) (*url.URL, error) {
 	return base, nil
 }
 func (o *GetSilencesURL) StringFull(scheme, host string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return o.Must(o.BuildFull(scheme, host)).String()

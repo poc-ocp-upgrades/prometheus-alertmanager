@@ -30,6 +30,8 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	numNotifications.WithLabelValues("email")
 	numNotifications.WithLabelValues("hipchat")
 	numNotifications.WithLabelValues("pagerduty")
@@ -81,9 +83,13 @@ const (
 func WithReceiverName(ctx context.Context, rcv string) context.Context {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return context.WithValue(ctx, keyReceiverName, rcv)
 }
 func WithGroupKey(ctx context.Context, s string) context.Context {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return context.WithValue(ctx, keyGroupKey, s)
@@ -91,9 +97,13 @@ func WithGroupKey(ctx context.Context, s string) context.Context {
 func WithFiringAlerts(ctx context.Context, alerts []uint64) context.Context {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return context.WithValue(ctx, keyFiringAlerts, alerts)
 }
 func WithResolvedAlerts(ctx context.Context, alerts []uint64) context.Context {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return context.WithValue(ctx, keyResolvedAlerts, alerts)
@@ -101,9 +111,13 @@ func WithResolvedAlerts(ctx context.Context, alerts []uint64) context.Context {
 func WithGroupLabels(ctx context.Context, lset model.LabelSet) context.Context {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return context.WithValue(ctx, keyGroupLabels, lset)
 }
 func WithNow(ctx context.Context, t time.Time) context.Context {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return context.WithValue(ctx, keyNow, t)
@@ -111,9 +125,13 @@ func WithNow(ctx context.Context, t time.Time) context.Context {
 func WithRepeatInterval(ctx context.Context, t time.Duration) context.Context {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return context.WithValue(ctx, keyRepeatInterval, t)
 }
 func RepeatInterval(ctx context.Context) (time.Duration, bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	v, ok := ctx.Value(keyRepeatInterval).(time.Duration)
@@ -122,10 +140,14 @@ func RepeatInterval(ctx context.Context) (time.Duration, bool) {
 func ReceiverName(ctx context.Context) (string, bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	v, ok := ctx.Value(keyReceiverName).(string)
 	return v, ok
 }
 func receiverName(ctx context.Context, l log.Logger) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	recv, ok := ReceiverName(ctx)
@@ -137,10 +159,14 @@ func receiverName(ctx context.Context, l log.Logger) string {
 func GroupKey(ctx context.Context) (string, bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	v, ok := ctx.Value(keyGroupKey).(string)
 	return v, ok
 }
 func groupLabels(ctx context.Context, l log.Logger) model.LabelSet {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	groupLabels, ok := GroupLabels(ctx)
@@ -152,10 +178,14 @@ func groupLabels(ctx context.Context, l log.Logger) model.LabelSet {
 func GroupLabels(ctx context.Context) (model.LabelSet, bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	v, ok := ctx.Value(keyGroupLabels).(model.LabelSet)
 	return v, ok
 }
 func Now(ctx context.Context) (time.Time, bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	v, ok := ctx.Value(keyNow).(time.Time)
@@ -164,10 +194,14 @@ func Now(ctx context.Context) (time.Time, bool) {
 func FiringAlerts(ctx context.Context) ([]uint64, bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	v, ok := ctx.Value(keyFiringAlerts).([]uint64)
 	return v, ok
 }
 func ResolvedAlerts(ctx context.Context) ([]uint64, bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	v, ok := ctx.Value(keyResolvedAlerts).([]uint64)
@@ -182,6 +216,8 @@ type StageFunc func(ctx context.Context, l log.Logger, alerts ...*types.Alert) (
 func (f StageFunc) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f(ctx, l, alerts...)
 }
 
@@ -191,6 +227,8 @@ type NotificationLog interface {
 }
 
 func BuildPipeline(confs []*config.Receiver, tmpl *template.Template, wait func() time.Duration, muter types.Muter, silences *silence.Silences, notificationLog NotificationLog, marker types.Marker, peer *cluster.Peer, logger log.Logger) RoutingStage {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rs := RoutingStage{}
@@ -203,6 +241,8 @@ func BuildPipeline(confs []*config.Receiver, tmpl *template.Template, wait func(
 	return rs
 }
 func createStage(rc *config.Receiver, tmpl *template.Template, wait func() time.Duration, notificationLog NotificationLog, logger log.Logger) Stage {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var fs FanoutStage
@@ -223,6 +263,8 @@ type RoutingStage map[string]Stage
 func (rs RoutingStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	receiver, ok := ReceiverName(ctx)
 	if !ok {
 		return ctx, nil, fmt.Errorf("receiver missing")
@@ -237,6 +279,8 @@ func (rs RoutingStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.
 type MultiStage []Stage
 
 func (ms MultiStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var err error
@@ -255,6 +299,8 @@ func (ms MultiStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Al
 type FanoutStage []Stage
 
 func (fs FanoutStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -283,9 +329,13 @@ type GossipSettleStage struct{ peer *cluster.Peer }
 func NewGossipSettleStage(p *cluster.Peer) *GossipSettleStage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GossipSettleStage{peer: p}
 }
 func (n *GossipSettleStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if n.peer != nil {
@@ -299,9 +349,13 @@ type InhibitStage struct{ muter types.Muter }
 func NewInhibitStage(m types.Muter) *InhibitStage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &InhibitStage{muter: m}
 }
 func (n *InhibitStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var filtered []*types.Alert
@@ -321,9 +375,13 @@ type SilenceStage struct {
 func NewSilenceStage(s *silence.Silences, mk types.Marker) *SilenceStage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &SilenceStage{silences: s, marker: mk}
 }
 func (n *SilenceStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var filtered []*types.Alert
@@ -351,9 +409,13 @@ type WaitStage struct{ wait func() time.Duration }
 func NewWaitStage(wait func() time.Duration) *WaitStage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &WaitStage{wait: wait}
 }
 func (ws *WaitStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	select {
@@ -375,9 +437,13 @@ type DedupStage struct {
 func NewDedupStage(i Integration, l NotificationLog, recv *nflogpb.Receiver) *DedupStage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &DedupStage{nflog: l, recv: recv, conf: i.conf, now: utcNow, hash: hashAlert}
 }
 func utcNow() time.Time {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return time.Now().UTC()
@@ -386,6 +452,8 @@ func utcNow() time.Time {
 var hashBuffers = sync.Pool{}
 
 func getHashBuffer() []byte {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b := hashBuffers.Get()
@@ -397,10 +465,14 @@ func getHashBuffer() []byte {
 func putHashBuffer(b []byte) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b = b[:0]
 	hashBuffers.Put(b)
 }
 func hashAlert(a *types.Alert) uint64 {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const sep = '\xff'
@@ -423,6 +495,8 @@ func hashAlert(a *types.Alert) uint64 {
 func (n *DedupStage) needsUpdate(entry *nflogpb.Entry, firing, resolved map[uint64]struct{}, repeat time.Duration) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if entry == nil {
 		return len(firing) > 0
 	}
@@ -438,6 +512,8 @@ func (n *DedupStage) needsUpdate(entry *nflogpb.Entry, firing, resolved map[uint
 	return entry.Timestamp.Before(n.now().Add(-repeat))
 }
 func (n *DedupStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	gkey, ok := GroupKey(ctx)
@@ -491,9 +567,13 @@ type RetryStage struct {
 func NewRetryStage(i Integration, groupName string) *RetryStage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &RetryStage{integration: i, groupName: groupName}
 }
 func (r RetryStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var sent []*types.Alert
@@ -563,9 +643,13 @@ type SetNotifiesStage struct {
 func NewSetNotifiesStage(l NotificationLog, recv *nflogpb.Receiver) *SetNotifiesStage {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &SetNotifiesStage{nflog: l, recv: recv}
 }
 func (n SetNotifiesStage) Exec(ctx context.Context, l log.Logger, alerts ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	gkey, ok := GroupKey(ctx)

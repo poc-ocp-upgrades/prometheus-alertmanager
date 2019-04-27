@@ -34,6 +34,8 @@ type fakeAPIResponse struct {
 func (c *fakeAPIClient) URL(ep string, args map[string]string) *url.URL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	path := ep
 	for k, v := range args {
 		path = strings.Replace(path, ":"+k, v, -1)
@@ -41,6 +43,8 @@ func (c *fakeAPIClient) URL(ep string, args map[string]string) *url.URL {
 	return &url.URL{Host: "test:9093", Path: path}
 }
 func (c *fakeAPIClient) Do(ctx context.Context, req *http.Request) (*http.Response, []byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	test := <-c.ch
@@ -57,6 +61,8 @@ func (c *fakeAPIClient) Do(ctx context.Context, req *http.Request) (*http.Respon
 	return &http.Response{}, b, test.err
 }
 func TestAPI(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	client := &fakeAPIClient{T: t, ch: make(chan fakeAPIResponse, 1)}
@@ -147,9 +153,13 @@ type fakeResponse struct {
 func (c fakeClient) URL(string, map[string]string) *url.URL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func (c fakeClient) Do(context.Context, *http.Request) (*http.Response, []byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fakeRes := <-c.ch
@@ -177,6 +187,8 @@ type apiClientTest struct {
 }
 
 func TestAPIClientDo(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tests := []apiClientTest{{response: fakeResponse{code: http.StatusOK, res: &apiResponse{Status: statusSuccess, Data: json.RawMessage(`"test"`)}, err: nil}, expected: `"test"`, err: nil}, {response: fakeResponse{code: http.StatusBadRequest, res: &apiResponse{Status: statusError, Error: "some error"}, err: nil}, err: fmt.Errorf("some error (code: 400)")}, {response: fakeResponse{code: http.StatusOK, res: &apiResponse{Status: statusError, Error: "some error"}, err: nil}, err: fmt.Errorf("inconsistent body for response code (code: 200)")}, {response: fakeResponse{code: http.StatusNotFound, res: "not found", err: nil}, err: fmt.Errorf("not found (code: 404)")}, {response: fakeResponse{err: fmt.Errorf("some error")}, err: fmt.Errorf("some error")}}

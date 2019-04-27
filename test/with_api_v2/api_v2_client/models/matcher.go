@@ -16,6 +16,8 @@ type Matcher struct {
 func (m *Matcher) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateIsRegex(formats); err != nil {
 		res = append(res, err)
@@ -34,12 +36,16 @@ func (m *Matcher) Validate(formats strfmt.Registry) error {
 func (m *Matcher) validateIsRegex(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("isRegex", "body", m.IsRegex); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *Matcher) validateName(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("name", "body", m.Name); err != nil {
@@ -50,6 +56,8 @@ func (m *Matcher) validateName(formats strfmt.Registry) error {
 func (m *Matcher) validateValue(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("value", "body", m.Value); err != nil {
 		return err
 	}
@@ -58,12 +66,16 @@ func (m *Matcher) validateValue(formats strfmt.Registry) error {
 func (m *Matcher) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *Matcher) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res Matcher

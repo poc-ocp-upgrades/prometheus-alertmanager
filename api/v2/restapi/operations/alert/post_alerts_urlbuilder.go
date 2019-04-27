@@ -11,15 +11,21 @@ type PostAlertsURL struct{ _basePath string }
 func (o *PostAlertsURL) WithBasePath(bp string) *PostAlertsURL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetBasePath(bp)
 	return o
 }
 func (o *PostAlertsURL) SetBasePath(bp string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o._basePath = bp
 }
 func (o *PostAlertsURL) Build() (*url.URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var result url.URL
@@ -29,6 +35,8 @@ func (o *PostAlertsURL) Build() (*url.URL, error) {
 	return &result, nil
 }
 func (o *PostAlertsURL) Must(u *url.URL, err error) *url.URL {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err != nil {
@@ -42,9 +50,13 @@ func (o *PostAlertsURL) Must(u *url.URL, err error) *url.URL {
 func (o *PostAlertsURL) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return o.Must(o.Build()).String()
 }
 func (o *PostAlertsURL) BuildFull(scheme, host string) (*url.URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if scheme == "" {
@@ -62,6 +74,8 @@ func (o *PostAlertsURL) BuildFull(scheme, host string) (*url.URL, error) {
 	return base, nil
 }
 func (o *PostAlertsURL) StringFull(scheme, host string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return o.Must(o.BuildFull(scheme, host)).String()

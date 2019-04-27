@@ -20,6 +20,8 @@ errors.
 func configureCheckConfigCmd(app *kingpin.Application) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		c		= &checkConfigCmd{}
 		checkCmd	= app.Command("check-config", checkConfigHelp)
@@ -30,9 +32,13 @@ func configureCheckConfigCmd(app *kingpin.Application) {
 func (c *checkConfigCmd) checkConfig(ctx *kingpin.ParseContext) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return CheckConfig(c.files)
 }
 func CheckConfig(args []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(args) == 0 {

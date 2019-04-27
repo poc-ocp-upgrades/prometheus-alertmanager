@@ -17,6 +17,8 @@ type AlertStatus struct {
 func (m *AlertStatus) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateInhibitedBy(formats); err != nil {
 		res = append(res, err)
@@ -35,12 +37,16 @@ func (m *AlertStatus) Validate(formats strfmt.Registry) error {
 func (m *AlertStatus) validateInhibitedBy(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("inhibitedBy", "body", m.InhibitedBy); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *AlertStatus) validateSilencedBy(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("silencedBy", "body", m.SilencedBy); err != nil {
@@ -52,6 +58,8 @@ func (m *AlertStatus) validateSilencedBy(formats strfmt.Registry) error {
 var alertStatusTypeStatePropEnum []interface{}
 
 func init() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []string
@@ -72,12 +80,16 @@ const (
 func (m *AlertStatus) validateStateEnum(path, location string, value string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Enum(path, location, value, alertStatusTypeStatePropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *AlertStatus) validateState(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("state", "body", m.State); err != nil {
@@ -91,12 +103,16 @@ func (m *AlertStatus) validateState(formats strfmt.Registry) error {
 func (m *AlertStatus) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *AlertStatus) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res AlertStatus

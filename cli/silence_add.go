@@ -16,6 +16,8 @@ import (
 func username() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	user, err := user.Current()
 	if err != nil {
 		return ""
@@ -60,6 +62,8 @@ const silenceAddHelp = `Add a new alertmanager silence
 func configureSilenceAddCmd(cc *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		c	= &silenceAddCmd{}
 		addCmd	= cc.Command("add", silenceAddHelp)
@@ -74,6 +78,8 @@ func configureSilenceAddCmd(cc *kingpin.CmdClause) {
 	addCmd.Action(execWithTimeout(c.add))
 }
 func (c *silenceAddCmd) add(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var err error

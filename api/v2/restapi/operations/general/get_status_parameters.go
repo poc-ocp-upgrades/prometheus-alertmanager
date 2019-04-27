@@ -9,6 +9,8 @@ import (
 func NewGetStatusParams() GetStatusParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return GetStatusParams{}
 }
 
@@ -17,6 +19,8 @@ type GetStatusParams struct {
 }
 
 func (o *GetStatusParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error

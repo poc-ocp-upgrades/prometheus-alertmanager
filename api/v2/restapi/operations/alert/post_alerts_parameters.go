@@ -12,6 +12,8 @@ import (
 func NewPostAlertsParams() PostAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return PostAlertsParams{}
 }
 
@@ -21,6 +23,8 @@ type PostAlertsParams struct {
 }
 
 func (o *PostAlertsParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error

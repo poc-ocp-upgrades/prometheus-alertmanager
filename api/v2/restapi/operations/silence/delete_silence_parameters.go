@@ -11,6 +11,8 @@ import (
 func NewDeleteSilenceParams() DeleteSilenceParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return DeleteSilenceParams{}
 }
 
@@ -20,6 +22,8 @@ type DeleteSilenceParams struct {
 }
 
 func (o *DeleteSilenceParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error
@@ -34,6 +38,8 @@ func (o *DeleteSilenceParams) BindRequest(r *http.Request, route *middleware.Mat
 	return nil
 }
 func (o *DeleteSilenceParams) bindSilenceID(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var raw string
@@ -51,6 +57,8 @@ func (o *DeleteSilenceParams) bindSilenceID(rawData []string, hasKey bool, forma
 	return nil
 }
 func (o *DeleteSilenceParams) validateSilenceID(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.FormatOf("silenceID", "path", "uuid", o.SilenceID.String(), formats); err != nil {

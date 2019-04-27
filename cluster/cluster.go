@@ -56,6 +56,8 @@ const (
 func (s PeerStatus) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch s {
 	case StatusNone:
 		return "none"
@@ -81,6 +83,8 @@ const (
 )
 
 func Create(l log.Logger, reg prometheus.Registerer, bindAddr string, advertiseAddr string, knownPeers []string, waitIfEmpty bool, pushPullInterval time.Duration, gossipInterval time.Duration, tcpTimeout time.Duration, probeTimeout time.Duration, probeInterval time.Duration) (*Peer, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	bindHost, bindPortStr, err := net.SplitHostPort(bindAddr)
@@ -163,6 +167,8 @@ func Create(l log.Logger, reg prometheus.Registerer, bindAddr string, advertiseA
 func (p *Peer) Join(reconnectInterval time.Duration, reconnectTimeout time.Duration) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	n, err := p.mlist.Join(p.resolvedPeers)
 	if err != nil {
 		level.Warn(p.logger).Log("msg", "failed to join cluster", "err", err)
@@ -182,6 +188,8 @@ func (p *Peer) Join(reconnectInterval time.Duration, reconnectTimeout time.Durat
 	return err
 }
 func (p *Peer) setInitialFailed(peers []string, myAddr string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(peers) == 0 {
@@ -217,9 +225,13 @@ type logWriter struct{ l log.Logger }
 func (l *logWriter) Write(b []byte) (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return len(b), level.Debug(l.l).Log("memberlist", string(b))
 }
 func (p *Peer) register(reg prometheus.Registerer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	clusterFailedPeers := prometheus.NewGaugeFunc(prometheus.GaugeOpts{Name: "alertmanager_cluster_failed_peers", Help: "Number indicating the current number of failed peers in the cluster."}, func() float64 {
@@ -239,6 +251,8 @@ func (p *Peer) register(reg prometheus.Registerer) {
 func (p *Peer) handleReconnectTimeout(d time.Duration, timeout time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tick := time.NewTicker(d)
 	defer tick.Stop()
 	for {
@@ -251,6 +265,8 @@ func (p *Peer) handleReconnectTimeout(d time.Duration, timeout time.Duration) {
 	}
 }
 func (p *Peer) removeFailedPeers(timeout time.Duration) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	p.peerLock.Lock()
@@ -270,6 +286,8 @@ func (p *Peer) removeFailedPeers(timeout time.Duration) {
 func (p *Peer) handleReconnect(d time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tick := time.NewTicker(d)
 	defer tick.Stop()
 	for {
@@ -282,6 +300,8 @@ func (p *Peer) handleReconnect(d time.Duration) {
 	}
 }
 func (p *Peer) reconnect() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	p.peerLock.RLock()
@@ -301,6 +321,8 @@ func (p *Peer) reconnect() {
 func (p *Peer) handleRefresh(d time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tick := time.NewTicker(d)
 	defer tick.Stop()
 	for {
@@ -313,6 +335,8 @@ func (p *Peer) handleRefresh(d time.Duration) {
 	}
 }
 func (p *Peer) refresh() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	logger := log.With(p.logger, "msg", "refresh")
@@ -344,6 +368,8 @@ func (p *Peer) refresh() {
 func (p *Peer) peerJoin(n *memberlist.Node) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	p.peerLock.Lock()
 	defer p.peerLock.Unlock()
 	var oldStatus PeerStatus
@@ -367,6 +393,8 @@ func (p *Peer) peerJoin(n *memberlist.Node) {
 func (p *Peer) peerLeave(n *memberlist.Node) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	p.peerLock.Lock()
 	defer p.peerLock.Unlock()
 	pr, ok := p.peers[n.Address()]
@@ -383,6 +411,8 @@ func (p *Peer) peerLeave(n *memberlist.Node) {
 func (p *Peer) peerUpdate(n *memberlist.Node) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	p.peerLock.Lock()
 	defer p.peerLock.Unlock()
 	pr, ok := p.peers[n.Address()]
@@ -395,6 +425,8 @@ func (p *Peer) peerUpdate(n *memberlist.Node) {
 	level.Debug(p.logger).Log("msg", "peer updated", "peer", pr.Node)
 }
 func (p *Peer) AddState(key string, s State, reg prometheus.Registerer) *Channel {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	p.states[key] = s
@@ -419,6 +451,8 @@ func (p *Peer) AddState(key string, s State, reg prometheus.Registerer) *Channel
 func (p *Peer) Leave(timeout time.Duration) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	close(p.stopc)
 	level.Debug(p.logger).Log("msg", "leaving cluster")
 	return p.mlist.Leave(timeout)
@@ -426,14 +460,20 @@ func (p *Peer) Leave(timeout time.Duration) error {
 func (p *Peer) Name() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return p.mlist.LocalNode().Name
 }
 func (p *Peer) ClusterSize() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return p.mlist.NumMembers()
 }
 func (p *Peer) Ready() bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	select {
@@ -446,9 +486,13 @@ func (p *Peer) Ready() bool {
 func (p *Peer) WaitReady() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	<-p.readyc
 }
 func (p *Peer) Status() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if p.Ready() {
@@ -460,6 +504,8 @@ func (p *Peer) Status() string {
 func (p *Peer) Info() map[string]interface{} {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	p.mtx.RLock()
 	defer p.mtx.RUnlock()
 	return map[string]interface{}{"self": p.mlist.LocalNode(), "members": p.mlist.Members()}
@@ -467,14 +513,20 @@ func (p *Peer) Info() map[string]interface{} {
 func (p *Peer) Self() *memberlist.Node {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return p.mlist.LocalNode()
 }
 func (p *Peer) Peers() []*memberlist.Node {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return p.mlist.Members()
 }
 func (p *Peer) Position() int {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	all := p.Peers()
@@ -491,6 +543,8 @@ func (p *Peer) Position() int {
 	return k
 }
 func (p *Peer) Settle(ctx context.Context, interval time.Duration) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	const NumOkayRequired = 3
@@ -536,9 +590,13 @@ type simpleBroadcast []byte
 func (b simpleBroadcast) Message() []byte {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return []byte(b)
 }
 func (b simpleBroadcast) Invalidates(memberlist.Broadcast) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return false
@@ -546,8 +604,12 @@ func (b simpleBroadcast) Invalidates(memberlist.Broadcast) bool {
 func (b simpleBroadcast) Finished() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 }
 func resolvePeers(ctx context.Context, peers []string, myAddress string, res net.Resolver, waitIfEmpty bool) ([]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var resolvedPeers []string
@@ -595,6 +657,8 @@ func resolvePeers(ctx context.Context, peers []string, myAddress string, res net
 func removeMyAddr(ips []net.IPAddr, targetPort string, myAddr string) []net.IPAddr {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var result []net.IPAddr
 	for _, ip := range ips {
 		if net.JoinHostPort(ip.String(), targetPort) == myAddr {
@@ -605,6 +669,8 @@ func removeMyAddr(ips []net.IPAddr, targetPort string, myAddr string) []net.IPAd
 	return result
 }
 func hasNonlocal(clusterPeers []string) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, peer := range clusterPeers {
@@ -622,6 +688,8 @@ func hasNonlocal(clusterPeers []string) bool {
 func isUnroutable(addr string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if host, _, err := net.SplitHostPort(addr); err == nil {
 		addr = host
 	}
@@ -635,12 +703,16 @@ func isUnroutable(addr string) bool {
 func isAny(addr string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if host, _, err := net.SplitHostPort(addr); err == nil {
 		addr = host
 	}
 	return addr == "" || net.ParseIP(addr).IsUnspecified()
 }
 func retry(interval time.Duration, stopc <-chan struct{}, f func() error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tick := time.NewTicker(interval)
@@ -658,6 +730,8 @@ func retry(interval time.Duration, stopc <-chan struct{}, f func() error) error 
 	}
 }
 func removeOldPeer(old []peer, addr string) []peer {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	new := make([]peer, 0, len(old))

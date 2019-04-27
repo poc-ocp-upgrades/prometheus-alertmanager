@@ -14,6 +14,8 @@ type Receiver struct {
 func (m *Receiver) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateName(formats); err != nil {
 		res = append(res, err)
@@ -26,6 +28,8 @@ func (m *Receiver) Validate(formats strfmt.Registry) error {
 func (m *Receiver) validateName(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
 	}
@@ -34,12 +38,16 @@ func (m *Receiver) validateName(formats strfmt.Registry) error {
 func (m *Receiver) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *Receiver) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res Receiver

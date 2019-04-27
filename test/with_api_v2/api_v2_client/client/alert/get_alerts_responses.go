@@ -13,6 +13,8 @@ type GetAlertsReader struct{ formats strfmt.Registry }
 func (o *GetAlertsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch response.Code() {
 	case 200:
 		result := NewGetAlertsOK()
@@ -39,6 +41,8 @@ func (o *GetAlertsReader) ReadResponse(response runtime.ClientResponse, consumer
 func NewGetAlertsOK() *GetAlertsOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetAlertsOK{}
 }
 
@@ -47,9 +51,13 @@ type GetAlertsOK struct{ Payload models.GettableAlerts }
 func (o *GetAlertsOK) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /alerts][%d] getAlertsOK  %+v", 200, o.Payload)
 }
 func (o *GetAlertsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -60,6 +68,8 @@ func (o *GetAlertsOK) readResponse(response runtime.ClientResponse, consumer run
 func NewGetAlertsBadRequest() *GetAlertsBadRequest {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetAlertsBadRequest{}
 }
 
@@ -68,9 +78,13 @@ type GetAlertsBadRequest struct{ Payload string }
 func (o *GetAlertsBadRequest) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /alerts][%d] getAlertsBadRequest  %+v", 400, o.Payload)
 }
 func (o *GetAlertsBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -81,6 +95,8 @@ func (o *GetAlertsBadRequest) readResponse(response runtime.ClientResponse, cons
 func NewGetAlertsInternalServerError() *GetAlertsInternalServerError {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetAlertsInternalServerError{}
 }
 
@@ -89,9 +105,13 @@ type GetAlertsInternalServerError struct{ Payload string }
 func (o *GetAlertsInternalServerError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /alerts][%d] getAlertsInternalServerError  %+v", 500, o.Payload)
 }
 func (o *GetAlertsInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

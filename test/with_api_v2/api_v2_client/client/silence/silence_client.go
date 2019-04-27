@@ -8,6 +8,8 @@ import (
 func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -17,6 +19,8 @@ type Client struct {
 }
 
 func (a *Client) DeleteSilence(params *DeleteSilenceParams) (*DeleteSilenceOK, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if params == nil {
@@ -31,6 +35,8 @@ func (a *Client) DeleteSilence(params *DeleteSilenceParams) (*DeleteSilenceOK, e
 func (a *Client) GetSilence(params *GetSilenceParams) (*GetSilenceOK, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if params == nil {
 		params = NewGetSilenceParams()
 	}
@@ -41,6 +47,8 @@ func (a *Client) GetSilence(params *GetSilenceParams) (*GetSilenceOK, error) {
 	return result.(*GetSilenceOK), nil
 }
 func (a *Client) GetSilences(params *GetSilencesParams) (*GetSilencesOK, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if params == nil {
@@ -55,6 +63,8 @@ func (a *Client) GetSilences(params *GetSilencesParams) (*GetSilencesOK, error) 
 func (a *Client) PostSilences(params *PostSilencesParams) (*PostSilencesOK, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if params == nil {
 		params = NewPostSilencesParams()
 	}
@@ -65,6 +75,8 @@ func (a *Client) PostSilences(params *PostSilencesParams) (*PostSilencesOK, erro
 	return result.(*PostSilencesOK), nil
 }
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	a.transport = transport

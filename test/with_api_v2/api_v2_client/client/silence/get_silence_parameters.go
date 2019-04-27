@@ -13,10 +13,14 @@ import (
 func NewGetSilenceParams() *GetSilenceParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ()
 	return &GetSilenceParams{timeout: cr.DefaultTimeout}
 }
 func NewGetSilenceParamsWithTimeout(timeout time.Duration) *GetSilenceParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ()
@@ -25,10 +29,14 @@ func NewGetSilenceParamsWithTimeout(timeout time.Duration) *GetSilenceParams {
 func NewGetSilenceParamsWithContext(ctx context.Context) *GetSilenceParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ()
 	return &GetSilenceParams{Context: ctx}
 }
 func NewGetSilenceParamsWithHTTPClient(client *http.Client) *GetSilenceParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ()
@@ -45,15 +53,21 @@ type GetSilenceParams struct {
 func (o *GetSilenceParams) WithTimeout(timeout time.Duration) *GetSilenceParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetTimeout(timeout)
 	return o
 }
 func (o *GetSilenceParams) SetTimeout(timeout time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.timeout = timeout
 }
 func (o *GetSilenceParams) WithContext(ctx context.Context) *GetSilenceParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetContext(ctx)
@@ -62,9 +76,13 @@ func (o *GetSilenceParams) WithContext(ctx context.Context) *GetSilenceParams {
 func (o *GetSilenceParams) SetContext(ctx context.Context) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Context = ctx
 }
 func (o *GetSilenceParams) WithHTTPClient(client *http.Client) *GetSilenceParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetHTTPClient(client)
@@ -73,9 +91,13 @@ func (o *GetSilenceParams) WithHTTPClient(client *http.Client) *GetSilenceParams
 func (o *GetSilenceParams) SetHTTPClient(client *http.Client) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.HTTPClient = client
 }
 func (o *GetSilenceParams) WithSilenceID(silenceID strfmt.UUID) *GetSilenceParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetSilenceID(silenceID)
@@ -84,9 +106,13 @@ func (o *GetSilenceParams) WithSilenceID(silenceID strfmt.UUID) *GetSilenceParam
 func (o *GetSilenceParams) SetSilenceID(silenceID strfmt.UUID) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SilenceID = silenceID
 }
 func (o *GetSilenceParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.SetTimeout(o.timeout); err != nil {

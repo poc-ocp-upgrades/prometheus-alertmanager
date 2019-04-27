@@ -16,6 +16,8 @@ import (
 func TestAggrGroup(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	lset := model.LabelSet{"a": "v1", "b": "v2"}
 	opts := &RouteOpts{Receiver: "n1", GroupBy: map[model.LabelName]struct{}{}, GroupWait: 1 * time.Second, GroupInterval: 300 * time.Millisecond, RepeatInterval: 1 * time.Hour}
 	route := &Route{RouteOpts: *opts}
@@ -162,6 +164,8 @@ func TestAggrGroup(t *testing.T) {
 func TestGroupLabels(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var a = &types.Alert{Alert: model.Alert{Labels: model.LabelSet{"a": "v1", "b": "v2", "c": "v3"}}}
 	route := &Route{RouteOpts: RouteOpts{GroupBy: map[model.LabelName]struct{}{"a": struct{}{}, "b": struct{}{}}, GroupByAll: false}}
 	expLs := model.LabelSet{"a": "v1", "b": "v2"}
@@ -171,6 +175,8 @@ func TestGroupLabels(t *testing.T) {
 	}
 }
 func TestGroupByAllLabels(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var a = &types.Alert{Alert: model.Alert{Labels: model.LabelSet{"a": "v1", "b": "v2", "c": "v3"}}}

@@ -22,14 +22,20 @@ type ByAlphabetical []labels.Matcher
 func (s ByAlphabetical) Len() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return len(s)
 }
 func (s ByAlphabetical) Swap(i, j int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s[i], s[j] = s[j], s[i]
 }
 func (s ByAlphabetical) Less(i, j int) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if s[i].Name != s[j].Name {
@@ -44,11 +50,15 @@ func (s ByAlphabetical) Less(i, j int) bool {
 func GetAlertmanagerURL(p string) url.URL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	amURL := *alertmanagerURL
 	amURL.Path = path.Join(alertmanagerURL.Path, p)
 	return amURL
 }
 func parseMatchers(inputMatchers []string) ([]labels.Matcher, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	matchers := make([]labels.Matcher, 0)
@@ -62,6 +72,8 @@ func parseMatchers(inputMatchers []string) ([]labels.Matcher, error) {
 	return matchers, nil
 }
 func getRemoteAlertmanagerConfigStatus(ctx context.Context, alertmanagerURL *url.URL) (*client.ServerStatus, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, err := api.NewClient(api.Config{Address: alertmanagerURL.String()})
@@ -78,6 +90,8 @@ func getRemoteAlertmanagerConfigStatus(ctx context.Context, alertmanagerURL *url
 func checkRoutingConfigInputFlags(alertmanagerURL *url.URL, configFile string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if alertmanagerURL != nil && configFile != "" {
 		fmt.Fprintln(os.Stderr, "Warning: --config.file flag overrides the --alertmanager.url.")
 	}
@@ -86,6 +100,8 @@ func checkRoutingConfigInputFlags(alertmanagerURL *url.URL, configFile string) {
 	}
 }
 func loadAlertmanagerConfig(ctx context.Context, alertmanagerURL *url.URL, configFile string) (*amconfig.Config, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	checkRoutingConfigInputFlags(alertmanagerURL, configFile)
@@ -108,6 +124,8 @@ func loadAlertmanagerConfig(ctx context.Context, alertmanagerURL *url.URL, confi
 func convertClientToCommonLabelSet(cls client.LabelSet) model.LabelSet {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	mls := make(model.LabelSet, len(cls))
 	for ln, lv := range cls {
 		mls[model.LabelName(ln)] = model.LabelValue(lv)
@@ -115,6 +133,8 @@ func convertClientToCommonLabelSet(cls client.LabelSet) model.LabelSet {
 	return mls
 }
 func parseLabels(inputLabels []string) (client.LabelSet, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	labelSet := make(client.LabelSet, len(inputLabels))
@@ -133,6 +153,8 @@ func parseLabels(inputLabels []string) (client.LabelSet, error) {
 func TypeMatchers(matchers []labels.Matcher) (types.Matchers, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	typeMatchers := types.Matchers{}
 	for _, matcher := range matchers {
 		typeMatcher, err := TypeMatcher(matcher)
@@ -144,6 +166,8 @@ func TypeMatchers(matchers []labels.Matcher) (types.Matchers, error) {
 	return typeMatchers, nil
 }
 func TypeMatcher(matcher labels.Matcher) (types.Matcher, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	typeMatcher := types.NewMatcher(model.LabelName(matcher.Name), matcher.Value)
@@ -158,6 +182,8 @@ func TypeMatcher(matcher labels.Matcher) (types.Matcher, error) {
 	return *typeMatcher, nil
 }
 func execWithTimeout(fn func(context.Context, *kingpin.ParseContext) error) func(*kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(x *kingpin.ParseContext) error {

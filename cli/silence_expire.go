@@ -13,6 +13,8 @@ type silenceExpireCmd struct{ ids []string }
 func configureSilenceExpireCmd(cc *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		c		= &silenceExpireCmd{}
 		expireCmd	= cc.Command("expire", "expire an alertmanager silence")
@@ -21,6 +23,8 @@ func configureSilenceExpireCmd(cc *kingpin.CmdClause) {
 	expireCmd.Action(execWithTimeout(c.expire))
 }
 func (c *silenceExpireCmd) expire(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(c.ids) < 1 {

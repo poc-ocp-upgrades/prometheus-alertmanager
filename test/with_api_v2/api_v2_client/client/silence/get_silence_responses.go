@@ -13,6 +13,8 @@ type GetSilenceReader struct{ formats strfmt.Registry }
 func (o *GetSilenceReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch response.Code() {
 	case 200:
 		result := NewGetSilenceOK()
@@ -39,6 +41,8 @@ func (o *GetSilenceReader) ReadResponse(response runtime.ClientResponse, consume
 func NewGetSilenceOK() *GetSilenceOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilenceOK{}
 }
 
@@ -47,9 +51,13 @@ type GetSilenceOK struct{ Payload *models.GettableSilence }
 func (o *GetSilenceOK) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /silence/{silenceID}][%d] getSilenceOK  %+v", 200, o.Payload)
 }
 func (o *GetSilenceOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = new(models.GettableSilence)
@@ -61,6 +69,8 @@ func (o *GetSilenceOK) readResponse(response runtime.ClientResponse, consumer ru
 func NewGetSilenceNotFound() *GetSilenceNotFound {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilenceNotFound{}
 }
 
@@ -69,14 +79,20 @@ type GetSilenceNotFound struct{}
 func (o *GetSilenceNotFound) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /silence/{silenceID}][%d] getSilenceNotFound ", 404)
 }
 func (o *GetSilenceNotFound) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func NewGetSilenceInternalServerError() *GetSilenceInternalServerError {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &GetSilenceInternalServerError{}
@@ -87,9 +103,13 @@ type GetSilenceInternalServerError struct{ Payload string }
 func (o *GetSilenceInternalServerError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /silence/{silenceID}][%d] getSilenceInternalServerError  %+v", 500, o.Payload)
 }
 func (o *GetSilenceInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

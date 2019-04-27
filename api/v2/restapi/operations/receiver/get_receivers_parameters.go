@@ -9,6 +9,8 @@ import (
 func NewGetReceiversParams() GetReceiversParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return GetReceiversParams{}
 }
 
@@ -17,6 +19,8 @@ type GetReceiversParams struct {
 }
 
 func (o *GetReceiversParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error

@@ -16,6 +16,8 @@ import (
 func At(ts float64) float64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return ts
 }
 
@@ -24,14 +26,20 @@ type Interval struct{ start, end float64 }
 func (iv Interval) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[%v,%v]", iv.start, iv.end)
 }
 func (iv Interval) contains(f float64) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f >= iv.start && f <= iv.end
 }
 func Between(start, end float64) Interval {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return Interval{start: start, end: end}
@@ -48,15 +56,21 @@ type TestSilence struct {
 func Silence(start, end float64) *TestSilence {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &TestSilence{startsAt: start, endsAt: end}
 }
 func (s *TestSilence) Match(v ...string) *TestSilence {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s.match = append(s.match, v...)
 	return s
 }
 func (s *TestSilence) MatchRE(v ...string) *TestSilence {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(v)%2 == 1 {
@@ -68,6 +82,8 @@ func (s *TestSilence) MatchRE(v ...string) *TestSilence {
 func (s *TestSilence) SetID(ID string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s.mtx.Lock()
 	defer s.mtx.Unlock()
 	s.id = ID
@@ -75,11 +91,15 @@ func (s *TestSilence) SetID(ID string) {
 func (s *TestSilence) ID() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s.mtx.RLock()
 	defer s.mtx.RUnlock()
 	return s.id
 }
 func (s *TestSilence) nativeSilence(opts *AcceptanceOpts) *types.Silence {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	nsil := &types.Silence{}
@@ -109,6 +129,8 @@ type TestAlert struct {
 func Alert(keyval ...interface{}) *TestAlert {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(keyval)%2 == 1 {
 		panic("bad key/values")
 	}
@@ -123,6 +145,8 @@ func Alert(keyval ...interface{}) *TestAlert {
 func (a *TestAlert) nativeAlert(opts *AcceptanceOpts) *model.Alert {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	na := &model.Alert{Labels: a.labels, Annotations: a.annotations}
 	if a.startsAt > 0 {
 		na.StartsAt = opts.expandTime(a.startsAt)
@@ -133,6 +157,8 @@ func (a *TestAlert) nativeAlert(opts *AcceptanceOpts) *model.Alert {
 	return na
 }
 func (a *TestAlert) Annotate(keyval ...interface{}) *TestAlert {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(keyval)%2 == 1 {
@@ -148,6 +174,8 @@ func (a *TestAlert) Annotate(keyval ...interface{}) *TestAlert {
 func (a *TestAlert) Active(tss ...float64) *TestAlert {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(tss) > 2 || len(tss) == 0 {
 		panic("only one or two timestamps allowed")
 	}
@@ -158,6 +186,8 @@ func (a *TestAlert) Active(tss ...float64) *TestAlert {
 	return a
 }
 func equalAlerts(a, b *model.Alert, opts *AcceptanceOpts) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !reflect.DeepEqual(a.Labels, b.Labels) {
@@ -175,6 +205,8 @@ func equalAlerts(a, b *model.Alert, opts *AcceptanceOpts) bool {
 	return true
 }
 func equalTime(a, b time.Time, opts *AcceptanceOpts) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if a.IsZero() != b.IsZero() {
@@ -197,6 +229,8 @@ type MockWebhook struct {
 func NewWebhook(c *Collector) *MockWebhook {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	l, err := net.Listen("tcp4", "localhost:0")
 	if err != nil {
 		panic(err)
@@ -210,6 +244,8 @@ func NewWebhook(c *Collector) *MockWebhook {
 	return wh
 }
 func (ws *MockWebhook) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if ws.Func != nil {
@@ -240,6 +276,8 @@ func (ws *MockWebhook) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	ws.collector.add(alerts...)
 }
 func (ws *MockWebhook) Address() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return ws.listener.Addr().String()

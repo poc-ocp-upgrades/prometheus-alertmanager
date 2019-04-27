@@ -10,6 +10,8 @@ import (
 func TestInhibiting(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Parallel()
 	conf := `
 route:
@@ -49,6 +51,8 @@ inhibit_rules:
 	t.Log(co.Check())
 }
 func TestAlwaysInhibiting(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t.Parallel()

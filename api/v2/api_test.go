@@ -10,6 +10,8 @@ import (
 func TestGetStatusHandlerWithNilPeer(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	api := API{uptime: time.Now(), peer: nil, alertmanagerConfig: &config.Config{}}
 	status := api.getStatusHandler(general_ops.GetStatusParams{}).(*general_ops.GetStatusOK)
 	c := status.Payload.Cluster

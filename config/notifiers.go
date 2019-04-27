@@ -28,6 +28,8 @@ type NotifierConfig struct {
 func (nc *NotifierConfig) SendResolved() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nc.VSendResolved
 }
 
@@ -49,6 +51,8 @@ type EmailConfig struct {
 }
 
 func (c *EmailConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*c = DefaultEmailConfig
@@ -101,6 +105,8 @@ type PagerdutyImage struct {
 func (c *PagerdutyConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*c = DefaultPagerdutyConfig
 	type plain PagerdutyConfig
 	if err := unmarshal((*plain)(c)); err != nil {
@@ -131,6 +137,8 @@ type SlackAction struct {
 }
 
 func (c *SlackAction) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type plain SlackAction
@@ -165,6 +173,8 @@ type SlackConfirmationField struct {
 func (c *SlackConfirmationField) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type plain SlackConfirmationField
 	if err := unmarshal((*plain)(c)); err != nil {
 		return err
@@ -182,6 +192,8 @@ type SlackField struct {
 }
 
 func (c *SlackField) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type plain SlackField
@@ -224,6 +236,8 @@ type SlackConfig struct {
 func (c *SlackConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*c = DefaultSlackConfig
 	type plain SlackConfig
 	return unmarshal((*plain)(c))
@@ -245,6 +259,8 @@ type HipchatConfig struct {
 func (c *HipchatConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*c = DefaultHipchatConfig
 	type plain HipchatConfig
 	if err := unmarshal((*plain)(c)); err != nil {
@@ -263,6 +279,8 @@ type WebhookConfig struct {
 }
 
 func (c *WebhookConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*c = DefaultWebhookConfig
@@ -293,6 +311,8 @@ type WechatConfig struct {
 }
 
 func (c *WechatConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*c = DefaultWechatConfig
@@ -327,6 +347,8 @@ type OpsGenieConfig struct {
 func (c *OpsGenieConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	*c = DefaultOpsGenieConfig
 	type plain OpsGenieConfig
 	return unmarshal((*plain)(c))
@@ -346,6 +368,8 @@ type VictorOpsConfig struct {
 }
 
 func (c *VictorOpsConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*c = DefaultVictorOpsConfig
@@ -370,6 +394,8 @@ type duration time.Duration
 func (d *duration) UnmarshalText(text []byte) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	parsed, err := time.ParseDuration(string(text))
 	if err == nil {
 		*d = duration(parsed)
@@ -377,6 +403,8 @@ func (d *duration) UnmarshalText(text []byte) error {
 	return err
 }
 func (d duration) MarshalText() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return []byte(time.Duration(d).String()), nil
@@ -399,6 +427,8 @@ type PushoverConfig struct {
 }
 
 func (c *PushoverConfig) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	*c = DefaultPushoverConfig

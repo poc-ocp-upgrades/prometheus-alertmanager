@@ -22,6 +22,8 @@ import (
 func getContextWithCancelingURL(h ...func(w http.ResponseWriter, r *http.Request)) (context.Context, *url.URL, func()) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	done := make(chan struct{})
 	ctx, cancel := context.WithCancel(context.Background())
 	i := 0
@@ -43,6 +45,8 @@ func getContextWithCancelingURL(h ...func(w http.ResponseWriter, r *http.Request
 func assertNotifyLeaksNoSecret(t *testing.T, ctx context.Context, n Notifier, secret ...string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Helper()
 	require.NotEmpty(t, secret)
 	ctx = WithGroupKey(ctx, "1")
@@ -55,6 +59,8 @@ func assertNotifyLeaksNoSecret(t *testing.T, ctx context.Context, n Notifier, se
 	require.True(t, ok)
 }
 func TestWebhookRetry(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u, err := url.Parse("http://example.com")
@@ -70,6 +76,8 @@ func TestWebhookRetry(t *testing.T) {
 func TestPagerDutyRetryV1(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	notifier := new(PagerDuty)
 	retryCodes := append(defaultRetryCodes(), http.StatusForbidden)
 	for statusCode, expected := range retryTests(retryCodes) {
@@ -79,6 +87,8 @@ func TestPagerDutyRetryV1(t *testing.T) {
 	}
 }
 func TestPagerDutyRetryV2(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	notifier := new(PagerDuty)
@@ -91,6 +101,8 @@ func TestPagerDutyRetryV2(t *testing.T) {
 func TestPagerDutyRedactedURLV1(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
 	defer fn()
 	key := "01234567890123456789012345678901"
@@ -99,6 +111,8 @@ func TestPagerDutyRedactedURLV1(t *testing.T) {
 	assertNotifyLeaksNoSecret(t, ctx, notifier, key)
 }
 func TestPagerDutyRedactedURLV2(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
@@ -110,6 +124,8 @@ func TestPagerDutyRedactedURLV2(t *testing.T) {
 func TestSlackRetry(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	notifier := new(Slack)
 	for statusCode, expected := range retryTests(defaultRetryCodes()) {
 		actual, _ := notifier.retry(statusCode)
@@ -119,12 +135,16 @@ func TestSlackRetry(t *testing.T) {
 func TestSlackRedactedURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
 	defer fn()
 	notifier := NewSlack(&config.SlackConfig{APIURL: &config.SecretURL{URL: u}, HTTPConfig: &commoncfg.HTTPClientConfig{}}, createTmpl(t), log.NewNopLogger())
 	assertNotifyLeaksNoSecret(t, ctx, notifier, u.String())
 }
 func TestHipchatRetry(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	notifier := new(Hipchat)
@@ -137,6 +157,8 @@ func TestHipchatRetry(t *testing.T) {
 func TestHipchatRedactedURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
 	defer fn()
 	token := "secret_token"
@@ -144,6 +166,8 @@ func TestHipchatRedactedURL(t *testing.T) {
 	assertNotifyLeaksNoSecret(t, ctx, notifier, token)
 }
 func TestOpsGenieRetry(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	notifier := new(OpsGenie)
@@ -156,6 +180,8 @@ func TestOpsGenieRetry(t *testing.T) {
 func TestOpsGenieRedactedURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
 	defer fn()
 	key := "key"
@@ -163,6 +189,8 @@ func TestOpsGenieRedactedURL(t *testing.T) {
 	assertNotifyLeaksNoSecret(t, ctx, notifier, key)
 }
 func TestVictorOpsRetry(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	notifier := new(VictorOps)
@@ -174,6 +202,8 @@ func TestVictorOpsRetry(t *testing.T) {
 func TestVictorOpsRedactedURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
 	defer fn()
 	secret := "secret"
@@ -183,6 +213,8 @@ func TestVictorOpsRedactedURL(t *testing.T) {
 func TestPushoverRetry(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	notifier := new(Pushover)
 	for statusCode, expected := range retryTests(defaultRetryCodes()) {
 		actual, _ := notifier.retry(statusCode)
@@ -190,6 +222,8 @@ func TestPushoverRetry(t *testing.T) {
 	}
 }
 func TestPushoverRedactedURL(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
@@ -202,6 +236,8 @@ func TestPushoverRedactedURL(t *testing.T) {
 func retryTests(retryCodes []int) map[int]bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tests := map[int]bool{http.StatusContinue: false, http.StatusSwitchingProtocols: false, http.StatusProcessing: false, http.StatusOK: false, http.StatusCreated: false, http.StatusAccepted: false, http.StatusNonAuthoritativeInfo: false, http.StatusNoContent: false, http.StatusResetContent: false, http.StatusPartialContent: false, http.StatusMultiStatus: false, http.StatusAlreadyReported: false, http.StatusIMUsed: false, http.StatusMultipleChoices: false, http.StatusMovedPermanently: false, http.StatusFound: false, http.StatusSeeOther: false, http.StatusNotModified: false, http.StatusUseProxy: false, http.StatusTemporaryRedirect: false, http.StatusPermanentRedirect: false, http.StatusBadRequest: false, http.StatusUnauthorized: false, http.StatusPaymentRequired: false, http.StatusForbidden: false, http.StatusNotFound: false, http.StatusMethodNotAllowed: false, http.StatusNotAcceptable: false, http.StatusProxyAuthRequired: false, http.StatusRequestTimeout: false, http.StatusConflict: false, http.StatusGone: false, http.StatusLengthRequired: false, http.StatusPreconditionFailed: false, http.StatusRequestEntityTooLarge: false, http.StatusRequestURITooLong: false, http.StatusUnsupportedMediaType: false, http.StatusRequestedRangeNotSatisfiable: false, http.StatusExpectationFailed: false, http.StatusTeapot: false, http.StatusUnprocessableEntity: false, http.StatusLocked: false, http.StatusFailedDependency: false, http.StatusUpgradeRequired: false, http.StatusPreconditionRequired: false, http.StatusTooManyRequests: false, http.StatusRequestHeaderFieldsTooLarge: false, http.StatusUnavailableForLegalReasons: false, http.StatusInternalServerError: false, http.StatusNotImplemented: false, http.StatusBadGateway: false, http.StatusServiceUnavailable: false, http.StatusGatewayTimeout: false, http.StatusHTTPVersionNotSupported: false, http.StatusVariantAlsoNegotiates: false, http.StatusInsufficientStorage: false, http.StatusLoopDetected: false, http.StatusNotExtended: false, http.StatusNetworkAuthenticationRequired: false}
 	for _, statusCode := range retryCodes {
 		tests[statusCode] = true
@@ -211,9 +247,13 @@ func retryTests(retryCodes []int) map[int]bool {
 func defaultRetryCodes() []int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return []int{http.StatusInternalServerError, http.StatusNotImplemented, http.StatusBadGateway, http.StatusServiceUnavailable, http.StatusGatewayTimeout, http.StatusHTTPVersionNotSupported, http.StatusVariantAlsoNegotiates, http.StatusInsufficientStorage, http.StatusLoopDetected, http.StatusNotExtended, http.StatusNetworkAuthenticationRequired}
 }
 func createTmpl(t *testing.T) *template.Template {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tmpl, err := template.FromGlobs()
@@ -224,11 +264,15 @@ func createTmpl(t *testing.T) *template.Template {
 func readBody(t *testing.T, r *http.Request) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	body, err := ioutil.ReadAll(r.Body)
 	require.NoError(t, err)
 	return string(body)
 }
 func TestOpsGenie(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u, err := url.Parse("https://opsgenie/api")
@@ -266,12 +310,16 @@ func TestOpsGenie(t *testing.T) {
 func TestEmailConfigNoAuthMechs(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	email := &Email{conf: &config.EmailConfig{AuthUsername: "test"}, tmpl: &template.Template{}, logger: log.NewNopLogger()}
 	_, err := email.auth("")
 	require.Error(t, err)
 	require.Equal(t, err.Error(), "unknown auth mechanism: ")
 }
 func TestEmailConfigMissingAuthParam(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conf := &config.EmailConfig{AuthUsername: "test"}
@@ -292,12 +340,16 @@ func TestEmailConfigMissingAuthParam(t *testing.T) {
 func TestEmailNoUsernameStillOk(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	email := &Email{conf: &config.EmailConfig{}, tmpl: &template.Template{}, logger: log.NewNopLogger()}
 	a, err := email.auth("CRAM-MD5")
 	require.NoError(t, err)
 	require.Nil(t, a)
 }
 func TestVictorOpsCustomFields(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	logger := log.NewNopLogger()
@@ -319,6 +371,8 @@ func TestVictorOpsCustomFields(t *testing.T) {
 func TestWechatRedactedURLOnInitialAuthentication(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ctx, u, fn := getContextWithCancelingURL()
 	defer fn()
 	secret := "secret_key"
@@ -326,6 +380,8 @@ func TestWechatRedactedURLOnInitialAuthentication(t *testing.T) {
 	assertNotifyLeaksNoSecret(t, ctx, notifier, secret)
 }
 func TestWechatRedactedURLOnNotify(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	secret, token := "secret", "token"

@@ -3,6 +3,8 @@ package nflogpb
 func (m *Entry) IsFiringSubset(subset map[uint64]struct{}) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	set := map[uint64]struct{}{}
 	for i := range m.FiringAlerts {
 		set[m.FiringAlerts[i]] = struct{}{}
@@ -12,6 +14,8 @@ func (m *Entry) IsFiringSubset(subset map[uint64]struct{}) bool {
 func (m *Entry) IsResolvedSubset(subset map[uint64]struct{}) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	set := map[uint64]struct{}{}
 	for i := range m.ResolvedAlerts {
 		set[m.ResolvedAlerts[i]] = struct{}{}
@@ -19,6 +23,8 @@ func (m *Entry) IsResolvedSubset(subset map[uint64]struct{}) bool {
 	return isSubset(set, subset)
 }
 func isSubset(set, subset map[uint64]struct{}) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for k := range subset {

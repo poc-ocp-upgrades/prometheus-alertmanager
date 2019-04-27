@@ -14,6 +14,8 @@ type PostableSilence struct {
 func (m *PostableSilence) UnmarshalJSON(raw []byte) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var dataAO0 struct {
 		ID string `json:"id,omitempty"`
 	}
@@ -29,6 +31,8 @@ func (m *PostableSilence) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 func (m PostableSilence) MarshalJSON() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_parts := make([][]byte, 0, 2)
@@ -51,6 +55,8 @@ func (m PostableSilence) MarshalJSON() ([]byte, error) {
 func (m *PostableSilence) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.Silence.Validate(formats); err != nil {
 		res = append(res, err)
@@ -63,12 +69,16 @@ func (m *PostableSilence) Validate(formats strfmt.Registry) error {
 func (m *PostableSilence) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *PostableSilence) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res PostableSilence

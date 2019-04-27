@@ -12,6 +12,8 @@ type GettableSilences []*GettableSilence
 func (m GettableSilences) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	for i := 0; i < len(m); i++ {
 		if swag.IsZero(m[i]) {

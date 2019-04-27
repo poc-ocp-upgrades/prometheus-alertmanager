@@ -11,6 +11,8 @@ import (
 func TestMatcherValidate(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	validLabelName := "valid_label_name"
 	validStringValue := "value"
 	validRegexValue := ".*"
@@ -34,6 +36,8 @@ func TestMatcherValidate(t *testing.T) {
 func TestMatcherInit(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m := Matcher{Name: "label", Value: ".*", IsRegex: true}
 	require.NoError(t, m.Init())
 	require.EqualValues(t, "^(?:.*)$", m.regex.String())
@@ -41,6 +45,8 @@ func TestMatcherInit(t *testing.T) {
 	require.Error(t, m.Init())
 }
 func TestMatcherMatch(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tests := []struct {
@@ -55,6 +61,8 @@ func TestMatcherMatch(t *testing.T) {
 	}
 }
 func TestMatcherString(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m := NewMatcher("foo", "bar")
@@ -73,6 +81,8 @@ func TestMatcherString(t *testing.T) {
 func TestMatchersString(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m1 := NewMatcher("foo", "bar")
 	re, err := regexp.Compile(".*")
 	if err != nil {
@@ -85,6 +95,8 @@ func TestMatchersString(t *testing.T) {
 	}
 }
 func TestMatchersMatch(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m1 := &Matcher{Name: "label1", Value: "value1"}
@@ -104,6 +116,8 @@ func TestMatchersMatch(t *testing.T) {
 	}
 }
 func TestMatchersEqual(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m1 := &Matcher{Name: "label1", Value: "value1"}

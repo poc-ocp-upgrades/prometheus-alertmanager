@@ -12,9 +12,13 @@ type PostAlertsOK struct{}
 func NewPostAlertsOK() *PostAlertsOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &PostAlertsOK{}
 }
 func (o *PostAlertsOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.Header().Del(runtime.HeaderContentType)
@@ -30,9 +34,13 @@ type PostAlertsBadRequest struct {
 func NewPostAlertsBadRequest() *PostAlertsBadRequest {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &PostAlertsBadRequest{}
 }
 func (o *PostAlertsBadRequest) WithPayload(payload string) *PostAlertsBadRequest {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -41,9 +49,13 @@ func (o *PostAlertsBadRequest) WithPayload(payload string) *PostAlertsBadRequest
 func (o *PostAlertsBadRequest) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *PostAlertsBadRequest) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(400)
@@ -62,9 +74,13 @@ type PostAlertsInternalServerError struct {
 func NewPostAlertsInternalServerError() *PostAlertsInternalServerError {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &PostAlertsInternalServerError{}
 }
 func (o *PostAlertsInternalServerError) WithPayload(payload string) *PostAlertsInternalServerError {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -73,9 +89,13 @@ func (o *PostAlertsInternalServerError) WithPayload(payload string) *PostAlertsI
 func (o *PostAlertsInternalServerError) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *PostAlertsInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(500)

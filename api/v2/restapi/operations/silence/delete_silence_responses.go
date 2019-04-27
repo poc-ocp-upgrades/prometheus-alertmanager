@@ -12,9 +12,13 @@ type DeleteSilenceOK struct{}
 func NewDeleteSilenceOK() *DeleteSilenceOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &DeleteSilenceOK{}
 }
 func (o *DeleteSilenceOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.Header().Del(runtime.HeaderContentType)
@@ -30,9 +34,13 @@ type DeleteSilenceInternalServerError struct {
 func NewDeleteSilenceInternalServerError() *DeleteSilenceInternalServerError {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &DeleteSilenceInternalServerError{}
 }
 func (o *DeleteSilenceInternalServerError) WithPayload(payload string) *DeleteSilenceInternalServerError {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -41,9 +49,13 @@ func (o *DeleteSilenceInternalServerError) WithPayload(payload string) *DeleteSi
 func (o *DeleteSilenceInternalServerError) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *DeleteSilenceInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(500)

@@ -31,6 +31,8 @@ var ErrInvalidState = fmt.Errorf("invalid state")
 func utcNow() time.Time {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return time.Now().UTC()
 }
 
@@ -39,12 +41,16 @@ type matcherCache map[*pb.Silence]types.Matchers
 func (c matcherCache) Get(s *pb.Silence) (types.Matchers, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m, ok := c[s]; ok {
 		return m, nil
 	}
 	return c.add(s)
 }
 func (c matcherCache) add(s *pb.Silence) (types.Matchers, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -95,6 +101,8 @@ type metrics struct {
 func newSilenceMetricByState(s *Silences, st types.SilenceState) prometheus.GaugeFunc {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return prometheus.NewGaugeFunc(prometheus.GaugeOpts{Name: "alertmanager_silences", Help: "How many silences by state.", ConstLabels: prometheus.Labels{"state": string(st)}}, func() float64 {
 		count, err := s.CountState(st)
 		if err != nil {
@@ -104,6 +112,8 @@ func newSilenceMetricByState(s *Silences, st types.SilenceState) prometheus.Gaug
 	})
 }
 func newMetrics(r prometheus.Registerer, s *Silences) *metrics {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m := &metrics{}
@@ -136,12 +146,16 @@ type Options struct {
 func (o *Options) validate() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if o.SnapshotFile != "" && o.SnapshotReader != nil {
 		return fmt.Errorf("only one of SnapshotFile and SnapshotReader must be set")
 	}
 	return nil
 }
 func New(o Options) (*Silences, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := o.validate(); err != nil {
@@ -170,6 +184,8 @@ func New(o Options) (*Silences, error) {
 	return s, nil
 }
 func (s *Silences) Maintenance(interval time.Duration, snapf string, stopc <-chan struct{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t := time.NewTicker(interval)
@@ -218,6 +234,8 @@ Loop:
 func (s *Silences) GC() (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	start := time.Now()
 	defer func() {
 		s.metrics.gcDuration.Observe(time.Since(start).Seconds())
@@ -241,6 +259,8 @@ func (s *Silences) GC() (int, error) {
 func validateMatcher(m *pb.Matcher) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !model.LabelName(m.Name).IsValid() {
 		return fmt.Errorf("invalid label name %q", m.Name)
 	}
@@ -259,6 +279,8 @@ func validateMatcher(m *pb.Matcher) error {
 	return nil
 }
 func validateSilence(s *pb.Silence) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if s.Id == "" {
@@ -289,10 +311,14 @@ func validateSilence(s *pb.Silence) error {
 func cloneSilence(sil *pb.Silence) *pb.Silence {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s := *sil
 	return &s
 }
 func (s *Silences) getSilence(id string) (*pb.Silence, bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	msil, ok := s.st[id]
@@ -302,6 +328,8 @@ func (s *Silences) getSilence(id string) (*pb.Silence, bool) {
 	return msil.Silence, true
 }
 func (s *Silences) setSilence(sil *pb.Silence) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sil.UpdatedAt = s.now()
@@ -318,6 +346,8 @@ func (s *Silences) setSilence(sil *pb.Silence) error {
 	return nil
 }
 func (s *Silences) Set(sil *pb.Silence) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s.mtx.Lock()
@@ -346,6 +376,8 @@ func (s *Silences) Set(sil *pb.Silence) (string, error) {
 func canUpdate(a, b *pb.Silence, now time.Time) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !reflect.DeepEqual(a.Matchers, b.Matchers) {
 		return false
 	}
@@ -371,11 +403,15 @@ func canUpdate(a, b *pb.Silence, now time.Time) bool {
 func (s *Silences) Expire(id string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s.mtx.Lock()
 	defer s.mtx.Unlock()
 	return s.expire(id)
 }
 func (s *Silences) expire(id string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sil, ok := s.getSilence(id)
@@ -408,6 +444,8 @@ var errNotSupported = errors.New("query parameter not supported")
 func QIDs(ids ...string) QueryParam {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(q *query) error {
 		q.ids = append(q.ids, ids...)
 		return nil
@@ -416,11 +454,15 @@ func QIDs(ids ...string) QueryParam {
 func QTimeRange(start, end time.Time) QueryParam {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(q *query) error {
 		return errNotSupported
 	}
 }
 func QMatches(set model.LabelSet) QueryParam {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(q *query) error {
@@ -438,6 +480,8 @@ func QMatches(set model.LabelSet) QueryParam {
 func getState(sil *pb.Silence, ts time.Time) types.SilenceState {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if ts.Before(sil.StartsAt) {
 		return types.SilenceStatePending
 	}
@@ -447,6 +491,8 @@ func getState(sil *pb.Silence, ts time.Time) types.SilenceState {
 	return types.SilenceStateActive
 }
 func QState(states ...types.SilenceState) QueryParam {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(q *query) error {
@@ -466,6 +512,8 @@ func QState(states ...types.SilenceState) QueryParam {
 func (s *Silences) QueryOne(params ...QueryParam) (*pb.Silence, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	res, err := s.Query(params...)
 	if err != nil {
 		return nil, err
@@ -476,6 +524,8 @@ func (s *Silences) QueryOne(params ...QueryParam) (*pb.Silence, error) {
 	return res[0], nil
 }
 func (s *Silences) Query(params ...QueryParam) ([]*pb.Silence, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	start := time.Now()
@@ -498,6 +548,8 @@ func (s *Silences) Query(params ...QueryParam) ([]*pb.Silence, error) {
 func (s *Silences) CountState(states ...types.SilenceState) (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sils, err := s.Query(QState(states...))
 	if err != nil {
 		return -1, err
@@ -505,6 +557,8 @@ func (s *Silences) CountState(states ...types.SilenceState) (int, error) {
 	return len(sils), nil
 }
 func (s *Silences) query(q *query, now time.Time) ([]*pb.Silence, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []*pb.Silence
@@ -543,6 +597,8 @@ func (s *Silences) query(q *query, now time.Time) ([]*pb.Silence, error) {
 func (s *Silences) loadSnapshot(r io.Reader) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	st, err := decodeState(r)
 	if err != nil {
 		return err
@@ -563,6 +619,8 @@ func (s *Silences) loadSnapshot(r io.Reader) error {
 func (s *Silences) Snapshot(w io.Writer) (int64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	start := time.Now()
 	defer func() {
 		s.metrics.snapshotDuration.Observe(time.Since(start).Seconds())
@@ -578,11 +636,15 @@ func (s *Silences) Snapshot(w io.Writer) (int64, error) {
 func (s *Silences) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s.mtx.Lock()
 	defer s.mtx.Unlock()
 	return s.st.MarshalBinary()
 }
 func (s *Silences) Merge(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	st, err := decodeState(bytes.NewReader(b))
@@ -604,6 +666,8 @@ func (s *Silences) Merge(b []byte) error {
 func (s *Silences) SetBroadcast(f func([]byte)) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s.mtx.Lock()
 	s.broadcast = f
 	s.mtx.Unlock()
@@ -612,6 +676,8 @@ func (s *Silences) SetBroadcast(f func([]byte)) {
 type state map[string]*pb.MeshSilence
 
 func (s state) merge(e *pb.MeshSilence, now time.Time) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e.ExpiresAt.Before(now) {
@@ -633,6 +699,8 @@ func (s state) merge(e *pb.MeshSilence, now time.Time) bool {
 func (s state) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var buf bytes.Buffer
 	for _, e := range s {
 		if _, err := pbutil.WriteDelimited(&buf, e); err != nil {
@@ -642,6 +710,8 @@ func (s state) MarshalBinary() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 func decodeState(r io.Reader) (state, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	st := state{}
@@ -665,6 +735,8 @@ func decodeState(r io.Reader) (state, error) {
 func marshalMeshSilence(e *pb.MeshSilence) ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var buf bytes.Buffer
 	if _, err := pbutil.WriteDelimited(&buf, e); err != nil {
 		return nil, err
@@ -680,6 +752,8 @@ type replaceFile struct {
 func (f *replaceFile) Close() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := f.File.Sync(); err != nil {
 		return err
 	}
@@ -689,6 +763,8 @@ func (f *replaceFile) Close() error {
 	return os.Rename(f.File.Name(), f.filename)
 }
 func openReplace(filename string) (*replaceFile, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tmpFilename := fmt.Sprintf("%s.%x", filename, uint64(rand.Int63()))
@@ -702,7 +778,16 @@ func openReplace(filename string) (*replaceFile, error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

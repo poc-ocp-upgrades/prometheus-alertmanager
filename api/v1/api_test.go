@@ -29,6 +29,8 @@ type fakeAlerts struct {
 func newFakeAlerts(alerts []*types.Alert, withErr bool) *fakeAlerts {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fps := make(map[model.Fingerprint]int)
 	for i, a := range alerts {
 		fps[a.Fingerprint()] = i
@@ -42,9 +44,13 @@ func newFakeAlerts(alerts []*types.Alert, withErr bool) *fakeAlerts {
 func (f *fakeAlerts) Subscribe() provider.AlertIterator {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func (f *fakeAlerts) Get(model.Fingerprint) (*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil, nil
@@ -52,9 +58,13 @@ func (f *fakeAlerts) Get(model.Fingerprint) (*types.Alert, error) {
 func (f *fakeAlerts) Put(alerts ...*types.Alert) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f.err
 }
 func (f *fakeAlerts) GetPending() provider.AlertIterator {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ch := make(chan *types.Alert)
@@ -68,6 +78,8 @@ func (f *fakeAlerts) GetPending() provider.AlertIterator {
 	return provider.NewAlertIterator(ch, done, f.err)
 }
 func newGetAlertStatus(f *fakeAlerts) func(model.Fingerprint) types.AlertStatus {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(fp model.Fingerprint) types.AlertStatus {
@@ -97,6 +109,8 @@ func newGetAlertStatus(f *fakeAlerts) func(model.Fingerprint) types.AlertStatus 
 func TestAddAlerts(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := func(offset int) time.Time {
 		return time.Now().Add(time.Duration(offset) * time.Second)
 	}
@@ -124,6 +138,8 @@ func TestAddAlerts(t *testing.T) {
 	}
 }
 func TestListAlerts(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := time.Now()
@@ -180,6 +196,8 @@ func TestListAlerts(t *testing.T) {
 func TestAlertFiltering(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	type test struct {
 		alert		*model.Alert
 		msg		string
@@ -227,6 +245,8 @@ func TestAlertFiltering(t *testing.T) {
 	}
 }
 func TestSilenceFiltering(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	type test struct {
@@ -278,6 +298,8 @@ func TestSilenceFiltering(t *testing.T) {
 func TestReceiversMatchFilter(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	receivers := []string{"pagerduty", "slack", "hipchat"}
 	filter, err := regexp.Compile(fmt.Sprintf("^(?:%s)$", "hip.*"))
 	if err != nil {
@@ -291,6 +313,8 @@ func TestReceiversMatchFilter(t *testing.T) {
 	require.False(t, receiversMatchFilter(receivers, filter))
 }
 func TestMatchFilterLabels(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	testCases := []struct {
@@ -311,6 +335,8 @@ func TestMatchFilterLabels(t *testing.T) {
 	}
 }
 func newMatcher(labelSet model.LabelSet) types.Matchers {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	matchers := make([]*types.Matcher, 0, len(labelSet))

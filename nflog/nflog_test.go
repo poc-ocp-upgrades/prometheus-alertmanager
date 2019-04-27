@@ -14,6 +14,8 @@ import (
 func TestLogGC(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := utcNow()
 	newEntry := func(ts time.Time) *pb.MeshEntry {
 		return &pb.MeshEntry{ExpiresAt: ts}
@@ -28,6 +30,8 @@ func TestLogGC(t *testing.T) {
 	require.Equal(t, l.st, expected, "unepexcted state after garbage collection")
 }
 func TestLogSnapshot(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := utcNow()
@@ -54,6 +58,8 @@ func TestLogSnapshot(t *testing.T) {
 func TestReplaceFile(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dir, err := ioutil.TempDir("", "replace_file")
 	require.NoError(t, err, "creating temp dir failed")
 	origFilename := filepath.Join(dir, "testfile")
@@ -74,6 +80,8 @@ func TestReplaceFile(t *testing.T) {
 	require.Equal(t, "test", string(res), "unexpected file contents")
 }
 func TestStateMerge(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := utcNow()
@@ -99,6 +107,8 @@ func TestStateMerge(t *testing.T) {
 func TestStateDataCoding(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := utcNow()
 	cases := []struct{ entries []*pb.MeshEntry }{{entries: []*pb.MeshEntry{{Entry: &pb.Entry{GroupKey: []byte("d8e8fca2dc0f896fd7cb4cb0031ba249"), Receiver: &pb.Receiver{GroupName: "abc", Integration: "test1", Idx: 1}, GroupHash: []byte("126a8a51b9d1bbd07fddc65819a542c3"), Resolved: false, Timestamp: now}, ExpiresAt: now}, {Entry: &pb.Entry{GroupKey: []byte("d8e8fca2dc0f8abce7cb4cb0031ba249"), Receiver: &pb.Receiver{GroupName: "def", Integration: "test2", Idx: 29}, GroupHash: []byte("122c2331b9d1bbd07fddc65819a542c3"), Resolved: true, Timestamp: now}, ExpiresAt: now}, {Entry: &pb.Entry{GroupKey: []byte("aaaaaca2dc0f896fd7cb4cb0031ba249"), Receiver: &pb.Receiver{GroupName: "ghi", Integration: "test3", Idx: 0}, GroupHash: []byte("126a8a51b9d1bbd07fddc6e3e3e542c3"), Resolved: false, Timestamp: now}, ExpiresAt: now}}}}
 	for _, c := range cases {
@@ -114,6 +124,8 @@ func TestStateDataCoding(t *testing.T) {
 	}
 }
 func TestQuery(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	nl, err := New(WithRetention(time.Second))
@@ -138,6 +150,8 @@ func TestQuery(t *testing.T) {
 	require.EqualValues(t, resolvedAlerts, entry.ResolvedAlerts)
 }
 func TestStateDecodingError(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := state{"": &pb.MeshEntry{}}

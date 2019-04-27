@@ -13,6 +13,8 @@ type Matchers []*Matcher
 func (m Matchers) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	iMatchersSize := int64(len(m))
 	if err := validate.MinItems("", "body", iMatchersSize, 1); err != nil {

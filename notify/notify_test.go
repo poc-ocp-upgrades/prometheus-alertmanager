@@ -23,6 +23,8 @@ type notifierConfigFunc func() bool
 func (f notifierConfigFunc) SendResolved() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f()
 }
 
@@ -31,12 +33,16 @@ type notifierFunc func(ctx context.Context, alerts ...*types.Alert) (bool, error
 func (f notifierFunc) Notify(ctx context.Context, alerts ...*types.Alert) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f(ctx, alerts...)
 }
 
 type failStage struct{}
 
 func (s failStage) Exec(ctx context.Context, l log.Logger, as ...*types.Alert) (context.Context, []*types.Alert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return ctx, nil, fmt.Errorf("some error")
@@ -51,9 +57,13 @@ type testNflog struct {
 func (l *testNflog) Query(p ...nflog.QueryParam) ([]*nflogpb.Entry, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return l.qres, l.qerr
 }
 func (l *testNflog) Log(r *nflogpb.Receiver, gkey string, firingAlerts, resolvedAlerts []uint64) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return l.logFunc(r, gkey, firingAlerts, resolvedAlerts)
@@ -61,14 +71,20 @@ func (l *testNflog) Log(r *nflogpb.Receiver, gkey string, firingAlerts, resolved
 func (l *testNflog) GC() (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return 0, nil
 }
 func (l *testNflog) Snapshot(w io.Writer) (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return 0, nil
 }
 func alertHashSet(hashes ...uint64) map[uint64]struct{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	res := map[uint64]struct{}{}
@@ -78,6 +94,8 @@ func alertHashSet(hashes ...uint64) map[uint64]struct{} {
 	return res
 }
 func TestDedupStageNeedsUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := utcNow()
@@ -101,6 +119,8 @@ func TestDedupStageNeedsUpdate(t *testing.T) {
 	}
 }
 func TestDedupStage(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	i := 0
@@ -146,6 +166,8 @@ func TestDedupStage(t *testing.T) {
 func TestMultiStage(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		alerts1	= []*types.Alert{{}}
 		alerts2	= []*types.Alert{{}, {}}
@@ -178,6 +200,8 @@ func TestMultiStage(t *testing.T) {
 func TestMultiStageFailure(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		ctx	= context.Background()
 		s1	= failStage{}
@@ -189,6 +213,8 @@ func TestMultiStageFailure(t *testing.T) {
 	}
 }
 func TestRoutingStage(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -211,6 +237,8 @@ func TestRoutingStage(t *testing.T) {
 	}
 }
 func TestRetryStageWithError(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fail, retry := true, true
@@ -242,6 +270,8 @@ func TestRetryStageWithError(t *testing.T) {
 	require.NotNil(t, resctx)
 }
 func TestRetryStageNoResolved(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sent := []*types.Alert{}
@@ -276,6 +306,8 @@ func TestRetryStageNoResolved(t *testing.T) {
 func TestRetryStageSendResolved(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sent := []*types.Alert{}
 	i := Integration{notifier: notifierFunc(func(ctx context.Context, alerts ...*types.Alert) (bool, error) {
 		sent = append(sent, alerts...)
@@ -302,6 +334,8 @@ func TestRetryStageSendResolved(t *testing.T) {
 	require.NotNil(t, resctx)
 }
 func TestSetNotifiesStage(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tnflog := &testNflog{}
@@ -351,6 +385,8 @@ func TestSetNotifiesStage(t *testing.T) {
 func TestSilenceStage(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	silences, err := silence.New(silence.Options{})
 	if err != nil {
 		t.Fatal(err)
@@ -380,6 +416,8 @@ func TestSilenceStage(t *testing.T) {
 	}
 }
 func TestInhibitStage(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	muter := types.MuteFunc(func(lset model.LabelSet) bool {

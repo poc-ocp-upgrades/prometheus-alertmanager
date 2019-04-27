@@ -12,6 +12,8 @@ type PostSilencesHandlerFunc func(PostSilencesParams) middleware.Responder
 func (fn PostSilencesHandlerFunc) Handle(params PostSilencesParams) middleware.Responder {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fn(params)
 }
 
@@ -20,6 +22,8 @@ type PostSilencesHandler interface {
 }
 
 func NewPostSilences(ctx *middleware.Context, handler PostSilencesHandler) *PostSilences {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &PostSilences{Context: ctx, Handler: handler}
@@ -31,6 +35,8 @@ type PostSilences struct {
 }
 
 func (o *PostSilences) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	route, rCtx, _ := o.Context.RouteInfo(r)
@@ -53,9 +59,13 @@ type PostSilencesOKBody struct {
 func (o *PostSilencesOKBody) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func (o *PostSilencesOKBody) MarshalBinary() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if o == nil {
@@ -64,6 +74,8 @@ func (o *PostSilencesOKBody) MarshalBinary() ([]byte, error) {
 	return swag.WriteJSON(o)
 }
 func (o *PostSilencesOKBody) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res PostSilencesOKBody

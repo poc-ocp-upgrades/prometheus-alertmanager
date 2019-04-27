@@ -14,6 +14,8 @@ type GetAlertsHandlerFunc func(GetAlertsParams) middleware.Responder
 func (fn GetAlertsHandlerFunc) Handle(params GetAlertsParams) middleware.Responder {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fn(params)
 }
 
@@ -22,6 +24,8 @@ type GetAlertsHandler interface {
 }
 
 func NewGetAlerts(ctx *middleware.Context, handler GetAlertsHandler) *GetAlerts {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &GetAlerts{Context: ctx, Handler: handler}
@@ -33,6 +37,8 @@ type GetAlerts struct {
 }
 
 func (o *GetAlerts) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	route, rCtx, _ := o.Context.RouteInfo(r)
@@ -50,7 +56,16 @@ func (o *GetAlerts) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

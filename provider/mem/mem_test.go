@@ -27,9 +27,13 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pretty.CompareConfig.IncludeUnexported = true
 }
 func TestAlertsSubscribePutStarvation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	marker := types.NewMarker()
@@ -64,6 +68,8 @@ func TestAlertsSubscribePutStarvation(t *testing.T) {
 func TestAlertsPut(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	marker := types.NewMarker()
 	alerts, err := NewAlerts(context.Background(), marker, 30*time.Minute, log.NewNopLogger())
 	if err != nil {
@@ -85,6 +91,8 @@ func TestAlertsPut(t *testing.T) {
 	}
 }
 func TestAlertsSubscribe(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	marker := types.NewMarker()
@@ -152,6 +160,8 @@ func TestAlertsSubscribe(t *testing.T) {
 func TestAlertsGetPending(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	marker := types.NewMarker()
 	alerts, err := NewAlerts(context.Background(), marker, 30*time.Minute, log.NewNopLogger())
 	if err != nil {
@@ -185,6 +195,8 @@ func TestAlertsGetPending(t *testing.T) {
 func TestAlertsGC(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	marker := types.NewMarker()
 	alerts, err := NewAlerts(context.Background(), marker, 200*time.Millisecond, log.NewNopLogger())
 	if err != nil {
@@ -212,6 +224,8 @@ func TestAlertsGC(t *testing.T) {
 	}
 }
 func alertsEqual(a1, a2 *types.Alert) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if a1 == nil || a2 == nil {

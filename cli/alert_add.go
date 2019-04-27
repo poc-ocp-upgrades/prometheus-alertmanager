@@ -43,6 +43,8 @@ Additional flags such as --generator-url, --start, and --end are also supported.
 func configureAddAlertCmd(cc *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		a	= &alertAddCmd{}
 		addCmd	= cc.Command("add", alertAddHelp)
@@ -55,6 +57,8 @@ func configureAddAlertCmd(cc *kingpin.CmdClause) {
 	addCmd.Action(execWithTimeout(a.addAlert))
 }
 func (a *alertAddCmd) addAlert(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, err := api.NewClient(api.Config{Address: alertmanagerURL.String()})

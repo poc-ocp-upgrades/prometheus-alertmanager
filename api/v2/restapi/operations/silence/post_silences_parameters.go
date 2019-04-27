@@ -12,6 +12,8 @@ import (
 func NewPostSilencesParams() PostSilencesParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return PostSilencesParams{}
 }
 
@@ -21,6 +23,8 @@ type PostSilencesParams struct {
 }
 
 func (o *PostSilencesParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error

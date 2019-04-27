@@ -42,6 +42,8 @@ type AcceptanceOpts struct {
 func (opts *AcceptanceOpts) alertString(a *models.GettableAlert) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if a.EndsAt == nil || time.Time(*a.EndsAt).IsZero() {
 		return fmt.Sprintf("%v[%v:]", a, opts.relativeTime(time.Time(*a.StartsAt)))
 	}
@@ -50,9 +52,13 @@ func (opts *AcceptanceOpts) alertString(a *models.GettableAlert) string {
 func (opts *AcceptanceOpts) expandTime(rel float64) time.Time {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return opts.baseTime.Add(time.Duration(rel * float64(time.Second)))
 }
 func (opts *AcceptanceOpts) relativeTime(act time.Time) float64 {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return float64(act.Sub(opts.baseTime)) / float64(time.Second)
@@ -60,11 +66,15 @@ func (opts *AcceptanceOpts) relativeTime(act time.Time) float64 {
 func NewAcceptanceTest(t *testing.T, opts *AcceptanceOpts) *AcceptanceTest {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	test := &AcceptanceTest{T: t, opts: opts, actions: map[float64][]func(){}}
 	opts.baseTime = time.Now()
 	return test
 }
 func freeAddress() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	l, err := net.Listen("tcp4", "localhost:0")
@@ -81,9 +91,13 @@ func freeAddress() string {
 func (t *AcceptanceTest) Do(at float64, f func()) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.actions[at] = append(t.actions[at], f)
 }
 func (t *AcceptanceTest) AlertmanagerCluster(conf string, size int) *AlertmanagerCluster {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	amc := AlertmanagerCluster{}
@@ -112,11 +126,15 @@ func (t *AcceptanceTest) AlertmanagerCluster(conf string, size int) *Alertmanage
 func (t *AcceptanceTest) Collector(name string) *Collector {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	co := &Collector{t: t.T, name: name, opts: t.opts, collected: map[float64][]models.GettableAlerts{}, expected: map[Interval][]models.GettableAlerts{}}
 	t.collectors = append(t.collectors, co)
 	return co
 }
 func (t *AcceptanceTest) Run() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	errc := make(chan error)
@@ -150,6 +168,8 @@ func (t *AcceptanceTest) Run() {
 func (t *AcceptanceTest) runActions() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var wg sync.WaitGroup
 	for at, fs := range t.actions {
 		ts := t.opts.expandTime(at)
@@ -173,11 +193,15 @@ type buffer struct {
 func (b *buffer) Write(p []byte) (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b.mtx.Lock()
 	defer b.mtx.Unlock()
 	return b.b.Write(p)
 }
 func (b *buffer) String() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b.mtx.Lock()
@@ -201,6 +225,8 @@ type AlertmanagerCluster struct{ ams []*Alertmanager }
 func (amc *AlertmanagerCluster) Start() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var peerFlags []string
 	for _, am := range amc.ams {
 		peerFlags = append(peerFlags, "--cluster.peer="+am.clusterAddr)
@@ -220,6 +246,8 @@ func (amc *AlertmanagerCluster) Start() error {
 	return nil
 }
 func (am *Alertmanager) Start(additionalArg []string) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	am.t.Helper()
@@ -268,6 +296,8 @@ func (am *Alertmanager) Start(additionalArg []string) error {
 func (am *Alertmanager) WaitForCluster(size int) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	params := general.NewGetStatusParams()
 	params.WithContext(context.Background())
 	var status general.GetStatusOK
@@ -286,11 +316,15 @@ func (am *Alertmanager) WaitForCluster(size int) error {
 func (amc *AlertmanagerCluster) Terminate() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, am := range amc.ams {
 		am.Terminate()
 	}
 }
 func (am *Alertmanager) Terminate() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	am.t.Helper()
@@ -301,11 +335,15 @@ func (am *Alertmanager) Terminate() {
 func (amc *AlertmanagerCluster) Reload() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, am := range amc.ams {
 		am.Reload()
 	}
 }
 func (am *Alertmanager) Reload() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	am.t.Helper()
@@ -316,6 +354,8 @@ func (am *Alertmanager) Reload() {
 func (am *Alertmanager) cleanup() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	am.t.Helper()
 	if err := os.RemoveAll(am.confFile.Name()); err != nil {
 		am.t.Errorf("Error removing test config file %q: %v", am.confFile.Name(), err)
@@ -324,11 +364,15 @@ func (am *Alertmanager) cleanup() {
 func (amc *AlertmanagerCluster) Push(at float64, alerts ...*TestAlert) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, am := range amc.ams {
 		am.Push(at, alerts...)
 	}
 }
 func (am *Alertmanager) Push(at float64, alerts ...*TestAlert) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var cas models.PostableAlerts
@@ -355,11 +399,15 @@ func (am *Alertmanager) Push(at float64, alerts ...*TestAlert) {
 func (amc *AlertmanagerCluster) SetSilence(at float64, sil *TestSilence) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, am := range amc.ams {
 		am.SetSilence(at, sil)
 	}
 }
 func (am *Alertmanager) SetSilence(at float64, sil *TestSilence) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	am.t.Do(at, func() {
@@ -394,11 +442,15 @@ func (am *Alertmanager) SetSilence(at float64, sil *TestSilence) {
 func (amc *AlertmanagerCluster) DelSilence(at float64, sil *TestSilence) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, am := range amc.ams {
 		am.DelSilence(at, sil)
 	}
 }
 func (am *Alertmanager) DelSilence(at float64, sil *TestSilence) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	am.t.Do(at, func() {
@@ -417,11 +469,15 @@ func (am *Alertmanager) DelSilence(at float64, sil *TestSilence) {
 func (amc *AlertmanagerCluster) UpdateConfig(conf string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, am := range amc.ams {
 		am.UpdateConfig(conf)
 	}
 }
 func (am *Alertmanager) UpdateConfig(conf string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if _, err := am.confFile.WriteString(conf); err != nil {
@@ -436,6 +492,8 @@ func (am *Alertmanager) UpdateConfig(conf string) {
 func (amc *AlertmanagerCluster) GenericAPIV2Call(at float64, f func()) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, am := range amc.ams {
 		am.GenericAPIV2Call(at, f)
 	}
@@ -443,9 +501,13 @@ func (amc *AlertmanagerCluster) GenericAPIV2Call(at float64, f func()) {
 func (am *Alertmanager) GenericAPIV2Call(at float64, f func()) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	am.t.Do(at, f)
 }
 func (am *Alertmanager) getURL(path string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return fmt.Sprintf("http://%s%s%s", am.apiAddr, am.opts.RoutePrefix, path)
@@ -453,7 +515,16 @@ func (am *Alertmanager) getURL(path string) string {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

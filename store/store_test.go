@@ -12,6 +12,8 @@ import (
 func TestSetGet(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	d := time.Minute
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
@@ -25,6 +27,8 @@ func TestSetGet(t *testing.T) {
 	require.Equal(t, want, got.Fingerprint())
 }
 func TestDelete(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	d := time.Minute
@@ -42,6 +46,8 @@ func TestDelete(t *testing.T) {
 	require.Equal(t, ErrNotFound, err)
 }
 func TestGC(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := time.Now()

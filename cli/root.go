@@ -22,6 +22,8 @@ var (
 func requireAlertManagerURL(pc *kingpin.ParseContext) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, elem := range pc.Elements {
 		f, ok := elem.Clause.(*kingpin.FlagClause)
 		if !ok {
@@ -38,6 +40,8 @@ func requireAlertManagerURL(pc *kingpin.ParseContext) error {
 	return nil
 }
 func Execute() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (

@@ -18,6 +18,8 @@ type Silence struct {
 func (m *Silence) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateComment(formats); err != nil {
 		res = append(res, err)
@@ -42,6 +44,8 @@ func (m *Silence) Validate(formats strfmt.Registry) error {
 func (m *Silence) validateComment(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("comment", "body", m.Comment); err != nil {
 		return err
 	}
@@ -50,12 +54,16 @@ func (m *Silence) validateComment(formats strfmt.Registry) error {
 func (m *Silence) validateCreatedBy(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("createdBy", "body", m.CreatedBy); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *Silence) validateEndsAt(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("endsAt", "body", m.EndsAt); err != nil {
@@ -67,6 +75,8 @@ func (m *Silence) validateEndsAt(formats strfmt.Registry) error {
 	return nil
 }
 func (m *Silence) validateMatchers(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("matchers", "body", m.Matchers); err != nil {
@@ -83,6 +93,8 @@ func (m *Silence) validateMatchers(formats strfmt.Registry) error {
 func (m *Silence) validateStartsAt(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("startsAt", "body", m.StartsAt); err != nil {
 		return err
 	}
@@ -94,12 +106,16 @@ func (m *Silence) validateStartsAt(formats strfmt.Registry) error {
 func (m *Silence) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *Silence) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res Silence

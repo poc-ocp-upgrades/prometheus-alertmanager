@@ -12,6 +12,8 @@ import (
 func NewGetSilencesParams() GetSilencesParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return GetSilencesParams{}
 }
 
@@ -21,6 +23,8 @@ type GetSilencesParams struct {
 }
 
 func (o *GetSilencesParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error
@@ -36,6 +40,8 @@ func (o *GetSilencesParams) BindRequest(r *http.Request, route *middleware.Match
 	return nil
 }
 func (o *GetSilencesParams) bindFilter(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var qvFilter string

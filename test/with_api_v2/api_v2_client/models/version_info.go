@@ -19,6 +19,8 @@ type VersionInfo struct {
 func (m *VersionInfo) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateBranch(formats); err != nil {
 		res = append(res, err)
@@ -46,12 +48,16 @@ func (m *VersionInfo) Validate(formats strfmt.Registry) error {
 func (m *VersionInfo) validateBranch(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("branch", "body", m.Branch); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *VersionInfo) validateBuildDate(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("buildDate", "body", m.BuildDate); err != nil {
@@ -62,12 +68,16 @@ func (m *VersionInfo) validateBuildDate(formats strfmt.Registry) error {
 func (m *VersionInfo) validateBuildUser(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("buildUser", "body", m.BuildUser); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *VersionInfo) validateGoVersion(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("goVersion", "body", m.GoVersion); err != nil {
@@ -78,12 +88,16 @@ func (m *VersionInfo) validateGoVersion(formats strfmt.Registry) error {
 func (m *VersionInfo) validateRevision(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("revision", "body", m.Revision); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *VersionInfo) validateVersion(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("version", "body", m.Version); err != nil {
@@ -94,12 +108,16 @@ func (m *VersionInfo) validateVersion(formats strfmt.Registry) error {
 func (m *VersionInfo) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *VersionInfo) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res VersionInfo

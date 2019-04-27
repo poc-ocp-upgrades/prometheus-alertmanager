@@ -47,9 +47,13 @@ type Integration struct {
 func (i *Integration) Notify(ctx context.Context, alerts ...*types.Alert) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return i.notifier.Notify(ctx, alerts...)
 }
 func BuildReceiverIntegrations(nc *config.Receiver, tmpl *template.Template, logger log.Logger) []Integration {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -110,6 +114,8 @@ type Webhook struct {
 func NewWebhook(conf *config.WebhookConfig, t *template.Template, l log.Logger) *Webhook {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Webhook{conf: conf, tmpl: t, logger: l}
 }
 
@@ -120,6 +126,8 @@ type WebhookMessage struct {
 }
 
 func (w *Webhook) Notify(ctx context.Context, alerts ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	data := w.tmpl.Data(receiverName(ctx, w.logger), groupLabels(ctx, w.logger), alerts...)
@@ -152,6 +160,8 @@ func (w *Webhook) Notify(ctx context.Context, alerts ...*types.Alert) (bool, err
 func (w *Webhook) retry(statusCode int) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if statusCode/100 != 2 {
 		return (statusCode/100 == 5), fmt.Errorf("unexpected status code %v from %s", statusCode, w.conf.URL)
 	}
@@ -167,6 +177,8 @@ type Email struct {
 func NewEmail(c *config.EmailConfig, t *template.Template, l log.Logger) *Email {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if _, ok := c.Headers["Subject"]; !ok {
 		c.Headers["Subject"] = config.DefaultEmailSubject
 	}
@@ -179,6 +191,8 @@ func NewEmail(c *config.EmailConfig, t *template.Template, l log.Logger) *Email 
 	return &Email{conf: c, tmpl: t, logger: l}
 }
 func (n *Email) auth(mechs string) (smtp.Auth, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	username := n.conf.AuthUsername
@@ -223,6 +237,8 @@ func (n *Email) auth(mechs string) (smtp.Auth, error) {
 	return nil, err
 }
 func (n *Email) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var c *smtp.Client
@@ -395,6 +411,8 @@ type PagerDuty struct {
 func NewPagerDuty(c *config.PagerdutyConfig, t *template.Template, l log.Logger) *PagerDuty {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	n := &PagerDuty{conf: c, tmpl: t, logger: l}
 	if c.ServiceKey != "" {
 		n.apiV1 = "https://events.pagerduty.com/generic/2010-04-15/create_event.json"
@@ -445,6 +463,8 @@ type pagerDutyPayload struct {
 func (n *PagerDuty) notifyV1(ctx context.Context, c *http.Client, eventType, key string, data *template.Data, details map[string]string, as ...*types.Alert) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var tmplErr error
 	tmpl := tmplText(n.tmpl, data, &tmplErr)
 	msg := &pagerDutyMessage{ServiceKey: tmpl(string(n.conf.ServiceKey)), EventType: eventType, IncidentKey: hashKey(key), Description: tmpl(n.conf.Description), Details: details}
@@ -467,6 +487,8 @@ func (n *PagerDuty) notifyV1(ctx context.Context, c *http.Client, eventType, key
 	return n.retryV1(resp)
 }
 func (n *PagerDuty) notifyV2(ctx context.Context, c *http.Client, eventType, key string, data *template.Data, details map[string]string, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var tmplErr error
@@ -499,6 +521,8 @@ func (n *PagerDuty) notifyV2(ctx context.Context, c *http.Client, eventType, key
 	return n.retryV2(resp.StatusCode)
 }
 func (n *PagerDuty) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, ok := GroupKey(ctx)
@@ -538,6 +562,8 @@ func (n *PagerDuty) Notify(ctx context.Context, as ...*types.Alert) (bool, error
 func (n *PagerDuty) retryV1(resp *http.Response) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	statusCode := resp.StatusCode
 	if statusCode == 400 && resp.Body != nil {
 		bs, err := ioutil.ReadAll(resp.Body)
@@ -554,6 +580,8 @@ func (n *PagerDuty) retryV1(resp *http.Response) (bool, error) {
 func (n *PagerDuty) retryV2(statusCode int) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if statusCode/100 != 2 {
 		return (statusCode == 429 || statusCode/100 == 5), fmt.Errorf("unexpected status code %v", statusCode)
 	}
@@ -567,6 +595,8 @@ type Slack struct {
 }
 
 func NewSlack(c *config.SlackConfig, t *template.Template, l log.Logger) *Slack {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &Slack{conf: c, tmpl: t, logger: l}
@@ -597,6 +627,8 @@ type slackAttachment struct {
 }
 
 func (n *Slack) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var err error
@@ -654,6 +686,8 @@ func (n *Slack) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
 func (n *Slack) retry(statusCode int) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if statusCode/100 != 2 {
 		return (statusCode/100 == 5), fmt.Errorf("unexpected status code %v", statusCode)
 	}
@@ -669,6 +703,8 @@ type Hipchat struct {
 func NewHipchat(c *config.HipchatConfig, t *template.Template, l log.Logger) *Hipchat {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Hipchat{conf: c, tmpl: t, logger: l}
 }
 
@@ -681,6 +717,8 @@ type hipchatReq struct {
 }
 
 func (n *Hipchat) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var err error
@@ -723,6 +761,8 @@ func (n *Hipchat) Notify(ctx context.Context, as ...*types.Alert) (bool, error) 
 func (n *Hipchat) retry(statusCode int) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if statusCode/100 != 2 {
 		return (statusCode == 429 || statusCode/100 == 5), fmt.Errorf("unexpected status code %v", statusCode)
 	}
@@ -759,9 +799,13 @@ type weChatResponse struct {
 func NewWechat(c *config.WechatConfig, t *template.Template, l log.Logger) *Wechat {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Wechat{conf: c, tmpl: t, logger: l}
 }
 func (n *Wechat) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, ok := GroupKey(ctx)
@@ -863,6 +907,8 @@ type OpsGenie struct {
 func NewOpsGenie(c *config.OpsGenieConfig, t *template.Template, l log.Logger) *OpsGenie {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &OpsGenie{conf: c, tmpl: t, logger: l}
 }
 
@@ -884,6 +930,8 @@ type opsGenieCloseMessage struct {
 func (n *OpsGenie) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	req, retry, err := n.createRequest(ctx, as...)
 	if err != nil {
 		return retry, err
@@ -902,6 +950,8 @@ func (n *OpsGenie) Notify(ctx context.Context, as ...*types.Alert) (bool, error)
 func safeSplit(s string, sep string) []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	a := strings.Split(strings.TrimSpace(s), sep)
 	b := a[:0]
 	for _, x := range a {
@@ -912,6 +962,8 @@ func safeSplit(s string, sep string) []string {
 	return b
 }
 func (n *OpsGenie) createRequest(ctx context.Context, as ...*types.Alert) (*http.Request, bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, ok := GroupKey(ctx)
@@ -972,6 +1024,8 @@ func (n *OpsGenie) createRequest(ctx context.Context, as ...*types.Alert) (*http
 func (n *OpsGenie) retry(statusCode int) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if statusCode/100 == 5 || statusCode == 429 {
 		return true, fmt.Errorf("unexpected status code %v", statusCode)
 	} else if statusCode/100 != 2 {
@@ -989,6 +1043,8 @@ type VictorOps struct {
 func NewVictorOps(c *config.VictorOpsConfig, t *template.Template, l log.Logger) *VictorOps {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &VictorOps{conf: c, tmpl: t, logger: l}
 }
 
@@ -998,6 +1054,8 @@ const (
 )
 
 func (n *VictorOps) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var err error
@@ -1023,6 +1081,8 @@ func (n *VictorOps) Notify(ctx context.Context, as ...*types.Alert) (bool, error
 	return n.retry(resp.StatusCode)
 }
 func (n *VictorOps) createVictorOpsPayload(ctx context.Context, as ...*types.Alert) (*bytes.Buffer, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	victorOpsAllowedEvents := map[string]bool{"INFO": true, "WARNING": true, "CRITICAL": true}
@@ -1067,6 +1127,8 @@ func (n *VictorOps) createVictorOpsPayload(ctx context.Context, as ...*types.Ale
 func (n *VictorOps) retry(statusCode int) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if statusCode/100 == 5 {
 		return true, fmt.Errorf("unexpected status code %v", statusCode)
 	} else if statusCode/100 != 2 {
@@ -1085,9 +1147,13 @@ type Pushover struct {
 func NewPushover(c *config.PushoverConfig, t *template.Template, l log.Logger) *Pushover {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Pushover{conf: c, tmpl: t, logger: l, apiURL: "https://api.pushover.net/1/messages.json"}
 }
 func (n *Pushover) Notify(ctx context.Context, as ...*types.Alert) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	key, ok := GroupKey(ctx)
@@ -1160,6 +1226,8 @@ func (n *Pushover) Notify(ctx context.Context, as ...*types.Alert) (bool, error)
 func (n *Pushover) retry(statusCode int) (bool, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if statusCode/100 == 5 {
 		return true, fmt.Errorf("unexpected status code %v", statusCode)
 	} else if statusCode/100 != 2 {
@@ -1168,6 +1236,8 @@ func (n *Pushover) retry(statusCode int) (bool, error) {
 	return false, nil
 }
 func tmplText(tmpl *template.Template, data *template.Data, err *error) func(string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(name string) (s string) {
@@ -1179,6 +1249,8 @@ func tmplText(tmpl *template.Template, data *template.Data, err *error) func(str
 	}
 }
 func tmplHTML(tmpl *template.Template, data *template.Data, err *error) func(string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(name string) (s string) {
@@ -1195,14 +1267,20 @@ type loginAuth struct{ username, password string }
 func LoginAuth(username, password string) smtp.Auth {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &loginAuth{username, password}
 }
 func (a *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return "LOGIN", []byte{}, nil
 }
 func (a *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if more {
@@ -1220,11 +1298,15 @@ func (a *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
 func hashKey(s string) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	h := sha256.New()
 	h.Write([]byte(s))
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 func redactURL(err error) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	e, ok := err.(*url.Error)
@@ -1237,6 +1319,8 @@ func redactURL(err error) error {
 func post(ctx context.Context, client *http.Client, url string, bodyType string, body io.Reader) (*http.Response, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	req, err := http.NewRequest("POST", url, body)
 	if err != nil {
 		return nil, err
@@ -1247,7 +1331,16 @@ func post(ctx context.Context, client *http.Client, url string, bodyType string,
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

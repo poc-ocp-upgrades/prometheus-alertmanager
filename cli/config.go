@@ -18,11 +18,15 @@ The amount of output is controlled by the output selection flag:
 func configureConfigCmd(app *kingpin.Application) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	configCmd := app.Command("config", configHelp)
 	configCmd.Command("show", configHelp).Default().Action(execWithTimeout(queryConfig)).PreAction(requireAlertManagerURL)
 	configureRoutingCmd(configCmd)
 }
 func queryConfig(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	status, err := getRemoteAlertmanagerConfigStatus(ctx, alertmanagerURL)

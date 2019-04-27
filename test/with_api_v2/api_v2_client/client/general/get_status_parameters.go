@@ -13,9 +13,13 @@ import (
 func NewGetStatusParams() *GetStatusParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetStatusParams{timeout: cr.DefaultTimeout}
 }
 func NewGetStatusParamsWithTimeout(timeout time.Duration) *GetStatusParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &GetStatusParams{timeout: timeout}
@@ -23,9 +27,13 @@ func NewGetStatusParamsWithTimeout(timeout time.Duration) *GetStatusParams {
 func NewGetStatusParamsWithContext(ctx context.Context) *GetStatusParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetStatusParams{Context: ctx}
 }
 func NewGetStatusParamsWithHTTPClient(client *http.Client) *GetStatusParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &GetStatusParams{HTTPClient: client}
@@ -40,15 +48,21 @@ type GetStatusParams struct {
 func (o *GetStatusParams) WithTimeout(timeout time.Duration) *GetStatusParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetTimeout(timeout)
 	return o
 }
 func (o *GetStatusParams) SetTimeout(timeout time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.timeout = timeout
 }
 func (o *GetStatusParams) WithContext(ctx context.Context) *GetStatusParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetContext(ctx)
@@ -57,9 +71,13 @@ func (o *GetStatusParams) WithContext(ctx context.Context) *GetStatusParams {
 func (o *GetStatusParams) SetContext(ctx context.Context) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Context = ctx
 }
 func (o *GetStatusParams) WithHTTPClient(client *http.Client) *GetStatusParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetHTTPClient(client)
@@ -68,9 +86,13 @@ func (o *GetStatusParams) WithHTTPClient(client *http.Client) *GetStatusParams {
 func (o *GetStatusParams) SetHTTPClient(client *http.Client) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.HTTPClient = client
 }
 func (o *GetStatusParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.SetTimeout(o.timeout); err != nil {

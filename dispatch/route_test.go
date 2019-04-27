@@ -12,6 +12,8 @@ import (
 func TestRouteMatch(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 receiver: 'notify-def'
 

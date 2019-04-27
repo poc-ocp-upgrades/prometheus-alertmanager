@@ -27,6 +27,8 @@ type Channel struct {
 func NewChannel(key string, send func([]byte), peers func() []*memberlist.Node, sendOversize func(*memberlist.Node, []byte) error, logger log.Logger, stopc chan struct{}, reg prometheus.Registerer) *Channel {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	oversizeGossipMessageFailureTotal := prometheus.NewCounter(prometheus.CounterOpts{Name: "alertmanager_oversized_gossip_message_failure_total", Help: "Number of oversized gossip message sends that failed.", ConstLabels: prometheus.Labels{"key": key}})
 	oversizeGossipMessageSentTotal := prometheus.NewCounter(prometheus.CounterOpts{Name: "alertmanager_oversized_gossip_message_sent_total", Help: "Number of oversized gossip message sent.", ConstLabels: prometheus.Labels{"key": key}})
 	oversizeGossipMessageDroppedTotal := prometheus.NewCounter(prometheus.CounterOpts{Name: "alertmanager_oversized_gossip_message_dropped_total", Help: "Number of oversized gossip messages that were dropped due to a full message queue.", ConstLabels: prometheus.Labels{"key": key}})
@@ -37,6 +39,8 @@ func NewChannel(key string, send func([]byte), peers func() []*memberlist.Node, 
 	return c
 }
 func (c *Channel) handleOverSizedMessages(stopc chan struct{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var wg sync.WaitGroup
@@ -66,6 +70,8 @@ func (c *Channel) handleOverSizedMessages(stopc chan struct{}) {
 func (c *Channel) Broadcast(b []byte) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b, err := proto.Marshal(&clusterpb.Part{Key: c.key, Data: b})
 	if err != nil {
 		return
@@ -82,6 +88,8 @@ func (c *Channel) Broadcast(b []byte) {
 	}
 }
 func OversizedMessage(b []byte) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return len(b) > maxGossipPacketSize/2

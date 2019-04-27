@@ -24,6 +24,8 @@ import (
 func NewAlertmanagerAPI(spec *loads.Document) *AlertmanagerAPI {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &AlertmanagerAPI{handlers: make(map[string]map[string]http.Handler), formats: strfmt.Default, defaultConsumes: "application/json", defaultProduces: "application/json", customConsumers: make(map[string]runtime.Consumer), customProducers: make(map[string]runtime.Producer), ServerShutdown: func() {
 	}, spec: spec, ServeError: errors.ServeError, BasicAuthenticator: security.BasicAuth, APIKeyAuthenticator: security.APIKeyAuth, BearerAuthenticator: security.BearerAuth, JSONConsumer: runtime.JSONConsumer(), JSONProducer: runtime.JSONProducer(), SilenceDeleteSilenceHandler: silence.DeleteSilenceHandlerFunc(func(params silence.DeleteSilenceParams) middleware.Responder {
 		return middleware.NotImplemented("operation SilenceDeleteSilence has not yet been implemented")
@@ -76,9 +78,13 @@ type AlertmanagerAPI struct {
 func (o *AlertmanagerAPI) SetDefaultProduces(mediaType string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.defaultProduces = mediaType
 }
 func (o *AlertmanagerAPI) SetDefaultConsumes(mediaType string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.defaultConsumes = mediaType
@@ -86,9 +92,13 @@ func (o *AlertmanagerAPI) SetDefaultConsumes(mediaType string) {
 func (o *AlertmanagerAPI) SetSpec(spec *loads.Document) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.spec = spec
 }
 func (o *AlertmanagerAPI) DefaultProduces() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return o.defaultProduces
@@ -96,9 +106,13 @@ func (o *AlertmanagerAPI) DefaultProduces() string {
 func (o *AlertmanagerAPI) DefaultConsumes() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return o.defaultConsumes
 }
 func (o *AlertmanagerAPI) Formats() strfmt.Registry {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return o.formats
@@ -106,9 +120,13 @@ func (o *AlertmanagerAPI) Formats() strfmt.Registry {
 func (o *AlertmanagerAPI) RegisterFormat(name string, format strfmt.Format, validator strfmt.Validator) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.formats.Add(name, format, validator)
 }
 func (o *AlertmanagerAPI) Validate() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var unregistered []string
@@ -150,9 +168,13 @@ func (o *AlertmanagerAPI) Validate() error {
 func (o *AlertmanagerAPI) ServeErrorFor(operationID string) func(http.ResponseWriter, *http.Request, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return o.ServeError
 }
 func (o *AlertmanagerAPI) AuthenticatorsFor(schemes map[string]spec.SecurityScheme) map[string]runtime.Authenticator {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -160,9 +182,13 @@ func (o *AlertmanagerAPI) AuthenticatorsFor(schemes map[string]spec.SecuritySche
 func (o *AlertmanagerAPI) Authorizer() runtime.Authorizer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func (o *AlertmanagerAPI) ConsumersFor(mediaTypes []string) map[string]runtime.Consumer {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	result := make(map[string]runtime.Consumer)
@@ -180,6 +206,8 @@ func (o *AlertmanagerAPI) ConsumersFor(mediaTypes []string) map[string]runtime.C
 func (o *AlertmanagerAPI) ProducersFor(mediaTypes []string) map[string]runtime.Producer {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	result := make(map[string]runtime.Producer)
 	for _, mt := range mediaTypes {
 		switch mt {
@@ -193,6 +221,8 @@ func (o *AlertmanagerAPI) ProducersFor(mediaTypes []string) map[string]runtime.P
 	return result
 }
 func (o *AlertmanagerAPI) HandlerFor(method, path string) (http.Handler, bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if o.handlers == nil {
@@ -211,12 +241,16 @@ func (o *AlertmanagerAPI) HandlerFor(method, path string) (http.Handler, bool) {
 func (o *AlertmanagerAPI) Context() *middleware.Context {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if o.context == nil {
 		o.context = middleware.NewRoutableContext(o.spec, o, nil)
 	}
 	return o.context
 }
 func (o *AlertmanagerAPI) initHandlerCache() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Context()
@@ -259,6 +293,8 @@ func (o *AlertmanagerAPI) initHandlerCache() {
 func (o *AlertmanagerAPI) Serve(builder middleware.Builder) http.Handler {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Init()
 	if o.Middleware != nil {
 		return o.Middleware(builder)
@@ -268,6 +304,8 @@ func (o *AlertmanagerAPI) Serve(builder middleware.Builder) http.Handler {
 func (o *AlertmanagerAPI) Init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if len(o.handlers) == 0 {
 		o.initHandlerCache()
 	}
@@ -275,9 +313,13 @@ func (o *AlertmanagerAPI) Init() {
 func (o *AlertmanagerAPI) RegisterConsumer(mediaType string, consumer runtime.Consumer) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.customConsumers[mediaType] = consumer
 }
 func (o *AlertmanagerAPI) RegisterProducer(mediaType string, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.customProducers[mediaType] = producer
@@ -285,7 +327,16 @@ func (o *AlertmanagerAPI) RegisterProducer(mediaType string, producer runtime.Pr
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

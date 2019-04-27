@@ -17,6 +17,8 @@ import (
 func TestLoadEmptyString(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var in string
 	_, err := Load(in)
 	expected := "no route provided in config"
@@ -28,6 +30,8 @@ func TestLoadEmptyString(t *testing.T) {
 	}
 }
 func TestDefaultReceiverExists(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -44,6 +48,8 @@ route:
 	}
 }
 func TestReceiverNameIsUnique(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -66,6 +72,8 @@ receivers:
 func TestReceiverExists(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 route:
     receiver: team-X
@@ -85,6 +93,8 @@ receivers:
 func TestReceiverHasName(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 route:
 
@@ -101,6 +111,8 @@ receivers:
 	}
 }
 func TestGroupByHasNoDuplicatedLabels(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -122,6 +134,8 @@ receivers:
 func TestWildcardGroupByWithOtherGroupByLabels(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 route:
   group_by: ['alertname', 'cluster', '...']
@@ -139,6 +153,8 @@ receivers:
 	}
 }
 func TestGroupByInvalidLabel(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -160,6 +176,8 @@ receivers:
 func TestRootRouteExists(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 receivers:
 - name: 'team-X-mails'
@@ -174,6 +192,8 @@ receivers:
 	}
 }
 func TestRootRouteHasNoMatcher(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -197,6 +217,8 @@ receivers:
 func TestContinueErrorInRouteRoot(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 route:
     receiver: team-X-mails
@@ -215,6 +237,8 @@ receivers:
 	}
 }
 func TestGroupIntervalIsGreaterThanZero(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -237,6 +261,8 @@ receivers:
 func TestRepeatIntervalIsGreaterThanZero(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 route:
     receiver: team-X-mails
@@ -257,6 +283,8 @@ receivers:
 func TestHideConfigSecrets(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c, _, err := LoadFile("testdata/conf.good.yml")
 	if err != nil {
 		t.Fatalf("Error parsing %s: %s", "testdata/conf.good.yml", err)
@@ -267,6 +295,8 @@ func TestHideConfigSecrets(t *testing.T) {
 	}
 }
 func TestJSONMarshal(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, _, err := LoadFile("testdata/conf.good.yml")
@@ -281,6 +311,8 @@ func TestJSONMarshal(t *testing.T) {
 func TestJSONMarshalSecret(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	test := struct{ S Secret }{S: Secret("test")}
 	c, err := json.Marshal(test)
 	if err != nil {
@@ -289,6 +321,8 @@ func TestJSONMarshalSecret(t *testing.T) {
 	require.Equal(t, "{\"S\":\"\\u003csecret\\u003e\"}", string(c), "Secret not properly elided.")
 }
 func TestMarshalSecretURL(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	urlp, err := url.Parse("http://example.com/")
@@ -320,6 +354,8 @@ func TestMarshalSecretURL(t *testing.T) {
 func TestUnmarshalSecretURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b := []byte(`"http://example.com/se cret"`)
 	var u SecretURL
 	err := json.Unmarshal(b, &u)
@@ -334,6 +370,8 @@ func TestUnmarshalSecretURL(t *testing.T) {
 	require.Equal(t, "http://example.com/se%20cret", u.String(), "SecretURL not properly unmarshalled in YAML.")
 }
 func TestMarshalURL(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	urlp, err := url.Parse("http://example.com/")
@@ -355,6 +393,8 @@ func TestMarshalURL(t *testing.T) {
 func TestUnmarshalURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b := []byte(`"http://example.com/a b"`)
 	var u URL
 	err := json.Unmarshal(b, &u)
@@ -369,6 +409,8 @@ func TestUnmarshalURL(t *testing.T) {
 	require.Equal(t, "http://example.com/a%20b", u.String(), "URL not properly unmarshalled in YAML.")
 }
 func TestUnmarshalInvalidURL(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, b := range [][]byte{[]byte(`"://example.com"`), []byte(`"http:example.com"`), []byte(`"telnet://example.com"`)} {
@@ -387,6 +429,8 @@ func TestUnmarshalInvalidURL(t *testing.T) {
 func TestUnmarshalRelativeURL(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b := []byte(`"/home"`)
 	var u URL
 	err := json.Unmarshal(b, &u)
@@ -401,6 +445,8 @@ func TestUnmarshalRelativeURL(t *testing.T) {
 func TestJSONUnmarshal(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c, _, err := LoadFile("testdata/conf.good.yml")
 	if err != nil {
 		t.Errorf("Error parsing %s: %s", "testdata/conf.good.yml", err)
@@ -411,6 +457,8 @@ func TestJSONUnmarshal(t *testing.T) {
 	}
 }
 func TestMarshalIdempotency(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c, _, err := LoadFile("testdata/conf.good.yml")
@@ -427,6 +475,8 @@ func TestMarshalIdempotency(t *testing.T) {
 	}
 }
 func TestGroupByAllNotMarshaled(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -450,6 +500,8 @@ receivers:
 	}
 }
 func TestEmptyFieldsAndRegex(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	boolFoo := true
@@ -479,6 +531,8 @@ func TestEmptyFieldsAndRegex(t *testing.T) {
 func TestSMTPHello(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c, _, err := LoadFile("testdata/conf.good.yml")
 	if err != nil {
 		t.Errorf("Error parsing %s: %s", "testdata/conf.good.yml", err)
@@ -492,6 +546,8 @@ func TestSMTPHello(t *testing.T) {
 func TestGroupByAll(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c, _, err := LoadFile("testdata/conf.group-by-all.yml")
 	if err != nil {
 		t.Errorf("Error parsing %s: %s", "testdata/conf.group-by-all.yml", err)
@@ -501,6 +557,8 @@ func TestGroupByAll(t *testing.T) {
 	}
 }
 func TestVictorOpsDefaultAPIKey(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conf, _, err := LoadFile("testdata/conf.victorops-default-apikey.yml")
@@ -518,6 +576,8 @@ func TestVictorOpsDefaultAPIKey(t *testing.T) {
 func TestVictorOpsNoAPIKey(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_, _, err := LoadFile("testdata/conf.victorops-no-apikey.yml")
 	if err == nil {
 		t.Errorf("Expected an error parsing %s: %s", "testdata/conf.victorops-no-apikey.yml", err)
@@ -527,6 +587,8 @@ func TestVictorOpsNoAPIKey(t *testing.T) {
 	}
 }
 func TestOpsGenieDefaultAPIKey(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	conf, _, err := LoadFile("testdata/conf.opsgenie-default-apikey.yml")
@@ -542,6 +604,8 @@ func TestOpsGenieDefaultAPIKey(t *testing.T) {
 	}
 }
 func TestOpsGenieNoAPIKey(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_, _, err := LoadFile("testdata/conf.opsgenie-no-apikey.yml")

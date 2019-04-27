@@ -15,9 +15,13 @@ type GetSilenceOK struct {
 func NewGetSilenceOK() *GetSilenceOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilenceOK{}
 }
 func (o *GetSilenceOK) WithPayload(payload *models.GettableSilence) *GetSilenceOK {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -26,9 +30,13 @@ func (o *GetSilenceOK) WithPayload(payload *models.GettableSilence) *GetSilenceO
 func (o *GetSilenceOK) SetPayload(payload *models.GettableSilence) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetSilenceOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(200)
@@ -47,9 +55,13 @@ type GetSilenceNotFound struct{}
 func NewGetSilenceNotFound() *GetSilenceNotFound {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilenceNotFound{}
 }
 func (o *GetSilenceNotFound) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.Header().Del(runtime.HeaderContentType)
@@ -65,9 +77,13 @@ type GetSilenceInternalServerError struct {
 func NewGetSilenceInternalServerError() *GetSilenceInternalServerError {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilenceInternalServerError{}
 }
 func (o *GetSilenceInternalServerError) WithPayload(payload string) *GetSilenceInternalServerError {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -76,9 +92,13 @@ func (o *GetSilenceInternalServerError) WithPayload(payload string) *GetSilenceI
 func (o *GetSilenceInternalServerError) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetSilenceInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(500)

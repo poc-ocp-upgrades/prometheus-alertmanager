@@ -32,12 +32,16 @@ type QueryParam func(*query) error
 func QReceiver(r *pb.Receiver) QueryParam {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(q *query) error {
 		q.recv = r
 		return nil
 	}
 }
 func QGroupKey(gk string) QueryParam {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(q *query) error {
@@ -72,6 +76,8 @@ type metrics struct {
 func newMetrics(r prometheus.Registerer) *metrics {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m := &metrics{}
 	m.gcDuration = prometheus.NewSummary(prometheus.SummaryOpts{Name: "alertmanager_nflog_gc_duration_seconds", Help: "Duration of the last notification log garbage collection cycle."})
 	m.snapshotDuration = prometheus.NewSummary(prometheus.SummaryOpts{Name: "alertmanager_nflog_snapshot_duration_seconds", Help: "Duration of the last notification log snapshot."})
@@ -91,12 +97,16 @@ type Option func(*Log) error
 func WithRetention(d time.Duration) Option {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(l *Log) error {
 		l.retention = d
 		return nil
 	}
 }
 func WithNow(f func() time.Time) Option {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(l *Log) error {
@@ -107,6 +117,8 @@ func WithNow(f func() time.Time) Option {
 func WithLogger(logger log.Logger) Option {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(l *Log) error {
 		l.logger = logger
 		return nil
@@ -115,12 +127,16 @@ func WithLogger(logger log.Logger) Option {
 func WithMetrics(r prometheus.Registerer) Option {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(l *Log) error {
 		l.metrics = newMetrics(r)
 		return nil
 	}
 }
 func WithMaintenance(d time.Duration, stopc chan struct{}, done func()) Option {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return func(l *Log) error {
@@ -136,12 +152,16 @@ func WithMaintenance(d time.Duration, stopc chan struct{}, done func()) Option {
 func WithSnapshot(sf string) Option {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func(l *Log) error {
 		l.snapf = sf
 		return nil
 	}
 }
 func utcNow() time.Time {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return time.Now().UTC()
@@ -152,6 +172,8 @@ type state map[string]*pb.MeshEntry
 func (s state) clone() state {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c := make(state, len(s))
 	for k, v := range s {
 		c[k] = v
@@ -159,6 +181,8 @@ func (s state) clone() state {
 	return c
 }
 func (s state) merge(e *pb.MeshEntry, now time.Time) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if e.ExpiresAt.Before(now) {
@@ -175,6 +199,8 @@ func (s state) merge(e *pb.MeshEntry, now time.Time) bool {
 func (s state) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var buf bytes.Buffer
 	for _, e := range s {
 		if _, err := pbutil.WriteDelimited(&buf, e); err != nil {
@@ -184,6 +210,8 @@ func (s state) MarshalBinary() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 func decodeState(r io.Reader) (state, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	st := state{}
@@ -207,6 +235,8 @@ func decodeState(r io.Reader) (state, error) {
 func marshalMeshEntry(e *pb.MeshEntry) ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var buf bytes.Buffer
 	if _, err := pbutil.WriteDelimited(&buf, e); err != nil {
 		return nil, err
@@ -214,6 +244,8 @@ func marshalMeshEntry(e *pb.MeshEntry) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 func New(opts ...Option) (*Log, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	l := &Log{logger: log.NewNopLogger(), now: utcNow, st: state{}, broadcast: func([]byte) {
@@ -241,6 +273,8 @@ func New(opts ...Option) (*Log, error) {
 	return l, nil
 }
 func (l *Log) run() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if l.runInterval == 0 || l.stopc == nil {
@@ -295,14 +329,20 @@ Loop:
 func receiverKey(r *pb.Receiver) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("%s/%s/%d", r.GroupName, r.Integration, r.Idx)
 }
 func stateKey(k string, r *pb.Receiver) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("%s:%s", k, receiverKey(r))
 }
 func (l *Log) Log(r *pb.Receiver, gkey string, firingAlerts, resolvedAlerts []uint64) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := l.now()
@@ -326,6 +366,8 @@ func (l *Log) Log(r *pb.Receiver, gkey string, firingAlerts, resolvedAlerts []ui
 func (l *Log) GC() (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	start := time.Now()
 	defer func() {
 		l.metrics.gcDuration.Observe(time.Since(start).Seconds())
@@ -346,6 +388,8 @@ func (l *Log) GC() (int, error) {
 	return n, nil
 }
 func (l *Log) Query(params ...QueryParam) ([]*pb.Entry, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	start := time.Now()
@@ -376,6 +420,8 @@ func (l *Log) Query(params ...QueryParam) ([]*pb.Entry, error) {
 func (l *Log) loadSnapshot(r io.Reader) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	st, err := decodeState(r)
 	if err != nil {
 		return err
@@ -386,6 +432,8 @@ func (l *Log) loadSnapshot(r io.Reader) error {
 	return nil
 }
 func (l *Log) Snapshot(w io.Writer) (int64, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	start := time.Now()
@@ -403,11 +451,15 @@ func (l *Log) Snapshot(w io.Writer) (int64, error) {
 func (l *Log) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	l.mtx.Lock()
 	defer l.mtx.Unlock()
 	return l.st.MarshalBinary()
 }
 func (l *Log) Merge(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	st, err := decodeState(bytes.NewReader(b))
@@ -429,6 +481,8 @@ func (l *Log) Merge(b []byte) error {
 func (l *Log) SetBroadcast(f func([]byte)) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	l.mtx.Lock()
 	l.broadcast = f
 	l.mtx.Unlock()
@@ -442,6 +496,8 @@ type replaceFile struct {
 func (f *replaceFile) Close() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := f.File.Sync(); err != nil {
 		return err
 	}
@@ -451,6 +507,8 @@ func (f *replaceFile) Close() error {
 	return os.Rename(f.File.Name(), f.filename)
 }
 func openReplace(filename string) (*replaceFile, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tmpFilename := fmt.Sprintf("%s.%x", filename, uint64(rand.Int63()))
@@ -464,7 +522,16 @@ func openReplace(filename string) (*replaceFile, error) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

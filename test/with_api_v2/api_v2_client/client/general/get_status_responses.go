@@ -13,6 +13,8 @@ type GetStatusReader struct{ formats strfmt.Registry }
 func (o *GetStatusReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch response.Code() {
 	case 200:
 		result := NewGetStatusOK()
@@ -27,6 +29,8 @@ func (o *GetStatusReader) ReadResponse(response runtime.ClientResponse, consumer
 func NewGetStatusOK() *GetStatusOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetStatusOK{}
 }
 
@@ -35,9 +39,13 @@ type GetStatusOK struct{ Payload *models.AlertmanagerStatus }
 func (o *GetStatusOK) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /status][%d] getStatusOK  %+v", 200, o.Payload)
 }
 func (o *GetStatusOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = new(models.AlertmanagerStatus)

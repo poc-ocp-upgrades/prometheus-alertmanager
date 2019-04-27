@@ -11,15 +11,21 @@ type GetStatusURL struct{ _basePath string }
 func (o *GetStatusURL) WithBasePath(bp string) *GetStatusURL {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetBasePath(bp)
 	return o
 }
 func (o *GetStatusURL) SetBasePath(bp string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o._basePath = bp
 }
 func (o *GetStatusURL) Build() (*url.URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var result url.URL
@@ -29,6 +35,8 @@ func (o *GetStatusURL) Build() (*url.URL, error) {
 	return &result, nil
 }
 func (o *GetStatusURL) Must(u *url.URL, err error) *url.URL {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err != nil {
@@ -42,9 +50,13 @@ func (o *GetStatusURL) Must(u *url.URL, err error) *url.URL {
 func (o *GetStatusURL) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return o.Must(o.Build()).String()
 }
 func (o *GetStatusURL) BuildFull(scheme, host string) (*url.URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if scheme == "" {
@@ -62,6 +74,8 @@ func (o *GetStatusURL) BuildFull(scheme, host string) (*url.URL, error) {
 	return base, nil
 }
 func (o *GetStatusURL) StringFull(scheme, host string) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return o.Must(o.BuildFull(scheme, host)).String()

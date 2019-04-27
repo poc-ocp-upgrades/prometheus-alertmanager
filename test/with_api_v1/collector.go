@@ -20,9 +20,13 @@ type Collector struct {
 func (c *Collector) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.name
 }
 func batchesEqual(as, bs model.Alerts, opts *AcceptanceOpts) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(as) != len(bs) {
@@ -45,6 +49,8 @@ func batchesEqual(as, bs model.Alerts, opts *AcceptanceOpts) bool {
 func (c *Collector) latest() float64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.mtx.RLock()
 	defer c.mtx.RUnlock()
 	var latest float64
@@ -58,6 +64,8 @@ func (c *Collector) latest() float64 {
 func (c *Collector) Want(iv Interval, alerts ...*TestAlert) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
 	var nas model.Alerts
@@ -69,12 +77,16 @@ func (c *Collector) Want(iv Interval, alerts ...*TestAlert) {
 func (c *Collector) add(alerts ...*model.Alert) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
 	arrival := c.opts.relativeTime(time.Now())
 	c.collected[arrival] = append(c.collected[arrival], model.Alerts(alerts))
 }
 func (c *Collector) check() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	report := fmt.Sprintf("\ncollector %q:\n\n", c)

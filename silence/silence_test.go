@@ -18,6 +18,8 @@ import (
 func TestOptionsValidate(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		options	*Options
 		err	string
@@ -42,6 +44,8 @@ func TestOptionsValidate(t *testing.T) {
 func TestSilencesGC(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s, err := New(Options{})
 	require.NoError(t, err)
 	now := utcNow()
@@ -59,6 +63,8 @@ func TestSilencesGC(t *testing.T) {
 	require.Equal(t, want, s.st)
 }
 func TestSilencesSnapshot(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := utcNow()
@@ -83,6 +89,8 @@ func TestSilencesSnapshot(t *testing.T) {
 	}
 }
 func TestSilencesSetSilence(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s, err := New(Options{Retention: time.Minute})
@@ -113,6 +121,8 @@ func TestSilencesSetSilence(t *testing.T) {
 	require.Equal(t, want, s.st, "Unexpected silence state")
 }
 func TestSilenceSet(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s, err := New(Options{Retention: time.Hour})
@@ -168,6 +178,8 @@ func TestSilenceSet(t *testing.T) {
 func TestSilencesSetFail(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s, err := New(Options{})
 	require.NoError(t, err)
 	now := utcNow()
@@ -198,6 +210,8 @@ func TestSilencesSetFail(t *testing.T) {
 func TestQState(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := utcNow()
 	cases := []struct {
 		sil	*pb.Silence
@@ -216,6 +230,8 @@ func TestQState(t *testing.T) {
 func TestQMatches(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	qp := QMatches(model.LabelSet{"job": "test", "instance": "web-1", "path": "/user/profile", "method": "GET"})
 	q := &query{}
 	qp(q)
@@ -231,6 +247,8 @@ func TestQMatches(t *testing.T) {
 	}
 }
 func TestSilencesQuery(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s, err := New(Options{})
@@ -258,9 +276,13 @@ type silencesByID []*pb.Silence
 func (s silencesByID) Len() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return len(s)
 }
 func (s silencesByID) Swap(i, j int) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s[i], s[j] = s[j], s[i]
@@ -268,9 +290,13 @@ func (s silencesByID) Swap(i, j int) {
 func (s silencesByID) Less(i, j int) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return s[i].Id < s[j].Id
 }
 func TestSilenceCanUpdate(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := utcNow()
@@ -289,6 +315,8 @@ func TestSilenceCanUpdate(t *testing.T) {
 	}
 }
 func TestSilenceExpire(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s, err := New(Options{})
@@ -325,6 +353,8 @@ func TestSilenceExpire(t *testing.T) {
 func TestValidateMatcher(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cases := []struct {
 		m	*pb.Matcher
 		err	string
@@ -347,6 +377,8 @@ func TestValidateMatcher(t *testing.T) {
 	}
 }
 func TestValidateSilence(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -378,6 +410,8 @@ func TestValidateSilence(t *testing.T) {
 func TestStateMerge(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := utcNow()
 	newSilence := func(id string, ts, exp time.Time) *pb.MeshSilence {
 		return &pb.MeshSilence{Silence: &pb.Silence{Id: id, UpdatedAt: ts}, ExpiresAt: exp}
@@ -397,6 +431,8 @@ func TestStateMerge(t *testing.T) {
 func TestStateCoding(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	now := utcNow()
 	cases := []struct{ entries []*pb.MeshSilence }{{entries: []*pb.MeshSilence{{Silence: &pb.Silence{Id: "3be80475-e219-4ee7-b6fc-4b65114e362f", Matchers: []*pb.Matcher{{Name: "label1", Pattern: "val1", Type: pb.Matcher_EQUAL}, {Name: "label2", Pattern: "val.+", Type: pb.Matcher_REGEXP}}, StartsAt: now, EndsAt: now, UpdatedAt: now}, ExpiresAt: now}, {Silence: &pb.Silence{Id: "4b1e760d-182c-4980-b873-c1a6827c9817", Matchers: []*pb.Matcher{{Name: "label1", Pattern: "val1", Type: pb.Matcher_EQUAL}}, StartsAt: now.Add(time.Hour), EndsAt: now.Add(2 * time.Hour), UpdatedAt: now}, ExpiresAt: now.Add(24 * time.Hour)}}}}
 	for _, c := range cases {
@@ -412,6 +448,8 @@ func TestStateCoding(t *testing.T) {
 	}
 }
 func TestStateDecodingError(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := state{"": &pb.MeshSilence{}}

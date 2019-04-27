@@ -14,6 +14,8 @@ import (
 func NewGetAlertsParams() *GetAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		activeDefault		= bool(true)
 		inhibitedDefault	= bool(true)
@@ -23,6 +25,8 @@ func NewGetAlertsParams() *GetAlertsParams {
 	return &GetAlertsParams{Active: &activeDefault, Inhibited: &inhibitedDefault, Silenced: &silencedDefault, Unprocessed: &unprocessedDefault, timeout: cr.DefaultTimeout}
 }
 func NewGetAlertsParamsWithTimeout(timeout time.Duration) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -36,6 +40,8 @@ func NewGetAlertsParamsWithTimeout(timeout time.Duration) *GetAlertsParams {
 func NewGetAlertsParamsWithContext(ctx context.Context) *GetAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		activeDefault		= bool(true)
 		inhibitedDefault	= bool(true)
@@ -45,6 +51,8 @@ func NewGetAlertsParamsWithContext(ctx context.Context) *GetAlertsParams {
 	return &GetAlertsParams{Active: &activeDefault, Inhibited: &inhibitedDefault, Silenced: &silencedDefault, Unprocessed: &unprocessedDefault, Context: ctx}
 }
 func NewGetAlertsParamsWithHTTPClient(client *http.Client) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -71,15 +79,21 @@ type GetAlertsParams struct {
 func (o *GetAlertsParams) WithTimeout(timeout time.Duration) *GetAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetTimeout(timeout)
 	return o
 }
 func (o *GetAlertsParams) SetTimeout(timeout time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.timeout = timeout
 }
 func (o *GetAlertsParams) WithContext(ctx context.Context) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetContext(ctx)
@@ -88,9 +102,13 @@ func (o *GetAlertsParams) WithContext(ctx context.Context) *GetAlertsParams {
 func (o *GetAlertsParams) SetContext(ctx context.Context) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Context = ctx
 }
 func (o *GetAlertsParams) WithHTTPClient(client *http.Client) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetHTTPClient(client)
@@ -99,9 +117,13 @@ func (o *GetAlertsParams) WithHTTPClient(client *http.Client) *GetAlertsParams {
 func (o *GetAlertsParams) SetHTTPClient(client *http.Client) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.HTTPClient = client
 }
 func (o *GetAlertsParams) WithActive(active *bool) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetActive(active)
@@ -110,9 +132,13 @@ func (o *GetAlertsParams) WithActive(active *bool) *GetAlertsParams {
 func (o *GetAlertsParams) SetActive(active *bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Active = active
 }
 func (o *GetAlertsParams) WithFilter(filter []string) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetFilter(filter)
@@ -121,9 +147,13 @@ func (o *GetAlertsParams) WithFilter(filter []string) *GetAlertsParams {
 func (o *GetAlertsParams) SetFilter(filter []string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Filter = filter
 }
 func (o *GetAlertsParams) WithInhibited(inhibited *bool) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetInhibited(inhibited)
@@ -132,9 +162,13 @@ func (o *GetAlertsParams) WithInhibited(inhibited *bool) *GetAlertsParams {
 func (o *GetAlertsParams) SetInhibited(inhibited *bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Inhibited = inhibited
 }
 func (o *GetAlertsParams) WithReceiver(receiver *string) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetReceiver(receiver)
@@ -143,9 +177,13 @@ func (o *GetAlertsParams) WithReceiver(receiver *string) *GetAlertsParams {
 func (o *GetAlertsParams) SetReceiver(receiver *string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Receiver = receiver
 }
 func (o *GetAlertsParams) WithSilenced(silenced *bool) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetSilenced(silenced)
@@ -154,9 +192,13 @@ func (o *GetAlertsParams) WithSilenced(silenced *bool) *GetAlertsParams {
 func (o *GetAlertsParams) SetSilenced(silenced *bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Silenced = silenced
 }
 func (o *GetAlertsParams) WithUnprocessed(unprocessed *bool) *GetAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetUnprocessed(unprocessed)
@@ -165,9 +207,13 @@ func (o *GetAlertsParams) WithUnprocessed(unprocessed *bool) *GetAlertsParams {
 func (o *GetAlertsParams) SetUnprocessed(unprocessed *bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Unprocessed = unprocessed
 }
 func (o *GetAlertsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.SetTimeout(o.timeout); err != nil {

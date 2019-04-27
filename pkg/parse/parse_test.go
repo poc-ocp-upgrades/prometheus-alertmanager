@@ -9,6 +9,8 @@ import (
 func TestMatchers(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	testCases := []struct {
 		input	string
 		want	[]*labels.Matcher

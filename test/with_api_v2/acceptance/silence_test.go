@@ -10,6 +10,8 @@ import (
 func TestSilencing(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Parallel()
 	conf := `
 route:
@@ -39,6 +41,8 @@ receivers:
 	t.Log(co.Check())
 }
 func TestSilenceDelete(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t.Parallel()

@@ -13,6 +13,8 @@ type PostSilencesReader struct{ formats strfmt.Registry }
 func (o *PostSilencesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch response.Code() {
 	case 200:
 		result := NewPostSilencesOK()
@@ -33,6 +35,8 @@ func (o *PostSilencesReader) ReadResponse(response runtime.ClientResponse, consu
 func NewPostSilencesOK() *PostSilencesOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &PostSilencesOK{}
 }
 
@@ -41,9 +45,13 @@ type PostSilencesOK struct{ Payload *PostSilencesOKBody }
 func (o *PostSilencesOK) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[POST /silences][%d] postSilencesOK  %+v", 200, o.Payload)
 }
 func (o *PostSilencesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = new(PostSilencesOKBody)
@@ -55,6 +63,8 @@ func (o *PostSilencesOK) readResponse(response runtime.ClientResponse, consumer 
 func NewPostSilencesBadRequest() *PostSilencesBadRequest {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &PostSilencesBadRequest{}
 }
 
@@ -63,9 +73,13 @@ type PostSilencesBadRequest struct{ Payload string }
 func (o *PostSilencesBadRequest) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[POST /silences][%d] postSilencesBadRequest  %+v", 400, o.Payload)
 }
 func (o *PostSilencesBadRequest) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -81,9 +95,13 @@ type PostSilencesOKBody struct {
 func (o *PostSilencesOKBody) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func (o *PostSilencesOKBody) MarshalBinary() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if o == nil {
@@ -92,6 +110,8 @@ func (o *PostSilencesOKBody) MarshalBinary() ([]byte, error) {
 	return swag.WriteJSON(o)
 }
 func (o *PostSilencesOKBody) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res PostSilencesOKBody

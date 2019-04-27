@@ -15,9 +15,13 @@ type GetStatusOK struct {
 func NewGetStatusOK() *GetStatusOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetStatusOK{}
 }
 func (o *GetStatusOK) WithPayload(payload *models.AlertmanagerStatus) *GetStatusOK {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -26,9 +30,13 @@ func (o *GetStatusOK) WithPayload(payload *models.AlertmanagerStatus) *GetStatus
 func (o *GetStatusOK) SetPayload(payload *models.AlertmanagerStatus) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetStatusOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(200)

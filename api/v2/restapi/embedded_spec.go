@@ -12,6 +12,8 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	SwaggerJSON = json.RawMessage([]byte(`{
   "consumes": [
     "application/json"

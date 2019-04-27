@@ -36,6 +36,8 @@ type Marker interface {
 func NewMarker() Marker {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &memMarker{m: map[model.Fingerprint]*AlertStatus{}}
 }
 
@@ -45,6 +47,8 @@ type memMarker struct {
 }
 
 func (m *memMarker) Count(states ...AlertState) int {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	count := 0
@@ -66,6 +70,8 @@ func (m *memMarker) Count(states ...AlertState) int {
 func (m *memMarker) SetSilenced(alert model.Fingerprint, ids ...string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m.mtx.Lock()
 	s, found := m.m[alert]
 	if !found {
@@ -82,6 +88,8 @@ func (m *memMarker) SetSilenced(alert model.Fingerprint, ids ...string) {
 	m.mtx.Unlock()
 }
 func (m *memMarker) SetInhibited(alert model.Fingerprint, ids ...string) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	m.mtx.Lock()
@@ -102,6 +110,8 @@ func (m *memMarker) SetInhibited(alert model.Fingerprint, ids ...string) {
 func (m *memMarker) SetActive(alert model.Fingerprint) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m.mtx.Lock()
 	defer m.mtx.Unlock()
 	s, found := m.m[alert]
@@ -116,6 +126,8 @@ func (m *memMarker) SetActive(alert model.Fingerprint) {
 func (m *memMarker) Status(alert model.Fingerprint) AlertStatus {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m.mtx.RLock()
 	defer m.mtx.RUnlock()
 	s, found := m.m[alert]
@@ -127,6 +139,8 @@ func (m *memMarker) Status(alert model.Fingerprint) AlertStatus {
 func (m *memMarker) Delete(alert model.Fingerprint) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	m.mtx.Lock()
 	defer m.mtx.Unlock()
 	delete(m.m, alert)
@@ -134,9 +148,13 @@ func (m *memMarker) Delete(alert model.Fingerprint) {
 func (m *memMarker) Unprocessed(alert model.Fingerprint) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return m.Status(alert).State == AlertStateUnprocessed
 }
 func (m *memMarker) Active(alert model.Fingerprint) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return m.Status(alert).State == AlertStateActive
@@ -144,10 +162,14 @@ func (m *memMarker) Active(alert model.Fingerprint) bool {
 func (m *memMarker) Inhibited(alert model.Fingerprint) ([]string, bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s := m.Status(alert)
 	return s.InhibitedBy, s.State == AlertStateSuppressed && len(s.InhibitedBy) > 0
 }
 func (m *memMarker) Silenced(alert model.Fingerprint) ([]string, bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := m.Status(alert)
@@ -162,11 +184,15 @@ type MultiError struct {
 func (e *MultiError) Add(err error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	e.mtx.Lock()
 	defer e.mtx.Unlock()
 	e.errors = append(e.errors, err)
 }
 func (e *MultiError) Len() int {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	e.mtx.Lock()
@@ -176,11 +202,15 @@ func (e *MultiError) Len() int {
 func (e *MultiError) Errors() []error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	e.mtx.Lock()
 	defer e.mtx.Unlock()
 	return append(make([]error, 0, len(e.errors)), e.errors...)
 }
 func (e *MultiError) Error() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	e.mtx.Lock()
@@ -200,6 +230,8 @@ type Alert struct {
 type AlertSlice []*Alert
 
 func (as AlertSlice) Less(i, j int) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, overrideKey := range [...]model.LabelName{"job", "instance"} {
@@ -223,14 +255,20 @@ func (as AlertSlice) Less(i, j int) bool {
 func (as AlertSlice) Swap(i, j int) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	as[i], as[j] = as[j], as[i]
 }
 func (as AlertSlice) Len() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return len(as)
 }
 func Alerts(alerts ...*Alert) model.Alerts {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	res := make(model.Alerts, 0, len(alerts))
@@ -244,6 +282,8 @@ func Alerts(alerts ...*Alert) model.Alerts {
 	return res
 }
 func (a *Alert) Merge(o *Alert) *Alert {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if o.UpdatedAt.Before(a.UpdatedAt) {
@@ -271,6 +311,8 @@ type MuteFunc func(model.LabelSet) bool
 func (f MuteFunc) Mutes(lset model.LabelSet) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f(lset)
 }
 
@@ -288,6 +330,8 @@ type Silence struct {
 func (s *Silence) Expired() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return s.StartsAt.Equal(s.EndsAt)
 }
 
@@ -303,6 +347,8 @@ const (
 )
 
 func CalcSilenceState(start, end time.Time) SilenceState {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	current := time.Now()

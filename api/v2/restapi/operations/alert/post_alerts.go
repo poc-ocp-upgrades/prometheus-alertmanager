@@ -10,6 +10,8 @@ type PostAlertsHandlerFunc func(PostAlertsParams) middleware.Responder
 func (fn PostAlertsHandlerFunc) Handle(params PostAlertsParams) middleware.Responder {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fn(params)
 }
 
@@ -18,6 +20,8 @@ type PostAlertsHandler interface {
 }
 
 func NewPostAlerts(ctx *middleware.Context, handler PostAlertsHandler) *PostAlerts {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &PostAlerts{Context: ctx, Handler: handler}
@@ -29,6 +33,8 @@ type PostAlerts struct {
 }
 
 func (o *PostAlerts) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	route, rCtx, _ := o.Context.RouteInfo(r)

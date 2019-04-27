@@ -10,6 +10,8 @@ import (
 func TestCalculateAdvertiseAddress(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	old := getPrivateAddress
 	defer func() {
 		getPrivateAddress = old

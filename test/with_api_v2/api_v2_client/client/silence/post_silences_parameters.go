@@ -14,10 +14,14 @@ import (
 func NewPostSilencesParams() *PostSilencesParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ()
 	return &PostSilencesParams{timeout: cr.DefaultTimeout}
 }
 func NewPostSilencesParamsWithTimeout(timeout time.Duration) *PostSilencesParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ()
@@ -26,10 +30,14 @@ func NewPostSilencesParamsWithTimeout(timeout time.Duration) *PostSilencesParams
 func NewPostSilencesParamsWithContext(ctx context.Context) *PostSilencesParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ()
 	return &PostSilencesParams{Context: ctx}
 }
 func NewPostSilencesParamsWithHTTPClient(client *http.Client) *PostSilencesParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ()
@@ -46,15 +54,21 @@ type PostSilencesParams struct {
 func (o *PostSilencesParams) WithTimeout(timeout time.Duration) *PostSilencesParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetTimeout(timeout)
 	return o
 }
 func (o *PostSilencesParams) SetTimeout(timeout time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.timeout = timeout
 }
 func (o *PostSilencesParams) WithContext(ctx context.Context) *PostSilencesParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetContext(ctx)
@@ -63,9 +77,13 @@ func (o *PostSilencesParams) WithContext(ctx context.Context) *PostSilencesParam
 func (o *PostSilencesParams) SetContext(ctx context.Context) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Context = ctx
 }
 func (o *PostSilencesParams) WithHTTPClient(client *http.Client) *PostSilencesParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetHTTPClient(client)
@@ -74,9 +92,13 @@ func (o *PostSilencesParams) WithHTTPClient(client *http.Client) *PostSilencesPa
 func (o *PostSilencesParams) SetHTTPClient(client *http.Client) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.HTTPClient = client
 }
 func (o *PostSilencesParams) WithSilence(silence *models.PostableSilence) *PostSilencesParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetSilence(silence)
@@ -85,9 +107,13 @@ func (o *PostSilencesParams) WithSilence(silence *models.PostableSilence) *PostS
 func (o *PostSilencesParams) SetSilence(silence *models.PostableSilence) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Silence = silence
 }
 func (o *PostSilencesParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.SetTimeout(o.timeout); err != nil {

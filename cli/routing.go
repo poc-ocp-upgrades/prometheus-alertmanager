@@ -36,6 +36,8 @@ Example:
 func configureRoutingCmd(app *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		c		= &routingShow{}
 		routingCmd	= app.Command("routes", routingHelp)
@@ -47,6 +49,8 @@ func configureRoutingCmd(app *kingpin.CmdClause) {
 	configureRoutingTestCmd(routingCmd, c)
 }
 func (c *routingShow) routingShowAction(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cfg, err := loadAlertmanagerConfig(ctx, alertmanagerURL, c.configFile)
@@ -62,6 +66,8 @@ func (c *routingShow) routingShowAction(ctx context.Context, _ *kingpin.ParseCon
 	return nil
 }
 func getRouteTreeSlug(route *dispatch.Route, showContinue bool, showReceiver bool) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var branchSlug bytes.Buffer
@@ -84,12 +90,16 @@ func getRouteTreeSlug(route *dispatch.Route, showContinue bool, showReceiver boo
 func convertRouteToTree(route *dispatch.Route, tree treeprint.Tree) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	branch := tree.AddBranch(getRouteTreeSlug(route, true, true))
 	for _, r := range route.Routes {
 		convertRouteToTree(r, branch)
 	}
 }
 func getMatchingTree(route *dispatch.Route, tree treeprint.Tree, lset client.LabelSet) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	final := true

@@ -12,6 +12,8 @@ import (
 func NewGetAlertsParams() GetAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		activeDefault		= bool(true)
 		inhibitedDefault	= bool(true)
@@ -32,6 +34,8 @@ type GetAlertsParams struct {
 }
 
 func (o *GetAlertsParams) BindRequest(r *http.Request, route *middleware.MatchedRoute) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error
@@ -69,6 +73,8 @@ func (o *GetAlertsParams) BindRequest(r *http.Request, route *middleware.Matched
 func (o *GetAlertsParams) bindActive(rawData []string, hasKey bool, formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var raw string
 	if len(rawData) > 0 {
 		raw = rawData[len(rawData)-1]
@@ -84,6 +90,8 @@ func (o *GetAlertsParams) bindActive(rawData []string, hasKey bool, formats strf
 	return nil
 }
 func (o *GetAlertsParams) bindFilter(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var qvFilter string
@@ -105,6 +113,8 @@ func (o *GetAlertsParams) bindFilter(rawData []string, hasKey bool, formats strf
 func (o *GetAlertsParams) bindInhibited(rawData []string, hasKey bool, formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var raw string
 	if len(rawData) > 0 {
 		raw = rawData[len(rawData)-1]
@@ -122,6 +132,8 @@ func (o *GetAlertsParams) bindInhibited(rawData []string, hasKey bool, formats s
 func (o *GetAlertsParams) bindReceiver(rawData []string, hasKey bool, formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var raw string
 	if len(rawData) > 0 {
 		raw = rawData[len(rawData)-1]
@@ -133,6 +145,8 @@ func (o *GetAlertsParams) bindReceiver(rawData []string, hasKey bool, formats st
 	return nil
 }
 func (o *GetAlertsParams) bindSilenced(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var raw string
@@ -150,6 +164,8 @@ func (o *GetAlertsParams) bindSilenced(rawData []string, hasKey bool, formats st
 	return nil
 }
 func (o *GetAlertsParams) bindUnprocessed(rawData []string, hasKey bool, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var raw string

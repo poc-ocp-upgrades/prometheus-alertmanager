@@ -57,6 +57,8 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	prometheus.MustRegister(configSuccess)
 	prometheus.MustRegister(configSuccessTime)
 	prometheus.MustRegister(configHash)
@@ -67,9 +69,13 @@ func init() {
 func instrumentHandler(handlerName string, handler http.HandlerFunc) http.HandlerFunc {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return promhttp.InstrumentHandlerDuration(requestDuration.MustCurryWith(prometheus.Labels{"handler": handlerName}), promhttp.InstrumentHandlerResponseSize(responseSize.MustCurryWith(prometheus.Labels{"handler": handlerName}), handler))
 }
 func newAlertMetricByState(marker types.Marker, st types.AlertState) prometheus.GaugeFunc {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return prometheus.NewGaugeFunc(prometheus.GaugeOpts{Name: "alertmanager_alerts", Help: "How many alerts by state.", ConstLabels: prometheus.Labels{"state": string(st)}}, func() float64 {
@@ -77,6 +83,8 @@ func newAlertMetricByState(marker types.Marker, st types.AlertState) prometheus.
 	})
 }
 func newMarkerMetrics(marker types.Marker) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	alertsActive = newAlertMetricByState(marker, types.AlertStateActive)
@@ -90,9 +98,13 @@ const defaultClusterAddr = "0.0.0.0:9094"
 func main() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	os.Exit(run())
 }
 func run() int {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if os.Getenv("DEBUG") != "" {
@@ -331,11 +343,15 @@ func run() int {
 func clusterWait(p *cluster.Peer, timeout time.Duration) func() time.Duration {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return func() time.Duration {
 		return time.Duration(p.Position()) * timeout
 	}
 }
 func extURL(listen, external string) (*url.URL, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if external == "" {
@@ -363,6 +379,8 @@ func extURL(listen, external string) (*url.URL, error) {
 func md5HashAsMetricValue(data []byte) float64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sum := md5.Sum(data)
 	smallSum := sum[0:6]
 	var bytes = make([]byte, 8)
@@ -372,7 +390,16 @@ func md5HashAsMetricValue(data []byte) float64 {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

@@ -17,6 +17,8 @@ type GettableSilence struct {
 func (m *GettableSilence) UnmarshalJSON(raw []byte) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var dataAO0 struct {
 		ID		*string			`json:"id"`
 		Status		*SilenceStatus		`json:"status"`
@@ -36,6 +38,8 @@ func (m *GettableSilence) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 func (m GettableSilence) MarshalJSON() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_parts := make([][]byte, 0, 2)
@@ -62,6 +66,8 @@ func (m GettableSilence) MarshalJSON() ([]byte, error) {
 func (m *GettableSilence) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateID(formats); err != nil {
 		res = append(res, err)
@@ -83,12 +89,16 @@ func (m *GettableSilence) Validate(formats strfmt.Registry) error {
 func (m *GettableSilence) validateID(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("id", "body", m.ID); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *GettableSilence) validateStatus(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("status", "body", m.Status); err != nil {
@@ -107,6 +117,8 @@ func (m *GettableSilence) validateStatus(formats strfmt.Registry) error {
 func (m *GettableSilence) validateUpdatedAt(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
 		return err
 	}
@@ -118,12 +130,16 @@ func (m *GettableSilence) validateUpdatedAt(formats strfmt.Registry) error {
 func (m *GettableSilence) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *GettableSilence) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res GettableSilence

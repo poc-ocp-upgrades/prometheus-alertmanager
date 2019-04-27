@@ -14,9 +14,13 @@ type PostSilencesOK struct {
 func NewPostSilencesOK() *PostSilencesOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &PostSilencesOK{}
 }
 func (o *PostSilencesOK) WithPayload(payload *PostSilencesOKBody) *PostSilencesOK {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -25,9 +29,13 @@ func (o *PostSilencesOK) WithPayload(payload *PostSilencesOKBody) *PostSilencesO
 func (o *PostSilencesOK) SetPayload(payload *PostSilencesOKBody) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *PostSilencesOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(200)
@@ -48,9 +56,13 @@ type PostSilencesBadRequest struct {
 func NewPostSilencesBadRequest() *PostSilencesBadRequest {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &PostSilencesBadRequest{}
 }
 func (o *PostSilencesBadRequest) WithPayload(payload string) *PostSilencesBadRequest {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -59,9 +71,13 @@ func (o *PostSilencesBadRequest) WithPayload(payload string) *PostSilencesBadReq
 func (o *PostSilencesBadRequest) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *PostSilencesBadRequest) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(400)

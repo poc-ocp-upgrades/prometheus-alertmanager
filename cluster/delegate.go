@@ -26,6 +26,8 @@ type delegate struct {
 func newDelegate(l log.Logger, reg prometheus.Registerer, p *Peer, retransmit int) *delegate {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	bcast := &memberlist.TransmitLimitedQueue{NumNodes: p.ClusterSize, RetransmitMult: retransmit}
 	messagesReceived := prometheus.NewCounterVec(prometheus.CounterOpts{Name: "alertmanager_cluster_messages_received_total", Help: "Total number of cluster messsages received."}, []string{"msg_type"})
 	messagesReceivedSize := prometheus.NewCounterVec(prometheus.CounterOpts{Name: "alertmanager_cluster_messages_received_size_total", Help: "Total size of cluster messages received."}, []string{"msg_type"})
@@ -60,9 +62,13 @@ func newDelegate(l log.Logger, reg prometheus.Registerer, p *Peer, retransmit in
 func (d *delegate) NodeMeta(limit int) []byte {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return []byte{}
 }
 func (d *delegate) NotifyMsg(b []byte) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	d.messagesReceived.WithLabelValues("update").Inc()
@@ -84,6 +90,8 @@ func (d *delegate) NotifyMsg(b []byte) {
 func (d *delegate) GetBroadcasts(overhead, limit int) [][]byte {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	msgs := d.bcast.GetBroadcasts(overhead, limit)
 	d.messagesSent.WithLabelValues("update").Add(float64(len(msgs)))
 	for _, m := range msgs {
@@ -92,6 +100,8 @@ func (d *delegate) GetBroadcasts(overhead, limit int) [][]byte {
 	return msgs
 }
 func (d *delegate) LocalState(_ bool) []byte {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	all := &clusterpb.FullState{Parts: make([]clusterpb.Part, 0, len(d.states))}
@@ -113,6 +123,8 @@ func (d *delegate) LocalState(_ bool) []byte {
 	return b
 }
 func (d *delegate) MergeRemoteState(buf []byte, _ bool) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	d.messagesReceived.WithLabelValues("full_state").Inc()
@@ -139,10 +151,14 @@ func (d *delegate) MergeRemoteState(buf []byte, _ bool) {
 func (d *delegate) NotifyJoin(n *memberlist.Node) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	level.Debug(d.logger).Log("received", "NotifyJoin", "node", n.Name, "addr", n.Address())
 	d.Peer.peerJoin(n)
 }
 func (d *delegate) NotifyLeave(n *memberlist.Node) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	level.Debug(d.logger).Log("received", "NotifyLeave", "node", n.Name, "addr", n.Address())
@@ -151,10 +167,14 @@ func (d *delegate) NotifyLeave(n *memberlist.Node) {
 func (d *delegate) NotifyUpdate(n *memberlist.Node) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	level.Debug(d.logger).Log("received", "NotifyUpdate", "node", n.Name, "addr", n.Address())
 	d.Peer.peerUpdate(n)
 }
 func (d *delegate) handleQueueDepth() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for {

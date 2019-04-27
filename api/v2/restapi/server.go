@@ -35,9 +35,13 @@ var defaultSchemes []string
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	defaultSchemes = []string{schemeHTTP}
 }
 func NewServer(api *operations.AlertmanagerAPI) *Server {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	s := new(Server)
@@ -49,11 +53,15 @@ func NewServer(api *operations.AlertmanagerAPI) *Server {
 func (s *Server) ConfigureAPI() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s.api != nil {
 		s.handler = configureAPI(s.api)
 	}
 }
 func (s *Server) ConfigureFlags() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if s.api != nil {
@@ -97,6 +105,8 @@ type Server struct {
 func (s *Server) Logf(f string, args ...interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s.api != nil && s.api.Logger != nil {
 		s.api.Logger(f, args...)
 	} else {
@@ -104,6 +114,8 @@ func (s *Server) Logf(f string, args ...interface{}) {
 	}
 }
 func (s *Server) Fatalf(f string, args ...interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if s.api != nil && s.api.Logger != nil {
@@ -114,6 +126,8 @@ func (s *Server) Fatalf(f string, args ...interface{}) {
 	}
 }
 func (s *Server) SetAPI(api *operations.AlertmanagerAPI) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if api == nil {
@@ -128,6 +142,8 @@ func (s *Server) SetAPI(api *operations.AlertmanagerAPI) {
 func (s *Server) hasScheme(scheme string) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	schemes := s.EnabledListeners
 	if len(schemes) == 0 {
 		schemes = defaultSchemes
@@ -140,6 +156,8 @@ func (s *Server) hasScheme(scheme string) bool {
 	return false
 }
 func (s *Server) Serve() (err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !s.hasListeners {
@@ -270,6 +288,8 @@ func (s *Server) Serve() (err error) {
 func (s *Server) Listen() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if s.hasListeners {
 		return nil
 	}
@@ -329,12 +349,16 @@ func (s *Server) Listen() error {
 func (s *Server) Shutdown() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if atomic.CompareAndSwapInt32(&s.shuttingDown, 0, 1) {
 		close(s.shutdown)
 	}
 	return nil
 }
 func (s *Server) handleShutdown(wg *sync.WaitGroup, serversPtr *[]*http.Server) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	defer wg.Done()
@@ -368,14 +392,20 @@ func (s *Server) handleShutdown(wg *sync.WaitGroup, serversPtr *[]*http.Server) 
 func (s *Server) GetHandler() http.Handler {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return s.handler
 }
 func (s *Server) SetHandler(handler http.Handler) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	s.handler = handler
 }
 func (s *Server) UnixListener() (net.Listener, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !s.hasListeners {
@@ -388,6 +418,8 @@ func (s *Server) UnixListener() (net.Listener, error) {
 func (s *Server) HTTPListener() (net.Listener, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !s.hasListeners {
 		if err := s.Listen(); err != nil {
 			return nil, err
@@ -398,6 +430,8 @@ func (s *Server) HTTPListener() (net.Listener, error) {
 func (s *Server) TLSListener() (net.Listener, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if !s.hasListeners {
 		if err := s.Listen(); err != nil {
 			return nil, err
@@ -406,6 +440,8 @@ func (s *Server) TLSListener() (net.Listener, error) {
 	return s.httpsServerL, nil
 }
 func handleInterrupt(once *sync.Once, s *Server) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	once.Do(func() {
@@ -421,6 +457,8 @@ func handleInterrupt(once *sync.Once, s *Server) {
 	})
 }
 func signalNotify(interrupt chan<- os.Signal) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	signal.Notify(interrupt, syscall.SIGINT, syscall.SIGTERM)

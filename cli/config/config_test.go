@@ -14,6 +14,8 @@ var (
 func newApp() *kingpin.Application {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	url = new(string)
 	id = new(string)
 	app := kingpin.New("app", "")
@@ -27,6 +29,8 @@ func newApp() *kingpin.Application {
 	return app
 }
 func TestNewConfigResolver(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for i, tc := range []struct {
@@ -47,6 +51,8 @@ func TestNewConfigResolver(t *testing.T) {
 type expectFn func()
 
 func TestConfigResolverBind(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	expectURL := func(expected string) expectFn {

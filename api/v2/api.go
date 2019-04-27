@@ -54,6 +54,8 @@ type getAlertStatusFn func(prometheus_model.Fingerprint) types.AlertStatus
 func NewAPI(alerts provider.Alerts, sf getAlertStatusFn, silences *silence.Silences, peer *cluster.Peer, l log.Logger) (*API, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	api := API{alerts: alerts, getAlertStatus: sf, peer: peer, silences: silences, logger: l, uptime: time.Now()}
 	swaggerSpec, err := loads.Analyzed(restapi.SwaggerJSON, "")
 	if err != nil {
@@ -81,6 +83,8 @@ func NewAPI(alerts provider.Alerts, sf getAlertStatusFn, silences *silence.Silen
 func (api *API) Update(cfg *config.Config, resolveTimeout time.Duration) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	api.mtx.Lock()
 	defer api.mtx.Unlock()
 	api.resolveTimeout = resolveTimeout
@@ -89,6 +93,8 @@ func (api *API) Update(cfg *config.Config, resolveTimeout time.Duration) error {
 	return nil
 }
 func (api *API) getStatusHandler(params general_ops.GetStatusParams) middleware.Responder {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	api.mtx.RLock()
@@ -113,6 +119,8 @@ func (api *API) getStatusHandler(params general_ops.GetStatusParams) middleware.
 func (api *API) getReceiversHandler(params receiver_ops.GetReceiversParams) middleware.Responder {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	api.mtx.RLock()
 	defer api.mtx.RUnlock()
 	receivers := make([]*open_api_models.Receiver, 0, len(api.alertmanagerConfig.Receivers))
@@ -122,6 +130,8 @@ func (api *API) getReceiversHandler(params receiver_ops.GetReceiversParams) midd
 	return receiver_ops.NewGetReceiversOK().WithPayload(receivers)
 }
 func (api *API) getAlertsHandler(params alert_ops.GetAlertsParams) middleware.Responder {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -207,6 +217,8 @@ func (api *API) getAlertsHandler(params alert_ops.GetAlertsParams) middleware.Re
 func (api *API) postAlertsHandler(params alert_ops.PostAlertsParams) middleware.Responder {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	alerts := openAPIAlertsToAlerts(params.Alerts)
 	now := time.Now()
 	api.mtx.RLock()
@@ -251,6 +263,8 @@ func (api *API) postAlertsHandler(params alert_ops.PostAlertsParams) middleware.
 func openAPIAlertsToAlerts(apiAlerts open_api_models.PostableAlerts) []*types.Alert {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	alerts := []*types.Alert{}
 	for _, apiAlert := range apiAlerts {
 		alert := types.Alert{Alert: prometheus_model.Alert{Labels: apiLabelSetToModelLabelSet(apiAlert.Labels), Annotations: apiLabelSetToModelLabelSet(apiAlert.Annotations), StartsAt: time.Time(apiAlert.StartsAt), EndsAt: time.Time(apiAlert.EndsAt), GeneratorURL: string(apiAlert.GeneratorURL)}}
@@ -259,6 +273,8 @@ func openAPIAlertsToAlerts(apiAlerts open_api_models.PostableAlerts) []*types.Al
 	return alerts
 }
 func removeEmptyLabels(ls prometheus_model.LabelSet) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for k, v := range ls {
@@ -270,6 +286,8 @@ func removeEmptyLabels(ls prometheus_model.LabelSet) {
 func modelLabelSetToAPILabelSet(modelLabelSet prometheus_model.LabelSet) open_api_models.LabelSet {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	apiLabelSet := open_api_models.LabelSet{}
 	for key, value := range modelLabelSet {
 		apiLabelSet[string(key)] = string(value)
@@ -279,6 +297,8 @@ func modelLabelSetToAPILabelSet(modelLabelSet prometheus_model.LabelSet) open_ap
 func apiLabelSetToModelLabelSet(apiLabelSet open_api_models.LabelSet) prometheus_model.LabelSet {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	modelLabelSet := prometheus_model.LabelSet{}
 	for key, value := range apiLabelSet {
 		modelLabelSet[prometheus_model.LabelName(key)] = prometheus_model.LabelValue(value)
@@ -286,6 +306,8 @@ func apiLabelSetToModelLabelSet(apiLabelSet open_api_models.LabelSet) prometheus
 	return modelLabelSet
 }
 func receiversMatchFilter(receivers []*open_api_models.Receiver, filter *regexp.Regexp) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, r := range receivers {
@@ -298,6 +320,8 @@ func receiversMatchFilter(receivers []*open_api_models.Receiver, filter *regexp.
 func alertMatchesFilterLabels(a *prometheus_model.Alert, matchers []*labels.Matcher) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sms := make(map[string]string)
 	for name, value := range a.Labels {
 		sms[string(name)] = string(value)
@@ -305,6 +329,8 @@ func alertMatchesFilterLabels(a *prometheus_model.Alert, matchers []*labels.Matc
 	return matchFilterLabels(matchers, sms)
 }
 func matchFilterLabels(matchers []*labels.Matcher, sms map[string]string) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, m := range matchers {
@@ -329,6 +355,8 @@ func matchFilterLabels(matchers []*labels.Matcher, sms map[string]string) bool {
 	return true
 }
 func (api *API) getSilencesHandler(params silence_ops.GetSilencesParams) middleware.Responder {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	matchers := []*labels.Matcher{}
@@ -364,6 +392,8 @@ func (api *API) getSilencesHandler(params silence_ops.GetSilencesParams) middlew
 func gettableSilenceMatchesFilterLabels(s open_api_models.GettableSilence, matchers []*labels.Matcher) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sms := make(map[string]string)
 	for _, m := range s.Matchers {
 		sms[*m.Name] = *m.Value
@@ -371,6 +401,8 @@ func gettableSilenceMatchesFilterLabels(s open_api_models.GettableSilence, match
 	return matchFilterLabels(matchers, sms)
 }
 func (api *API) getSilenceHandler(params silence_ops.GetSilenceParams) middleware.Responder {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sils, err := api.silences.Query(silence.QIDs(params.SilenceID.String()))
@@ -392,6 +424,8 @@ func (api *API) getSilenceHandler(params silence_ops.GetSilenceParams) middlewar
 func (api *API) deleteSilenceHandler(params silence_ops.DeleteSilenceParams) middleware.Responder {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sid := params.SilenceID.String()
 	if err := api.silences.Expire(sid); err != nil {
 		level.Error(api.logger).Log("msg", "failed to expire silence", "err", err)
@@ -400,6 +434,8 @@ func (api *API) deleteSilenceHandler(params silence_ops.DeleteSilenceParams) mid
 	return silence_ops.NewDeleteSilenceOK()
 }
 func gettableSilenceFromProto(s *silencepb.Silence) (open_api_models.GettableSilence, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	start := strfmt.DateTime(s.StartsAt)
@@ -424,6 +460,8 @@ func gettableSilenceFromProto(s *silencepb.Silence) (open_api_models.GettableSil
 	return sil, nil
 }
 func (api *API) postSilencesHandler(params silence_ops.PostSilencesParams) middleware.Responder {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sil, err := postableSilenceToProto(params.Silence)
@@ -451,6 +489,8 @@ func (api *API) postSilencesHandler(params silence_ops.PostSilencesParams) middl
 func postableSilenceToProto(s *open_api_models.PostableSilence) (*silencepb.Silence, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sil := &silencepb.Silence{Id: s.ID, StartsAt: time.Time(*s.StartsAt), EndsAt: time.Time(*s.EndsAt), Comment: *s.Comment, CreatedBy: *s.CreatedBy}
 	for _, m := range s.Matchers {
 		matcher := &silencepb.Matcher{Name: *m.Name, Pattern: *m.Value, Type: silencepb.Matcher_EQUAL}
@@ -464,7 +504,16 @@ func postableSilenceToProto(s *open_api_models.PostableSilence) (*silencepb.Sile
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

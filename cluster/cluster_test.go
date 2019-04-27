@@ -13,6 +13,8 @@ import (
 func TestClusterJoinAndReconnect(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ip, _ := sockaddr.GetPrivateIP()
 	if ip == "" {
 		t.Skipf("skipping tests because no private IP address can be found")
@@ -24,6 +26,8 @@ func TestClusterJoinAndReconnect(t *testing.T) {
 	t.Run("TestInitiallyFailingPeers", testInitiallyFailingPeers)
 }
 func testJoinLeave(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	logger := log.NewNopLogger()
@@ -53,6 +57,8 @@ func testJoinLeave(t *testing.T) {
 func testReconnect(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	logger := log.NewNopLogger()
 	p, err := Create(logger, prometheus.NewRegistry(), "0.0.0.0:0", "", []string{}, true, DefaultPushPullInterval, DefaultGossipInterval, DefaultTcpTimeout, DefaultProbeTimeout, DefaultProbeInterval)
 	require.NoError(t, err)
@@ -80,6 +86,8 @@ func testReconnect(t *testing.T) {
 func testRemoveFailedPeers(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	logger := log.NewNopLogger()
 	p, err := Create(logger, prometheus.NewRegistry(), "0.0.0.0:0", "", []string{}, true, DefaultPushPullInterval, DefaultGossipInterval, DefaultTcpTimeout, DefaultProbeTimeout, DefaultProbeInterval)
 	require.NoError(t, err)
@@ -97,6 +105,8 @@ func testRemoveFailedPeers(t *testing.T) {
 	require.Equal(t, p1, p.failedPeers[0])
 }
 func testInitiallyFailingPeers(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	logger := log.NewNopLogger()

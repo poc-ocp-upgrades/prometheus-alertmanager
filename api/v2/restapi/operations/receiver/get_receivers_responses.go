@@ -15,9 +15,13 @@ type GetReceiversOK struct {
 func NewGetReceiversOK() *GetReceiversOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetReceiversOK{}
 }
 func (o *GetReceiversOK) WithPayload(payload []*models.Receiver) *GetReceiversOK {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -26,9 +30,13 @@ func (o *GetReceiversOK) WithPayload(payload []*models.Receiver) *GetReceiversOK
 func (o *GetReceiversOK) SetPayload(payload []*models.Receiver) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetReceiversOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(200)

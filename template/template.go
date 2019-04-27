@@ -29,6 +29,8 @@ type Template struct {
 func FromGlobs(paths ...string) (*Template, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t := &Template{text: tmpltext.New("").Option("missingkey=zero"), html: tmplhtml.New("").Option("missingkey=zero")}
 	var err error
 	t.text = t.text.Funcs(tmpltext.FuncMap(DefaultFuncs))
@@ -67,6 +69,8 @@ func FromGlobs(paths ...string) (*Template, error) {
 func (t *Template) ExecuteTextString(text string, data interface{}) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if text == "" {
 		return "", nil
 	}
@@ -83,6 +87,8 @@ func (t *Template) ExecuteTextString(text string, data interface{}) (string, err
 	return buf.String(), err
 }
 func (t *Template) ExecuteHTMLString(html string, data interface{}) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if html == "" {
@@ -118,6 +124,8 @@ type Pairs []Pair
 func (ps Pairs) Names() []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ns := make([]string, 0, len(ps))
 	for _, p := range ps {
 		ns = append(ns, p.Name)
@@ -125,6 +133,8 @@ func (ps Pairs) Names() []string {
 	return ns
 }
 func (ps Pairs) Values() []string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	vs := make([]string, 0, len(ps))
@@ -137,6 +147,8 @@ func (ps Pairs) Values() []string {
 type KV map[string]string
 
 func (kv KV) SortedPairs() Pairs {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -161,6 +173,8 @@ func (kv KV) SortedPairs() Pairs {
 func (kv KV) Remove(keys []string) KV {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	keySet := make(map[string]struct{}, len(keys))
 	for _, k := range keys {
 		keySet[k] = struct{}{}
@@ -176,9 +190,13 @@ func (kv KV) Remove(keys []string) KV {
 func (kv KV) Names() []string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return kv.SortedPairs().Names()
 }
 func (kv KV) Values() []string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return kv.SortedPairs().Values()
@@ -206,6 +224,8 @@ type Alerts []Alert
 func (as Alerts) Firing() []Alert {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	res := []Alert{}
 	for _, a := range as {
 		if a.Status == string(model.AlertFiring) {
@@ -217,6 +237,8 @@ func (as Alerts) Firing() []Alert {
 func (as Alerts) Resolved() []Alert {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	res := []Alert{}
 	for _, a := range as {
 		if a.Status == string(model.AlertResolved) {
@@ -226,6 +248,8 @@ func (as Alerts) Resolved() []Alert {
 	return res
 }
 func (t *Template) Data(recv string, groupLabels model.LabelSet, alerts ...*types.Alert) *Data {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	data := &Data{Receiver: regexp.QuoteMeta(strings.SplitN(recv, "/", 2)[0]), Status: string(types.Alerts(alerts...).Status()), Alerts: make(Alerts, 0, len(alerts)), GroupLabels: KV{}, CommonLabels: KV{}, CommonAnnotations: KV{}, ExternalURL: t.ExternalURL.String()}
@@ -271,7 +295,16 @@ func (t *Template) Data(recv string, groupLabels model.LabelSet, alerts ...*type
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

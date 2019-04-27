@@ -7,6 +7,8 @@ import (
 func TestIsFiringSubset(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	e := &Entry{FiringAlerts: []uint64{1, 2, 3}}
 	tests := []struct {
 		subset		map[uint64]struct{}
@@ -19,6 +21,8 @@ func TestIsFiringSubset(t *testing.T) {
 	}
 }
 func TestIsResolvedSubset(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	e := &Entry{ResolvedAlerts: []uint64{1, 2, 3}}
@@ -35,6 +39,8 @@ func TestIsResolvedSubset(t *testing.T) {
 func newSubset(elements ...uint64) map[uint64]struct{} {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	subset := make(map[uint64]struct{})
 	for _, el := range elements {
 		subset[el] = struct{}{}
@@ -42,6 +48,8 @@ func newSubset(elements ...uint64) map[uint64]struct{} {
 	return subset
 }
 func elements(m map[uint64]struct{}) []uint64 {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	els := make([]uint64, 0, len(m))

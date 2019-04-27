@@ -22,6 +22,8 @@ type GettableAlert struct {
 func (m *GettableAlert) UnmarshalJSON(raw []byte) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var dataAO0 struct {
 		Annotations	LabelSet		`json:"annotations"`
 		EndsAt		*strfmt.DateTime	`json:"endsAt"`
@@ -49,6 +51,8 @@ func (m *GettableAlert) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 func (m GettableAlert) MarshalJSON() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_parts := make([][]byte, 0, 2)
@@ -81,6 +85,8 @@ func (m GettableAlert) MarshalJSON() ([]byte, error) {
 	return swag.ConcatJSON(_parts...), nil
 }
 func (m *GettableAlert) Validate(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []error
@@ -116,6 +122,8 @@ func (m *GettableAlert) Validate(formats strfmt.Registry) error {
 func (m *GettableAlert) validateAnnotations(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := m.Annotations.Validate(formats); err != nil {
 		if ve, ok := err.(*errors.Validation); ok {
 			return ve.ValidateName("annotations")
@@ -125,6 +133,8 @@ func (m *GettableAlert) validateAnnotations(formats strfmt.Registry) error {
 	return nil
 }
 func (m *GettableAlert) validateEndsAt(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("endsAt", "body", m.EndsAt); err != nil {
@@ -138,12 +148,16 @@ func (m *GettableAlert) validateEndsAt(formats strfmt.Registry) error {
 func (m *GettableAlert) validateFingerprint(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("fingerprint", "body", m.Fingerprint); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *GettableAlert) validateReceivers(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("receivers", "body", m.Receivers); err != nil {
@@ -167,6 +181,8 @@ func (m *GettableAlert) validateReceivers(formats strfmt.Registry) error {
 func (m *GettableAlert) validateStartsAt(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("startsAt", "body", m.StartsAt); err != nil {
 		return err
 	}
@@ -176,6 +192,8 @@ func (m *GettableAlert) validateStartsAt(formats strfmt.Registry) error {
 	return nil
 }
 func (m *GettableAlert) validateStatus(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("status", "body", m.Status); err != nil {
@@ -194,6 +212,8 @@ func (m *GettableAlert) validateStatus(formats strfmt.Registry) error {
 func (m *GettableAlert) validateUpdatedAt(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("updatedAt", "body", m.UpdatedAt); err != nil {
 		return err
 	}
@@ -205,12 +225,16 @@ func (m *GettableAlert) validateUpdatedAt(formats strfmt.Registry) error {
 func (m *GettableAlert) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *GettableAlert) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res GettableAlert

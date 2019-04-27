@@ -15,9 +15,13 @@ type GetAlertsOK struct {
 func NewGetAlertsOK() *GetAlertsOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetAlertsOK{}
 }
 func (o *GetAlertsOK) WithPayload(payload models.GettableAlerts) *GetAlertsOK {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -26,9 +30,13 @@ func (o *GetAlertsOK) WithPayload(payload models.GettableAlerts) *GetAlertsOK {
 func (o *GetAlertsOK) SetPayload(payload models.GettableAlerts) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetAlertsOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(200)
@@ -50,9 +58,13 @@ type GetAlertsBadRequest struct {
 func NewGetAlertsBadRequest() *GetAlertsBadRequest {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetAlertsBadRequest{}
 }
 func (o *GetAlertsBadRequest) WithPayload(payload string) *GetAlertsBadRequest {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -61,9 +73,13 @@ func (o *GetAlertsBadRequest) WithPayload(payload string) *GetAlertsBadRequest {
 func (o *GetAlertsBadRequest) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetAlertsBadRequest) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(400)
@@ -82,9 +98,13 @@ type GetAlertsInternalServerError struct {
 func NewGetAlertsInternalServerError() *GetAlertsInternalServerError {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetAlertsInternalServerError{}
 }
 func (o *GetAlertsInternalServerError) WithPayload(payload string) *GetAlertsInternalServerError {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -93,9 +113,13 @@ func (o *GetAlertsInternalServerError) WithPayload(payload string) *GetAlertsInt
 func (o *GetAlertsInternalServerError) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetAlertsInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(500)

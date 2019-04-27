@@ -35,6 +35,8 @@ JSON data can also come from stdin if no param is specified.
 func configureSilenceImportCmd(cc *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		c		= &silenceImportCmd{}
 		importCmd	= cc.Command("import", silenceImportHelp)
@@ -45,6 +47,8 @@ func configureSilenceImportCmd(cc *kingpin.CmdClause) {
 	importCmd.Action(execWithTimeout(c.bulkImport))
 }
 func addSilenceWorker(ctx context.Context, sclient client.SilenceAPI, silencec <-chan *types.Silence, errc chan<- error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for s := range silencec {
@@ -63,6 +67,8 @@ func addSilenceWorker(ctx context.Context, sclient client.SilenceAPI, silencec <
 	}
 }
 func (c *silenceImportCmd) bulkImport(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	input := os.Stdin

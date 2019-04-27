@@ -16,14 +16,20 @@ type ExtendedFormatter struct{ writer io.Writer }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	Formatters["extended"] = &ExtendedFormatter{writer: os.Stdout}
 }
 func (formatter *ExtendedFormatter) SetOutput(writer io.Writer) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	formatter.writer = writer
 }
 func (formatter *ExtendedFormatter) FormatSilences(silences []types.Silence) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	w := tabwriter.NewWriter(formatter.writer, 0, 0, 2, ' ', 0)
@@ -37,6 +43,8 @@ func (formatter *ExtendedFormatter) FormatSilences(silences []types.Silence) err
 func (formatter *ExtendedFormatter) FormatAlerts(alerts []*client.ExtendedAlert) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	w := tabwriter.NewWriter(formatter.writer, 0, 0, 2, ' ', 0)
 	sort.Sort(ByStartsAt(alerts))
 	fmt.Fprintln(w, "Labels\tAnnotations\tStarts At\tEnds At\tGenerator URL\t")
@@ -46,6 +54,8 @@ func (formatter *ExtendedFormatter) FormatAlerts(alerts []*client.ExtendedAlert)
 	return w.Flush()
 }
 func (formatter *ExtendedFormatter) FormatConfig(status *client.ServerStatus) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fmt.Fprintln(formatter.writer, status.ConfigYAML)
@@ -61,6 +71,8 @@ func (formatter *ExtendedFormatter) FormatConfig(status *client.ServerStatus) er
 func extendedFormatLabels(labels client.LabelSet) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	output := []string{}
 	for name, value := range labels {
 		output = append(output, fmt.Sprintf("%s=\"%s\"", name, value))
@@ -69,6 +81,8 @@ func extendedFormatLabels(labels client.LabelSet) string {
 	return strings.Join(output, " ")
 }
 func extendedFormatAnnotations(labels client.LabelSet) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	output := []string{}
@@ -81,6 +95,8 @@ func extendedFormatAnnotations(labels client.LabelSet) string {
 func extendedFormatMatchers(matchers types.Matchers) string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	output := []string{}
 	for _, matcher := range matchers {
 		output = append(output, extendedFormatMatcher(*matcher))
@@ -88,6 +104,8 @@ func extendedFormatMatchers(matchers types.Matchers) string {
 	return strings.Join(output, " ")
 }
 func extendedFormatMatcher(matcher types.Matcher) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if matcher.IsRegex {

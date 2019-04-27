@@ -9,6 +9,8 @@ import (
 func TestPairNames(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pairs := Pairs{{"name1", "value1"}, {"name2", "value2"}, {"name3", "value3"}}
 	expected := []string{"name1", "name2", "name3"}
 	require.EqualValues(t, expected, pairs.Names())
@@ -16,11 +18,15 @@ func TestPairNames(t *testing.T) {
 func TestPairValues(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pairs := Pairs{{"name1", "value1"}, {"name2", "value2"}, {"name3", "value3"}}
 	expected := []string{"value1", "value2", "value3"}
 	require.EqualValues(t, expected, pairs.Values())
 }
 func TestKVSortedPairs(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	kv := KV{"d": "dVal", "b": "bVal", "c": "cVal"}
@@ -39,12 +45,16 @@ func TestKVSortedPairs(t *testing.T) {
 func TestKVRemove(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	kv := KV{"key1": "val1", "key2": "val2", "key3": "val3", "key4": "val4"}
 	kv = kv.Remove([]string{"key2", "key4"})
 	expected := []string{"key1", "key3"}
 	require.EqualValues(t, expected, kv.Names())
 }
 func TestAlertsFiring(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	alerts := Alerts{{Status: string(model.AlertFiring)}, {Status: string(model.AlertResolved)}, {Status: string(model.AlertFiring)}, {Status: string(model.AlertResolved)}, {Status: string(model.AlertResolved)}}
@@ -55,6 +65,8 @@ func TestAlertsFiring(t *testing.T) {
 	}
 }
 func TestAlertsResolved(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	alerts := Alerts{{Status: string(model.AlertFiring)}, {Status: string(model.AlertResolved)}, {Status: string(model.AlertFiring)}, {Status: string(model.AlertResolved)}, {Status: string(model.AlertResolved)}}

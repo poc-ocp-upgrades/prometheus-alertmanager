@@ -10,6 +10,8 @@ import (
 func TestMergeAlerts(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Parallel()
 	conf := `
 route:
@@ -47,6 +49,8 @@ receivers:
 func TestRepeat(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Parallel()
 	conf := `
 route:
@@ -73,6 +77,8 @@ receivers:
 	at.Run()
 }
 func TestRetry(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t.Parallel()
@@ -107,6 +113,8 @@ receivers:
 func TestBatching(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Parallel()
 	conf := `
 route:
@@ -137,6 +145,8 @@ receivers:
 func TestResolved(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Parallel()
 	for i := 0; i < 2; i++ {
 		conf := `
@@ -165,6 +175,8 @@ receivers:
 	}
 }
 func TestResolvedFilter(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t.Parallel()
@@ -204,6 +216,8 @@ receivers:
 	at.Run()
 }
 func TestReload(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t.Parallel()

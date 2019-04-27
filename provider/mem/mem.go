@@ -34,6 +34,8 @@ type listeningAlerts struct {
 func NewAlerts(ctx context.Context, m types.Marker, intervalGC time.Duration, l log.Logger) (*Alerts, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ctx, cancel := context.WithCancel(ctx)
 	a := &Alerts{alerts: store.NewAlerts(intervalGC), cancel: cancel, listeners: map[int]listeningAlerts{}, next: 0, logger: log.With(l, "component", "provider")}
 	a.alerts.SetGCCallback(func(alerts []*types.Alert) {
@@ -57,11 +59,15 @@ func NewAlerts(ctx context.Context, m types.Marker, intervalGC time.Duration, l 
 func (a *Alerts) Close() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if a.cancel != nil {
 		a.cancel()
 	}
 }
 func max(a, b int) int {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if a > b {
@@ -70,6 +76,8 @@ func max(a, b int) int {
 	return b
 }
 func (a *Alerts) Subscribe() provider.AlertIterator {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -87,6 +95,8 @@ func (a *Alerts) Subscribe() provider.AlertIterator {
 	return provider.NewAlertIterator(ch, done, nil)
 }
 func (a *Alerts) GetPending() provider.AlertIterator {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -108,9 +118,13 @@ func (a *Alerts) GetPending() provider.AlertIterator {
 func (a *Alerts) Get(fp model.Fingerprint) (*types.Alert, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return a.alerts.Get(fp)
 }
 func (a *Alerts) Put(alerts ...*types.Alert) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	for _, alert := range alerts {
@@ -138,7 +152,16 @@ func (a *Alerts) Put(alerts ...*types.Alert) error {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

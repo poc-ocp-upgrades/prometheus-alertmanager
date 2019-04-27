@@ -14,6 +14,8 @@ type AlertmanagerConfig struct {
 func (m *AlertmanagerConfig) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateOriginal(formats); err != nil {
 		res = append(res, err)
@@ -26,6 +28,8 @@ func (m *AlertmanagerConfig) Validate(formats strfmt.Registry) error {
 func (m *AlertmanagerConfig) validateOriginal(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Required("original", "body", m.Original); err != nil {
 		return err
 	}
@@ -34,12 +38,16 @@ func (m *AlertmanagerConfig) validateOriginal(formats strfmt.Registry) error {
 func (m *AlertmanagerConfig) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *AlertmanagerConfig) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res AlertmanagerConfig

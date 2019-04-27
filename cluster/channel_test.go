@@ -14,6 +14,8 @@ import (
 func TestNormalMessagesGossiped(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var sent bool
 	c := newChannel(func(_ []byte) {
 		sent = true
@@ -28,6 +30,8 @@ func TestNormalMessagesGossiped(t *testing.T) {
 	}
 }
 func TestOversizedMessagesGossiped(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var sent bool
@@ -59,6 +63,8 @@ func TestOversizedMessagesGossiped(t *testing.T) {
 	}
 }
 func newChannel(send func([]byte), peers func() []*memberlist.Node, sendOversize func(*memberlist.Node, []byte) error) *Channel {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return NewChannel("test", send, peers, sendOversize, log.NewNopLogger(), make(chan struct{}), prometheus.NewRegistry())

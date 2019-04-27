@@ -15,6 +15,8 @@ type SilenceStatus struct {
 func (m *SilenceStatus) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateState(formats); err != nil {
 		res = append(res, err)
@@ -28,6 +30,8 @@ func (m *SilenceStatus) Validate(formats strfmt.Registry) error {
 var silenceStatusTypeStatePropEnum []interface{}
 
 func init() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res []string
@@ -48,12 +52,16 @@ const (
 func (m *SilenceStatus) validateStateEnum(path, location string, value string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if err := validate.Enum(path, location, value, silenceStatusTypeStatePropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 func (m *SilenceStatus) validateState(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := validate.Required("state", "body", m.State); err != nil {
@@ -67,12 +75,16 @@ func (m *SilenceStatus) validateState(formats strfmt.Registry) error {
 func (m *SilenceStatus) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *SilenceStatus) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res SilenceStatus

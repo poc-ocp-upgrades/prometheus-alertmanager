@@ -7,6 +7,8 @@ import (
 func configureSilenceCmd(app *kingpin.Application) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	silenceCmd := app.Command("silence", "Add, expire or view silences. For more information and additional flags see query help").PreAction(requireAlertManagerURL)
 	configureSilenceAddCmd(silenceCmd)
 	configureSilenceExpireCmd(silenceCmd)

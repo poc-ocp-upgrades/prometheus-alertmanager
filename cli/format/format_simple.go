@@ -16,14 +16,20 @@ type SimpleFormatter struct{ writer io.Writer }
 func init() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	Formatters["simple"] = &SimpleFormatter{writer: os.Stdout}
 }
 func (formatter *SimpleFormatter) SetOutput(writer io.Writer) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	formatter.writer = writer
 }
 func (formatter *SimpleFormatter) FormatSilences(silences []types.Silence) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	w := tabwriter.NewWriter(formatter.writer, 0, 0, 2, ' ', 0)
@@ -37,6 +43,8 @@ func (formatter *SimpleFormatter) FormatSilences(silences []types.Silence) error
 func (formatter *SimpleFormatter) FormatAlerts(alerts []*client.ExtendedAlert) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	w := tabwriter.NewWriter(formatter.writer, 0, 0, 2, ' ', 0)
 	sort.Sort(ByStartsAt(alerts))
 	fmt.Fprintln(w, "Alertname\tStarts At\tSummary\t")
@@ -48,10 +56,14 @@ func (formatter *SimpleFormatter) FormatAlerts(alerts []*client.ExtendedAlert) e
 func (formatter *SimpleFormatter) FormatConfig(status *client.ServerStatus) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	fmt.Fprintln(formatter.writer, status.ConfigYAML)
 	return nil
 }
 func simpleFormatMatchers(matchers types.Matchers) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	output := []string{}
@@ -61,6 +73,8 @@ func simpleFormatMatchers(matchers types.Matchers) string {
 	return strings.Join(output, " ")
 }
 func simpleFormatMatcher(matcher types.Matcher) string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if matcher.IsRegex {

@@ -17,6 +17,8 @@ type PostableAlert struct {
 func (m *PostableAlert) UnmarshalJSON(raw []byte) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var dataAO0 struct {
 		Annotations	LabelSet	`json:"annotations,omitempty"`
 		EndsAt		strfmt.DateTime	`json:"endsAt,omitempty"`
@@ -36,6 +38,8 @@ func (m *PostableAlert) UnmarshalJSON(raw []byte) error {
 	return nil
 }
 func (m PostableAlert) MarshalJSON() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	_parts := make([][]byte, 0, 2)
@@ -62,6 +66,8 @@ func (m PostableAlert) MarshalJSON() ([]byte, error) {
 func (m *PostableAlert) Validate(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var res []error
 	if err := m.validateAnnotations(formats); err != nil {
 		res = append(res, err)
@@ -83,6 +89,8 @@ func (m *PostableAlert) Validate(formats strfmt.Registry) error {
 func (m *PostableAlert) validateAnnotations(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if swag.IsZero(m.Annotations) {
 		return nil
 	}
@@ -97,6 +105,8 @@ func (m *PostableAlert) validateAnnotations(formats strfmt.Registry) error {
 func (m *PostableAlert) validateEndsAt(formats strfmt.Registry) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if swag.IsZero(m.EndsAt) {
 		return nil
 	}
@@ -106,6 +116,8 @@ func (m *PostableAlert) validateEndsAt(formats strfmt.Registry) error {
 	return nil
 }
 func (m *PostableAlert) validateStartsAt(formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if swag.IsZero(m.StartsAt) {
@@ -119,12 +131,16 @@ func (m *PostableAlert) validateStartsAt(formats strfmt.Registry) error {
 func (m *PostableAlert) MarshalBinary() ([]byte, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if m == nil {
 		return nil, nil
 	}
 	return swag.WriteJSON(m)
 }
 func (m *PostableAlert) UnmarshalBinary(b []byte) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var res PostableAlert

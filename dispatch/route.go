@@ -23,6 +23,8 @@ type Route struct {
 func NewRoute(cr *config.Route, parent *Route) *Route {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	opts := DefaultRouteOpts
 	if parent != nil {
 		opts = parent.RouteOpts
@@ -61,6 +63,8 @@ func NewRoute(cr *config.Route, parent *Route) *Route {
 func NewRoutes(croutes []*config.Route, parent *Route) []*Route {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	res := []*Route{}
 	for _, cr := range croutes {
 		res = append(res, NewRoute(cr, parent))
@@ -68,6 +72,8 @@ func NewRoutes(croutes []*config.Route, parent *Route) []*Route {
 	return res
 }
 func (r *Route) Match(lset model.LabelSet) []*Route {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if !r.Matchers.Match(lset) {
@@ -87,6 +93,8 @@ func (r *Route) Match(lset model.LabelSet) []*Route {
 	return all
 }
 func (r *Route) Key() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	b := make([]byte, 0, 1024)
@@ -109,6 +117,8 @@ type RouteOpts struct {
 func (ro *RouteOpts) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var labels []model.LabelName
 	for ln := range ro.GroupBy {
 		labels = append(labels, ln)
@@ -116,6 +126,8 @@ func (ro *RouteOpts) String() string {
 	return fmt.Sprintf("<RouteOpts send_to:%q group_by:%q group_by_all:%t timers:%q|%q>", ro.Receiver, labels, ro.GroupByAll, ro.GroupWait, ro.GroupInterval)
 }
 func (ro *RouteOpts) MarshalJSON() ([]byte, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	v := struct {

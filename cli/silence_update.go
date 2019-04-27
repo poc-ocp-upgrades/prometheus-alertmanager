@@ -25,6 +25,8 @@ type silenceUpdateCmd struct {
 func configureSilenceUpdateCmd(cc *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		c		= &silenceUpdateCmd{}
 		updateCmd	= cc.Command("update", "Update silences")
@@ -38,6 +40,8 @@ func configureSilenceUpdateCmd(cc *kingpin.CmdClause) {
 	updateCmd.Action(execWithTimeout(c.update))
 }
 func (c *silenceUpdateCmd) update(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(c.ids) < 1 {

@@ -13,6 +13,8 @@ type GetReceiversReader struct{ formats strfmt.Registry }
 func (o *GetReceiversReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch response.Code() {
 	case 200:
 		result := NewGetReceiversOK()
@@ -27,6 +29,8 @@ func (o *GetReceiversReader) ReadResponse(response runtime.ClientResponse, consu
 func NewGetReceiversOK() *GetReceiversOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetReceiversOK{}
 }
 
@@ -35,9 +39,13 @@ type GetReceiversOK struct{ Payload []*models.Receiver }
 func (o *GetReceiversOK) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /receivers][%d] getReceiversOK  %+v", 200, o.Payload)
 }
 func (o *GetReceiversOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

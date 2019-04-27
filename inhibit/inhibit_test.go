@@ -16,6 +16,8 @@ var nopLogger = log.NewNopLogger()
 func TestInhibitRuleHasEqual(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	t.Parallel()
 	now := time.Now()
 	cases := []struct {
@@ -38,6 +40,8 @@ func TestInhibitRuleHasEqual(t *testing.T) {
 	}
 }
 func TestInhibitRuleMatches(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t.Parallel()
@@ -68,9 +72,13 @@ type fakeAlerts struct {
 func newFakeAlerts(alerts []*types.Alert) *fakeAlerts {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &fakeAlerts{alerts: alerts, finished: make(chan struct{})}
 }
 func (f *fakeAlerts) GetPending() provider.AlertIterator {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -78,14 +86,20 @@ func (f *fakeAlerts) GetPending() provider.AlertIterator {
 func (f *fakeAlerts) Get(model.Fingerprint) (*types.Alert, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil, nil
 }
 func (f *fakeAlerts) Put(...*types.Alert) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil
 }
 func (f *fakeAlerts) Subscribe() provider.AlertIterator {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	ch := make(chan *types.Alert)
@@ -101,6 +115,8 @@ func (f *fakeAlerts) Subscribe() provider.AlertIterator {
 	return provider.NewAlertIterator(ch, done, nil)
 }
 func TestInhibit(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	t.Parallel()

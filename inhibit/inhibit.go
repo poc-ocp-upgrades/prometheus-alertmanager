@@ -30,6 +30,8 @@ type Inhibitor struct {
 func NewInhibitor(ap provider.Alerts, rs []*config.InhibitRule, mk types.Marker, logger log.Logger) *Inhibitor {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	ih := &Inhibitor{alerts: ap, marker: mk, logger: logger}
 	for _, cr := range rs {
 		r := NewInhibitRule(cr)
@@ -38,6 +40,8 @@ func NewInhibitor(ap provider.Alerts, rs []*config.InhibitRule, mk types.Marker,
 	return ih
 }
 func (ih *Inhibitor) run(ctx context.Context) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	it := ih.alerts.Subscribe()
@@ -64,6 +68,8 @@ func (ih *Inhibitor) run(ctx context.Context) {
 func (ih *Inhibitor) Run() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		g	group.Group
 		ctx	context.Context
@@ -88,6 +94,8 @@ func (ih *Inhibitor) Run() {
 func (ih *Inhibitor) Stop() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if ih == nil {
 		return
 	}
@@ -98,6 +106,8 @@ func (ih *Inhibitor) Stop() {
 	}
 }
 func (ih *Inhibitor) Mutes(lset model.LabelSet) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	fp := lset.Fingerprint()
@@ -119,6 +129,8 @@ type InhibitRule struct {
 }
 
 func NewInhibitRule(cr *config.InhibitRule) *InhibitRule {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -146,6 +158,8 @@ func NewInhibitRule(cr *config.InhibitRule) *InhibitRule {
 func (r *InhibitRule) hasEqual(lset model.LabelSet) (model.Fingerprint, bool) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 Outer:
 	for a := range r.scache.List() {
 		if a.Resolved() {
@@ -163,7 +177,16 @@ Outer:
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

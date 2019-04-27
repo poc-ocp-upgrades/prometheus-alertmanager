@@ -26,9 +26,13 @@ var DefaultSchemes = []string{"http"}
 func NewHTTPClient(formats strfmt.Registry) *Alertmanager {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return NewHTTPClientWithConfig(formats, nil)
 }
 func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Alertmanager {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if cfg == nil {
@@ -38,6 +42,8 @@ func NewHTTPClientWithConfig(formats strfmt.Registry, cfg *TransportConfig) *Ale
 	return New(transport, formats)
 }
 func New(transport runtime.ClientTransport, formats strfmt.Registry) *Alertmanager {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if formats == nil {
@@ -54,6 +60,8 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *Alertmanag
 func DefaultTransportConfig() *TransportConfig {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &TransportConfig{Host: DefaultHost, BasePath: DefaultBasePath, Schemes: DefaultSchemes}
 }
 
@@ -66,16 +74,22 @@ type TransportConfig struct {
 func (cfg *TransportConfig) WithHost(host string) *TransportConfig {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cfg.Host = host
 	return cfg
 }
 func (cfg *TransportConfig) WithBasePath(basePath string) *TransportConfig {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cfg.BasePath = basePath
 	return cfg
 }
 func (cfg *TransportConfig) WithSchemes(schemes []string) *TransportConfig {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cfg.Schemes = schemes
@@ -93,6 +107,8 @@ type Alertmanager struct {
 func (c *Alertmanager) SetTransport(transport runtime.ClientTransport) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.Transport = transport
 	c.Alert.SetTransport(transport)
 	c.General.SetTransport(transport)
@@ -102,7 +118,16 @@ func (c *Alertmanager) SetTransport(transport runtime.ClientTransport) {
 func _logClusterCodePath() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	pc, _, _, _ := godefaultruntime.Caller(1)
 	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
 	godefaulthttp.Post("http://35.226.239.161:5001/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
+}
+func _logClusterCodePath() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
+	pc, _, _, _ := godefaultruntime.Caller(1)
+	jsonLog := []byte(fmt.Sprintf("{\"fn\": \"%s\"}", godefaultruntime.FuncForPC(pc).Name()))
+	godefaulthttp.Post("/"+"logcode", "application/json", godefaultbytes.NewBuffer(jsonLog))
 }

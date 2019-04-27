@@ -49,6 +49,8 @@ only active alerts are returned.
 func configureQueryAlertsCmd(cc *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		a		= &alertQueryCmd{}
 		queryCmd	= cc.Command("query", alertQueryHelp).Default()
@@ -62,6 +64,8 @@ func configureQueryAlertsCmd(cc *kingpin.CmdClause) {
 	queryCmd.Action(execWithTimeout(a.queryAlerts))
 }
 func (a *alertQueryCmd) queryAlerts(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var filterString = ""

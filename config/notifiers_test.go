@@ -9,6 +9,8 @@ import (
 func TestEmailToIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 to: ''
 `
@@ -23,6 +25,8 @@ to: ''
 	}
 }
 func TestEmailHeadersCollision(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -44,6 +48,8 @@ headers:
 func TestPagerdutyRoutingKeyIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 routing_key: ''
 `
@@ -60,6 +66,8 @@ routing_key: ''
 func TestPagerdutyServiceKeyIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 service_key: ''
 `
@@ -74,6 +82,8 @@ service_key: ''
 	}
 }
 func TestPagerdutyDetails(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var tests = []struct {
@@ -118,6 +128,8 @@ details:
 func TestHipchatRoomIDIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 room_id: ''
 `
@@ -134,6 +146,8 @@ room_id: ''
 func TestWebhookURLIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `{}`
 	var cfg WebhookConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
@@ -146,6 +160,8 @@ func TestWebhookURLIsPresent(t *testing.T) {
 	}
 }
 func TestWebhookHttpConfigIsValid(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -167,6 +183,8 @@ http_config:
 func TestWebhookHttpConfigIsOptional(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 url: 'http://example.com'
 `
@@ -177,6 +195,8 @@ url: 'http://example.com'
 	}
 }
 func TestWebhookPasswordIsObsfucated(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -202,6 +222,8 @@ http_config:
 func TestWechatAPIKeyIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 api_secret: ''
 `
@@ -216,6 +238,8 @@ api_secret: ''
 	}
 }
 func TestWechatCorpIDIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -235,6 +259,8 @@ corp_id: ''
 func TestVictorOpsRoutingKeyIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 routing_key: ''
 `
@@ -249,6 +275,8 @@ routing_key: ''
 	}
 }
 func TestVictorOpsCustomFieldsValidation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -286,6 +314,8 @@ custom_fields:
 func TestPushoverUserKeyIsPresent(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 user_key: ''
 `
@@ -300,6 +330,8 @@ user_key: ''
 	}
 }
 func TestPushoverTokenIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -317,6 +349,8 @@ token: ''
 	}
 }
 func TestSlackFieldConfigValidation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var tests = []struct {
@@ -359,6 +393,8 @@ fields:
 func TestSlackFieldConfigUnmarshalling(t *testing.T) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 fields:
 - title: first
@@ -396,6 +432,8 @@ fields:
 	}
 }
 func TestSlackActionsValidation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	in := `
@@ -459,6 +497,8 @@ actions:
 	}
 }
 func newBoolPointer(b bool) *bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &b

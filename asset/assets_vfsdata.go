@@ -31,6 +31,8 @@ type vfsgen۰FS map[string]interface{}
 func (fs vfsgen۰FS) Open(path string) (http.File, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	path = pathpkg.Clean("/" + path)
 	f, ok := fs[path]
 	if !ok {
@@ -62,9 +64,13 @@ type vfsgen۰CompressedFileInfo struct {
 func (f *vfsgen۰CompressedFileInfo) Readdir(count int) ([]os.FileInfo, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil, fmt.Errorf("cannot Readdir from file %s", f.name)
 }
 func (f *vfsgen۰CompressedFileInfo) Stat() (os.FileInfo, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return f, nil
@@ -72,9 +78,13 @@ func (f *vfsgen۰CompressedFileInfo) Stat() (os.FileInfo, error) {
 func (f *vfsgen۰CompressedFileInfo) GzipBytes() []byte {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f.compressedContent
 }
 func (f *vfsgen۰CompressedFileInfo) Name() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return f.name
@@ -82,9 +92,13 @@ func (f *vfsgen۰CompressedFileInfo) Name() string {
 func (f *vfsgen۰CompressedFileInfo) Size() int64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f.uncompressedSize
 }
 func (f *vfsgen۰CompressedFileInfo) Mode() os.FileMode {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return 0444
@@ -92,14 +106,20 @@ func (f *vfsgen۰CompressedFileInfo) Mode() os.FileMode {
 func (f *vfsgen۰CompressedFileInfo) ModTime() time.Time {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f.modTime
 }
 func (f *vfsgen۰CompressedFileInfo) IsDir() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
 func (f *vfsgen۰CompressedFileInfo) Sys() interface{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -113,6 +133,8 @@ type vfsgen۰CompressedFile struct {
 }
 
 func (f *vfsgen۰CompressedFile) Read(p []byte) (n int, err error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if f.grPos > f.seekPos {
@@ -137,6 +159,8 @@ func (f *vfsgen۰CompressedFile) Read(p []byte) (n int, err error) {
 func (f *vfsgen۰CompressedFile) Seek(offset int64, whence int) (int64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch whence {
 	case io.SeekStart:
 		f.seekPos = 0 + offset
@@ -152,6 +176,8 @@ func (f *vfsgen۰CompressedFile) Seek(offset int64, whence int) (int64, error) {
 func (f *vfsgen۰CompressedFile) Close() error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f.gr.Close()
 }
 
@@ -164,9 +190,13 @@ type vfsgen۰FileInfo struct {
 func (f *vfsgen۰FileInfo) Readdir(count int) ([]os.FileInfo, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return nil, fmt.Errorf("cannot Readdir from file %s", f.name)
 }
 func (f *vfsgen۰FileInfo) Stat() (os.FileInfo, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return f, nil
@@ -174,8 +204,12 @@ func (f *vfsgen۰FileInfo) Stat() (os.FileInfo, error) {
 func (f *vfsgen۰FileInfo) NotWorthGzipCompressing() {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 }
 func (f *vfsgen۰FileInfo) Name() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return f.name
@@ -183,9 +217,13 @@ func (f *vfsgen۰FileInfo) Name() string {
 func (f *vfsgen۰FileInfo) Size() int64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return int64(len(f.content))
 }
 func (f *vfsgen۰FileInfo) Mode() os.FileMode {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return 0444
@@ -193,14 +231,20 @@ func (f *vfsgen۰FileInfo) Mode() os.FileMode {
 func (f *vfsgen۰FileInfo) ModTime() time.Time {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return f.modTime
 }
 func (f *vfsgen۰FileInfo) IsDir() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return false
 }
 func (f *vfsgen۰FileInfo) Sys() interface{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -212,6 +256,8 @@ type vfsgen۰File struct {
 }
 
 func (f *vfsgen۰File) Close() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -226,9 +272,13 @@ type vfsgen۰DirInfo struct {
 func (d *vfsgen۰DirInfo) Read([]byte) (int, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return 0, fmt.Errorf("cannot Read from directory %s", d.name)
 }
 func (d *vfsgen۰DirInfo) Close() error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -236,9 +286,13 @@ func (d *vfsgen۰DirInfo) Close() error {
 func (d *vfsgen۰DirInfo) Stat() (os.FileInfo, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return d, nil
 }
 func (d *vfsgen۰DirInfo) Name() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return d.name
@@ -246,9 +300,13 @@ func (d *vfsgen۰DirInfo) Name() string {
 func (d *vfsgen۰DirInfo) Size() int64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return 0
 }
 func (d *vfsgen۰DirInfo) Mode() os.FileMode {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return 0755 | os.ModeDir
@@ -256,14 +314,20 @@ func (d *vfsgen۰DirInfo) Mode() os.FileMode {
 func (d *vfsgen۰DirInfo) ModTime() time.Time {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return d.modTime
 }
 func (d *vfsgen۰DirInfo) IsDir() bool {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return true
 }
 func (d *vfsgen۰DirInfo) Sys() interface{} {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return nil
@@ -277,6 +341,8 @@ type vfsgen۰Dir struct {
 func (d *vfsgen۰Dir) Seek(offset int64, whence int) (int64, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	if offset == 0 && whence == io.SeekStart {
 		d.pos = 0
 		return 0, nil
@@ -284,6 +350,8 @@ func (d *vfsgen۰Dir) Seek(offset int64, whence int) (int64, error) {
 	return 0, fmt.Errorf("unsupported Seek in directory %s", d.name)
 }
 func (d *vfsgen۰Dir) Readdir(count int) ([]os.FileInfo, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if d.pos >= len(d.entries) && count > 0 {

@@ -10,6 +10,8 @@ type GetSilenceHandlerFunc func(GetSilenceParams) middleware.Responder
 func (fn GetSilenceHandlerFunc) Handle(params GetSilenceParams) middleware.Responder {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fn(params)
 }
 
@@ -18,6 +20,8 @@ type GetSilenceHandler interface {
 }
 
 func NewGetSilence(ctx *middleware.Context, handler GetSilenceHandler) *GetSilence {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	return &GetSilence{Context: ctx, Handler: handler}
@@ -29,6 +33,8 @@ type GetSilence struct {
 }
 
 func (o *GetSilence) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	route, rCtx, _ := o.Context.RouteInfo(r)

@@ -21,9 +21,13 @@ type Collector struct {
 func (c *Collector) String() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return c.name
 }
 func (c *Collector) Collected() map[float64][]models.GettableAlerts {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	c.mtx.RLock()
@@ -31,6 +35,8 @@ func (c *Collector) Collected() map[float64][]models.GettableAlerts {
 	return c.collected
 }
 func batchesEqual(as, bs models.GettableAlerts, opts *AcceptanceOpts) bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if len(as) != len(bs) {
@@ -53,6 +59,8 @@ func batchesEqual(as, bs models.GettableAlerts, opts *AcceptanceOpts) bool {
 func (c *Collector) latest() float64 {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.mtx.RLock()
 	defer c.mtx.RUnlock()
 	var latest float64
@@ -66,6 +74,8 @@ func (c *Collector) latest() float64 {
 func (c *Collector) Want(iv Interval, alerts ...*TestAlert) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
 	var nas models.GettableAlerts
@@ -77,12 +87,16 @@ func (c *Collector) Want(iv Interval, alerts ...*TestAlert) {
 func (c *Collector) add(alerts ...*models.GettableAlert) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
 	arrival := c.opts.relativeTime(time.Now())
 	c.collected[arrival] = append(c.collected[arrival], models.GettableAlerts(alerts))
 }
 func (c *Collector) Check() string {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	report := fmt.Sprintf("\ncollector %q:\n\n", c)
@@ -150,6 +164,8 @@ func (c *Collector) Check() string {
 func alertsToString(as []*models.GettableAlert) (string, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	b, err := json.Marshal(as)
 	if err != nil {
 		return "", err
@@ -157,6 +173,8 @@ func alertsToString(as []*models.GettableAlert) (string, error) {
 	return string(b), nil
 }
 func CompareCollectors(a, b *Collector, opts *AcceptanceOpts) (bool, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	f := func(collected map[float64][]models.GettableAlerts) []*models.GettableAlert {

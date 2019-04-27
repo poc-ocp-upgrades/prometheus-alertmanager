@@ -14,10 +14,14 @@ import (
 func NewPostAlertsParams() *PostAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ()
 	return &PostAlertsParams{timeout: cr.DefaultTimeout}
 }
 func NewPostAlertsParamsWithTimeout(timeout time.Duration) *PostAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ()
@@ -26,10 +30,14 @@ func NewPostAlertsParamsWithTimeout(timeout time.Duration) *PostAlertsParams {
 func NewPostAlertsParamsWithContext(ctx context.Context) *PostAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var ()
 	return &PostAlertsParams{Context: ctx}
 }
 func NewPostAlertsParamsWithHTTPClient(client *http.Client) *PostAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var ()
@@ -46,15 +54,21 @@ type PostAlertsParams struct {
 func (o *PostAlertsParams) WithTimeout(timeout time.Duration) *PostAlertsParams {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.SetTimeout(timeout)
 	return o
 }
 func (o *PostAlertsParams) SetTimeout(timeout time.Duration) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.timeout = timeout
 }
 func (o *PostAlertsParams) WithContext(ctx context.Context) *PostAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetContext(ctx)
@@ -63,9 +77,13 @@ func (o *PostAlertsParams) WithContext(ctx context.Context) *PostAlertsParams {
 func (o *PostAlertsParams) SetContext(ctx context.Context) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Context = ctx
 }
 func (o *PostAlertsParams) WithHTTPClient(client *http.Client) *PostAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetHTTPClient(client)
@@ -74,9 +92,13 @@ func (o *PostAlertsParams) WithHTTPClient(client *http.Client) *PostAlertsParams
 func (o *PostAlertsParams) SetHTTPClient(client *http.Client) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.HTTPClient = client
 }
 func (o *PostAlertsParams) WithAlerts(alerts models.PostableAlerts) *PostAlertsParams {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.SetAlerts(alerts)
@@ -85,9 +107,13 @@ func (o *PostAlertsParams) WithAlerts(alerts models.PostableAlerts) *PostAlertsP
 func (o *PostAlertsParams) SetAlerts(alerts models.PostableAlerts) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Alerts = alerts
 }
 func (o *PostAlertsParams) WriteToRequest(r runtime.ClientRequest, reg strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := r.SetTimeout(o.timeout); err != nil {

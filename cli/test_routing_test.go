@@ -19,6 +19,8 @@ type routingTestDefinition struct {
 func checkResolvedReceivers(mainRoute *dispatch.Route, ls client.LabelSet, expectedReceivers []string) error {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	resolvedReceivers, err := resolveAlertReceivers(mainRoute, &ls)
 	if err != nil {
 		return err
@@ -29,6 +31,8 @@ func checkResolvedReceivers(mainRoute *dispatch.Route, ls client.LabelSet, expec
 	return nil
 }
 func TestRoutingTest(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	tests := []*routingTestDefinition{&routingTestDefinition{configFile: "testdata/conf.routing.yml", alert: client.LabelSet{"test": "1"}, expectedReceivers: []string{"test1"}}, &routingTestDefinition{configFile: "testdata/conf.routing.yml", alert: client.LabelSet{"test": "2"}, expectedReceivers: []string{"test1", "test2"}}, &routingTestDefinition{configFile: "testdata/conf.routing-reverted.yml", alert: client.LabelSet{"test": "2"}, expectedReceivers: []string{"test2", "test1"}}, &routingTestDefinition{configFile: "testdata/conf.routing.yml", alert: client.LabelSet{"test": "volovina"}, expectedReceivers: []string{"default"}}}

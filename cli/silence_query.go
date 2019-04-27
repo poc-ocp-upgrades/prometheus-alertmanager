@@ -66,6 +66,8 @@ returns all silences that expired within the preceeding 2 hours.
 func configureSilenceQueryCmd(cc *kingpin.CmdClause) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		c		= &silenceQueryCmd{}
 		queryCmd	= cc.Command("query", querySilenceHelp).Default()
@@ -77,6 +79,8 @@ func configureSilenceQueryCmd(cc *kingpin.CmdClause) {
 	queryCmd.Action(execWithTimeout(c.query))
 }
 func (c *silenceQueryCmd) query(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var filterString = ""

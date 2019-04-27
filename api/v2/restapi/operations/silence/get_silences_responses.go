@@ -15,9 +15,13 @@ type GetSilencesOK struct {
 func NewGetSilencesOK() *GetSilencesOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilencesOK{}
 }
 func (o *GetSilencesOK) WithPayload(payload models.GettableSilences) *GetSilencesOK {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -26,9 +30,13 @@ func (o *GetSilencesOK) WithPayload(payload models.GettableSilences) *GetSilence
 func (o *GetSilencesOK) SetPayload(payload models.GettableSilences) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetSilencesOK) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(200)
@@ -50,9 +58,13 @@ type GetSilencesInternalServerError struct {
 func NewGetSilencesInternalServerError() *GetSilencesInternalServerError {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilencesInternalServerError{}
 }
 func (o *GetSilencesInternalServerError) WithPayload(payload string) *GetSilencesInternalServerError {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	o.Payload = payload
@@ -61,9 +73,13 @@ func (o *GetSilencesInternalServerError) WithPayload(payload string) *GetSilence
 func (o *GetSilencesInternalServerError) SetPayload(payload string) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	o.Payload = payload
 }
 func (o *GetSilencesInternalServerError) WriteResponse(rw http.ResponseWriter, producer runtime.Producer) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	rw.WriteHeader(500)

@@ -8,6 +8,8 @@ import (
 func New(transport runtime.ClientTransport, formats strfmt.Registry) *Client {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &Client{transport: transport, formats: formats}
 }
 
@@ -17,6 +19,8 @@ type Client struct {
 }
 
 func (a *Client) GetReceivers(params *GetReceiversParams) (*GetReceiversOK, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if params == nil {
@@ -29,6 +33,8 @@ func (a *Client) GetReceivers(params *GetReceiversParams) (*GetReceiversOK, erro
 	return result.(*GetReceiversOK), nil
 }
 func (a *Client) SetTransport(transport runtime.ClientTransport) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	a.transport = transport

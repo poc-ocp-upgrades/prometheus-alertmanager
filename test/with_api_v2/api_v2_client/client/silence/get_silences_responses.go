@@ -13,6 +13,8 @@ type GetSilencesReader struct{ formats strfmt.Registry }
 func (o *GetSilencesReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	switch response.Code() {
 	case 200:
 		result := NewGetSilencesOK()
@@ -33,6 +35,8 @@ func (o *GetSilencesReader) ReadResponse(response runtime.ClientResponse, consum
 func NewGetSilencesOK() *GetSilencesOK {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilencesOK{}
 }
 
@@ -41,9 +45,13 @@ type GetSilencesOK struct{ Payload models.GettableSilences }
 func (o *GetSilencesOK) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /silences][%d] getSilencesOK  %+v", 200, o.Payload)
 }
 func (o *GetSilencesOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
@@ -54,6 +62,8 @@ func (o *GetSilencesOK) readResponse(response runtime.ClientResponse, consumer r
 func NewGetSilencesInternalServerError() *GetSilencesInternalServerError {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &GetSilencesInternalServerError{}
 }
 
@@ -62,9 +72,13 @@ type GetSilencesInternalServerError struct{ Payload string }
 func (o *GetSilencesInternalServerError) Error() string {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return fmt.Sprintf("[GET /silences][%d] getSilencesInternalServerError  %+v", 500, o.Payload)
 }
 func (o *GetSilencesInternalServerError) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {

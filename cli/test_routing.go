@@ -28,6 +28,8 @@ Example:
 func configureRoutingTestCmd(cc *kingpin.CmdClause, c *routingShow) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var routingTestCmd = cc.Command("test", routingTestHelp)
 	routingTestCmd.Flag("verify.receivers", "Checks if specified receivers matches resolved receivers. The command fails if the labelset does not route to the specified receivers.").StringVar(&c.expectedReceivers)
 	routingTestCmd.Flag("tree", "Prints out matching routes tree.").BoolVar(&c.debugTree)
@@ -35,6 +37,8 @@ func configureRoutingTestCmd(cc *kingpin.CmdClause, c *routingShow) {
 	routingTestCmd.Action(execWithTimeout(c.routingTestAction))
 }
 func resolveAlertReceivers(mainRoute *dispatch.Route, labels *client.LabelSet) ([]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	var (
@@ -50,6 +54,8 @@ func resolveAlertReceivers(mainRoute *dispatch.Route, labels *client.LabelSet) (
 func printMatchingTree(mainRoute *dispatch.Route, ls client.LabelSet) {
 	_logClusterCodePath()
 	defer _logClusterCodePath()
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tree := treeprint.New()
 	getMatchingTree(mainRoute, tree, ls)
 	fmt.Println("Matching routes:")
@@ -57,6 +63,8 @@ func printMatchingTree(mainRoute *dispatch.Route, ls client.LabelSet) {
 	fmt.Print("\n")
 }
 func (c *routingShow) routingTestAction(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	_logClusterCodePath()
 	defer _logClusterCodePath()
 	cfg, err := loadAlertmanagerConfig(ctx, alertmanagerURL, c.configFile)
