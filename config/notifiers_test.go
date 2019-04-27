@@ -1,34 +1,20 @@
-// Copyright 2018 Prometheus Team
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package config
 
 import (
 	"strings"
 	"testing"
-
 	"gopkg.in/yaml.v2"
 )
 
 func TestEmailToIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 to: ''
 `
 	var cfg EmailConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing to address in email config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -36,8 +22,9 @@ to: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestEmailHeadersCollision(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 to: 'to@email.com'
 headers:
@@ -46,9 +33,7 @@ headers:
 `
 	var cfg EmailConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "duplicate header \"Subject\" in email config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -56,16 +41,15 @@ headers:
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestPagerdutyRoutingKeyIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 routing_key: ''
 `
 	var cfg PagerdutyConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing service or routing key in PagerDuty config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -73,16 +57,15 @@ routing_key: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestPagerdutyServiceKeyIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 service_key: ''
 `
 	var cfg PagerdutyConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing service or routing key in PagerDuty config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -90,73 +73,57 @@ service_key: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestPagerdutyDetails(t *testing.T) {
-
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var tests = []struct {
-		in      string
-		checkFn func(map[string]string)
-	}{
-		{
-			in: `
+		in	string
+		checkFn	func(map[string]string)
+	}{{in: `
 routing_key: 'xyz'
-`,
-			checkFn: func(d map[string]string) {
-				if len(d) != 4 {
-					t.Errorf("expected 4 items, got: %d", len(d))
-				}
-			},
-		},
-		{
-			in: `
+`, checkFn: func(d map[string]string) {
+		if len(d) != 4 {
+			t.Errorf("expected 4 items, got: %d", len(d))
+		}
+	}}, {in: `
 routing_key: 'xyz'
 details:
   key1: val1
-`,
-			checkFn: func(d map[string]string) {
-				if len(d) != 5 {
-					t.Errorf("expected 5 items, got: %d", len(d))
-				}
-			},
-		},
-		{
-			in: `
+`, checkFn: func(d map[string]string) {
+		if len(d) != 5 {
+			t.Errorf("expected 5 items, got: %d", len(d))
+		}
+	}}, {in: `
 routing_key: 'xyz'
 details:
   key1: val1
   key2: val2
   firing: firing
-`,
-			checkFn: func(d map[string]string) {
-				if len(d) != 6 {
-					t.Errorf("expected 6 items, got: %d", len(d))
-				}
-			},
-		},
-	}
+`, checkFn: func(d map[string]string) {
+		if len(d) != 6 {
+			t.Errorf("expected 6 items, got: %d", len(d))
+		}
+	}}}
 	for _, tc := range tests {
 		var cfg PagerdutyConfig
 		err := yaml.UnmarshalStrict([]byte(tc.in), &cfg)
-
 		if err != nil {
 			t.Errorf("expected no error, got:%v", err)
 		}
-
 		if tc.checkFn != nil {
 			tc.checkFn(cfg.Details)
 		}
 	}
 }
-
 func TestHipchatRoomIDIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 room_id: ''
 `
 	var cfg HipchatConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing room id in Hipchat config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -164,14 +131,13 @@ room_id: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestWebhookURLIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `{}`
 	var cfg WebhookConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing URL in webhook config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -179,8 +145,9 @@ func TestWebhookURLIsPresent(t *testing.T) {
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestWebhookHttpConfigIsValid(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 url: 'http://example.com'
 http_config:
@@ -189,9 +156,7 @@ http_config:
 `
 	var cfg WebhookConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "at most one of bearer_token & bearer_token_file must be configured"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -199,20 +164,21 @@ http_config:
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestWebhookHttpConfigIsOptional(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 url: 'http://example.com'
 `
 	var cfg WebhookConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	if err != nil {
 		t.Fatalf("no error expected, returned:\n%v", err.Error())
 	}
 }
-
 func TestWebhookPasswordIsObsfucated(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 url: 'http://example.com'
 http_config:
@@ -222,11 +188,9 @@ http_config:
 `
 	var cfg WebhookConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	if err != nil {
 		t.Fatalf("no error expected, returned:\n%v", err.Error())
 	}
-
 	ycfg, err := yaml.Marshal(cfg)
 	if err != nil {
 		t.Fatalf("no error expected, returned:\n%v", err.Error())
@@ -235,16 +199,15 @@ http_config:
 		t.Errorf("Found password in the YAML cfg: %s\n", ycfg)
 	}
 }
-
 func TestWechatAPIKeyIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 api_secret: ''
 `
 	var cfg WechatConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing Wechat APISecret in Wechat config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -253,15 +216,15 @@ api_secret: ''
 	}
 }
 func TestWechatCorpIDIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 api_secret: 'api_secret'
 corp_id: ''
 `
 	var cfg WechatConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing Wechat CorpID in Wechat config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -269,16 +232,15 @@ corp_id: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestVictorOpsRoutingKeyIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 routing_key: ''
 `
 	var cfg VictorOpsConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing Routing key in VictorOps config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -286,8 +248,9 @@ routing_key: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestVictorOpsCustomFieldsValidation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 routing_key: 'test'
 custom_fields:
@@ -295,50 +258,40 @@ custom_fields:
 `
 	var cfg VictorOpsConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "VictorOps config contains custom field entity_state which cannot be used as it conflicts with the fixed/static fields"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
 	if err.Error() != expected {
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
-
 	in = `
 routing_key: 'test'
 custom_fields:
   my_special_field: 'special_label'
 `
-
 	err = yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected = "special_label"
-
 	if err != nil {
 		t.Fatalf("Unexpected error returned, got:\n%v", err.Error())
 	}
-
 	val, ok := cfg.CustomFields["my_special_field"]
-
 	if !ok {
 		t.Fatalf("Expected Custom Field to have value %v set, field is empty", expected)
 	}
 	if val != expected {
 		t.Errorf("\nexpected custom field my_special_field value:\n%v\ngot:\n%v", expected, val)
 	}
-
 }
-
 func TestPushoverUserKeyIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 user_key: ''
 `
 	var cfg PushoverConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing user key in Pushover config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -346,17 +299,16 @@ user_key: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestPushoverTokenIsPresent(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 user_key: '<user_key>'
 token: ''
 `
 	var cfg PushoverConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
-
 	expected := "missing token in Pushover config"
-
 	if err == nil {
 		t.Fatalf("no error returned, expected:\n%v", expected)
 	}
@@ -364,65 +316,49 @@ token: ''
 		t.Errorf("\nexpected:\n%v\ngot:\n%v", expected, err.Error())
 	}
 }
-
 func TestSlackFieldConfigValidation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var tests = []struct {
-		in       string
-		expected string
-	}{
-		{
-			in: `
+		in		string
+		expected	string
+	}{{in: `
 fields:
 - title: first
   value: hello
 - title: second
-`,
-			expected: "missing value in Slack field configuration",
-		},
-		{
-			in: `
+`, expected: "missing value in Slack field configuration"}, {in: `
 fields:
 - title: first
   value: hello
   short: true
 - value: world
   short: true
-`,
-			expected: "missing title in Slack field configuration",
-		},
-		{
-			in: `
+`, expected: "missing title in Slack field configuration"}, {in: `
 fields:
 - title: first
   value: hello
   short: true
 - title: second
   value: world
-`,
-			expected: "",
-		},
-	}
-
+`, expected: ""}}
 	for _, rt := range tests {
 		var cfg SlackConfig
 		err := yaml.UnmarshalStrict([]byte(rt.in), &cfg)
-
-		// Check if an error occurred when it was NOT expected to.
 		if rt.expected == "" && err != nil {
 			t.Fatalf("\nerror returned when none expected, error:\n%v", err)
 		}
-		// Check that an error occurred if one was expected to.
 		if rt.expected != "" && err == nil {
 			t.Fatalf("\nno error returned, expected:\n%v", rt.expected)
 		}
-		// Check that the error that occurred was what was expected.
 		if err != nil && err.Error() != rt.expected {
 			t.Errorf("\nexpected:\n%v\ngot:\n%v", rt.expected, err.Error())
 		}
 	}
 }
-
 func TestSlackFieldConfigUnmarshalling(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 fields:
 - title: first
@@ -434,30 +370,12 @@ fields:
   value: slack field test
   short: false
 `
-	expected := []*SlackField{
-		&SlackField{
-			Title: "first",
-			Value: "hello",
-			Short: newBoolPointer(true),
-		},
-		&SlackField{
-			Title: "second",
-			Value: "world",
-			Short: nil,
-		},
-		&SlackField{
-			Title: "third",
-			Value: "slack field test",
-			Short: newBoolPointer(false),
-		},
-	}
-
+	expected := []*SlackField{&SlackField{Title: "first", Value: "hello", Short: newBoolPointer(true)}, &SlackField{Title: "second", Value: "world", Short: nil}, &SlackField{Title: "third", Value: "slack field test", Short: newBoolPointer(false)}}
 	var cfg SlackConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
 	if err != nil {
 		t.Fatalf("\nerror returned when none expected, error:\n%v", err)
 	}
-
 	for index, field := range cfg.Fields {
 		exp := expected[index]
 		if field.Title != exp.Title {
@@ -477,8 +395,9 @@ fields:
 		}
 	}
 }
-
 func TestSlackActionsValidation(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 actions:
 - type: button
@@ -495,33 +414,12 @@ actions:
     ok_text: yes
     dismiss_text: no
 `
-	expected := []*SlackAction{
-		{
-			Type:  "button",
-			Text:  "hello",
-			URL:   "https://localhost",
-			Style: "danger",
-		},
-		{
-			Type:  "button",
-			Text:  "hello",
-			Name:  "something",
-			Style: "default",
-			ConfirmField: &SlackConfirmationField{
-				Title:       "please confirm",
-				Text:        "are you sure?",
-				OkText:      "yes",
-				DismissText: "no",
-			},
-		},
-	}
-
+	expected := []*SlackAction{{Type: "button", Text: "hello", URL: "https://localhost", Style: "danger"}, {Type: "button", Text: "hello", Name: "something", Style: "default", ConfirmField: &SlackConfirmationField{Title: "please confirm", Text: "are you sure?", OkText: "yes", DismissText: "no"}}}
 	var cfg SlackConfig
 	err := yaml.UnmarshalStrict([]byte(in), &cfg)
 	if err != nil {
 		t.Fatalf("\nerror returned when none expected, error:\n%v", err)
 	}
-
 	for index, action := range cfg.Actions {
 		exp := expected[index]
 		if action.Type != exp.Type {
@@ -560,7 +458,8 @@ actions:
 		}
 	}
 }
-
 func newBoolPointer(b bool) *bool {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	return &b
 }

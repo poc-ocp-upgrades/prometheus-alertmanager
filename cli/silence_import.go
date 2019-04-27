@@ -1,16 +1,3 @@
-// Copyright 2018 Prometheus Team
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package cli
 
 import (
@@ -20,19 +7,17 @@ import (
 	"os"
 	"strings"
 	"sync"
-
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/api"
 	"gopkg.in/alecthomas/kingpin.v2"
-
 	"github.com/prometheus/alertmanager/client"
 	"github.com/prometheus/alertmanager/types"
 )
 
 type silenceImportCmd struct {
-	force   bool
-	workers int
-	file    string
+	force	bool
+	workers	int
+	file	string
 }
 
 const silenceImportHelp = `Import alertmanager silences from JSON file or stdin
@@ -48,27 +33,27 @@ JSON data can also come from stdin if no param is specified.
 `
 
 func configureSilenceImportCmd(cc *kingpin.CmdClause) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
-		c         = &silenceImportCmd{}
-		importCmd = cc.Command("import", silenceImportHelp)
+		c		= &silenceImportCmd{}
+		importCmd	= cc.Command("import", silenceImportHelp)
 	)
-
 	importCmd.Flag("force", "Force adding new silences even if it already exists").Short('f').BoolVar(&c.force)
 	importCmd.Flag("worker", "Number of concurrent workers to use for import").Short('w').Default("8").IntVar(&c.workers)
 	importCmd.Arg("input-file", "JSON file with silences").ExistingFileVar(&c.file)
 	importCmd.Action(execWithTimeout(c.bulkImport))
 }
-
 func addSilenceWorker(ctx context.Context, sclient client.SilenceAPI, silencec <-chan *types.Silence, errc chan<- error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for s := range silencec {
 		silenceID, err := sclient.Set(ctx, *s)
 		sid := s.ID
 		if err != nil && strings.Contains(err.Error(), "not found") {
-			// silence doesn't exists yet, retry to create as a new one
 			s.ID = ""
 			silenceID, err = sclient.Set(ctx, *s)
 		}
-
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error adding silence id='%v': %v\n", sid, err)
 		} else {
@@ -77,8 +62,9 @@ func addSilenceWorker(ctx context.Context, sclient client.SilenceAPI, silencec <
 		errc <- err
 	}
 }
-
 func (c *silenceImportCmd) bulkImport(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	input := os.Stdin
 	var err error
 	if c.file != "" {
@@ -88,14 +74,11 @@ func (c *silenceImportCmd) bulkImport(ctx context.Context, _ *kingpin.ParseConte
 		}
 		defer input.Close()
 	}
-
 	dec := json.NewDecoder(input)
-	// read open square bracket
 	_, err = dec.Token()
 	if err != nil {
 		return errors.Wrap(err, "couldn't unmarshal input data, is it JSON?")
 	}
-
 	apiClient, err := api.NewClient(api.Config{Address: alertmanagerURL.String()})
 	if err != nil {
 		return err
@@ -111,7 +94,6 @@ func (c *silenceImportCmd) bulkImport(ctx context.Context, _ *kingpin.ParseConte
 			wg.Done()
 		}()
 	}
-
 	errCount := 0
 	go func() {
 		for err := range errc {
@@ -120,7 +102,6 @@ func (c *silenceImportCmd) bulkImport(ctx context.Context, _ *kingpin.ParseConte
 			}
 		}
 	}()
-
 	count := 0
 	for dec.More() {
 		var s types.Silence
@@ -128,20 +109,15 @@ func (c *silenceImportCmd) bulkImport(ctx context.Context, _ *kingpin.ParseConte
 		if err != nil {
 			return errors.Wrap(err, "couldn't unmarshal input data, is it JSON?")
 		}
-
 		if c.force {
-			// reset the silence ID so Alertmanager will always create new silence
 			s.ID = ""
 		}
-
 		silencec <- &s
 		count++
 	}
-
 	close(silencec)
 	wg.Wait()
 	close(errc)
-
 	if errCount > 0 {
 		return fmt.Errorf("couldn't import %v out of %v silences", errCount, count)
 	}

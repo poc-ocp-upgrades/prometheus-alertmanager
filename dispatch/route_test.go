@@ -1,30 +1,17 @@
-// Copyright 2015 Prometheus Team
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package dispatch
 
 import (
 	"reflect"
 	"testing"
 	"time"
-
 	"github.com/prometheus/common/model"
 	"gopkg.in/yaml.v2"
-
 	"github.com/prometheus/alertmanager/config"
 )
 
 func TestRouteMatch(t *testing.T) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	in := `
 receiver: 'notify-def'
 
@@ -80,14 +67,13 @@ routes:
         wait: 'long'
       group_wait: 2m
 `
-
 	var ctree config.Route
 	if err := yaml.UnmarshalStrict([]byte(in), &ctree); err != nil {
 		t.Fatal(err)
 	}
 	var (
-		def  = DefaultRouteOpts
-		tree = NewRoute(&ctree, nil)
+		def	= DefaultRouteOpts
+		tree	= NewRoute(&ctree, nil)
 	)
 	lset := func(labels ...string) map[model.LabelName]struct{} {
 		s := map[model.LabelName]struct{}{}
@@ -96,172 +82,21 @@ routes:
 		}
 		return s
 	}
-
 	tests := []struct {
-		input  model.LabelSet
-		result []*RouteOpts
-		keys   []string
-	}{
-		{
-			input: model.LabelSet{
-				"owner": "team-A",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-A",
-					GroupBy:        def.GroupBy,
-					GroupByAll:     false,
-					GroupWait:      def.GroupWait,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-			},
-			keys: []string{"{}/{owner=\"team-A\"}"},
-		},
-		{
-			input: model.LabelSet{
-				"owner": "team-A",
-				"env":   "unset",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-A",
-					GroupBy:        def.GroupBy,
-					GroupByAll:     false,
-					GroupWait:      def.GroupWait,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-			},
-			keys: []string{"{}/{owner=\"team-A\"}"},
-		},
-		{
-			input: model.LabelSet{
-				"owner": "team-C",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-BC",
-					GroupBy:        lset("foo", "bar"),
-					GroupByAll:     false,
-					GroupWait:      2 * time.Minute,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-			},
-			keys: []string{"{}/{owner=~\"^(?:team-(B|C))$\"}"},
-		},
-		{
-			input: model.LabelSet{
-				"owner": "team-A",
-				"env":   "testing",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-testing",
-					GroupBy:        lset(),
-					GroupByAll:     true,
-					GroupWait:      def.GroupWait,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-			},
-			keys: []string{"{}/{owner=\"team-A\"}/{env=\"testing\"}"},
-		},
-		{
-			input: model.LabelSet{
-				"owner": "team-A",
-				"env":   "production",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-productionA",
-					GroupBy:        def.GroupBy,
-					GroupByAll:     false,
-					GroupWait:      1 * time.Minute,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-				{
-					Receiver:       "notify-productionB",
-					GroupBy:        lset("job"),
-					GroupByAll:     false,
-					GroupWait:      30 * time.Second,
-					GroupInterval:  5 * time.Minute,
-					RepeatInterval: 1 * time.Hour,
-				},
-			},
-			keys: []string{
-				"{}/{owner=\"team-A\"}/{env=\"production\"}",
-				"{}/{owner=\"team-A\"}/{env=~\"^(?:produ.*)$\",job=~\"^(?:.*)$\"}",
-			},
-		},
-		{
-			input: model.LabelSet{
-				"group_by": "role",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-def",
-					GroupBy:        lset("role"),
-					GroupByAll:     false,
-					GroupWait:      def.GroupWait,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-			},
-			keys: []string{"{}/{group_by=\"role\"}"},
-		},
-		{
-			input: model.LabelSet{
-				"env":      "testing",
-				"group_by": "role",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-testing",
-					GroupBy:        lset("role"),
-					GroupByAll:     false,
-					GroupWait:      def.GroupWait,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-			},
-			keys: []string{"{}/{group_by=\"role\"}/{env=\"testing\"}"},
-		},
-		{
-			input: model.LabelSet{
-				"env":      "testing",
-				"group_by": "role",
-				"wait":     "long",
-			},
-			result: []*RouteOpts{
-				{
-					Receiver:       "notify-testing",
-					GroupBy:        lset("role"),
-					GroupByAll:     false,
-					GroupWait:      2 * time.Minute,
-					GroupInterval:  def.GroupInterval,
-					RepeatInterval: def.RepeatInterval,
-				},
-			},
-			keys: []string{"{}/{group_by=\"role\"}/{env=\"testing\"}/{wait=\"long\"}"},
-		},
-	}
-
+		input	model.LabelSet
+		result	[]*RouteOpts
+		keys	[]string
+	}{{input: model.LabelSet{"owner": "team-A"}, result: []*RouteOpts{{Receiver: "notify-A", GroupBy: def.GroupBy, GroupByAll: false, GroupWait: def.GroupWait, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}}, keys: []string{"{}/{owner=\"team-A\"}"}}, {input: model.LabelSet{"owner": "team-A", "env": "unset"}, result: []*RouteOpts{{Receiver: "notify-A", GroupBy: def.GroupBy, GroupByAll: false, GroupWait: def.GroupWait, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}}, keys: []string{"{}/{owner=\"team-A\"}"}}, {input: model.LabelSet{"owner": "team-C"}, result: []*RouteOpts{{Receiver: "notify-BC", GroupBy: lset("foo", "bar"), GroupByAll: false, GroupWait: 2 * time.Minute, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}}, keys: []string{"{}/{owner=~\"^(?:team-(B|C))$\"}"}}, {input: model.LabelSet{"owner": "team-A", "env": "testing"}, result: []*RouteOpts{{Receiver: "notify-testing", GroupBy: lset(), GroupByAll: true, GroupWait: def.GroupWait, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}}, keys: []string{"{}/{owner=\"team-A\"}/{env=\"testing\"}"}}, {input: model.LabelSet{"owner": "team-A", "env": "production"}, result: []*RouteOpts{{Receiver: "notify-productionA", GroupBy: def.GroupBy, GroupByAll: false, GroupWait: 1 * time.Minute, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}, {Receiver: "notify-productionB", GroupBy: lset("job"), GroupByAll: false, GroupWait: 30 * time.Second, GroupInterval: 5 * time.Minute, RepeatInterval: 1 * time.Hour}}, keys: []string{"{}/{owner=\"team-A\"}/{env=\"production\"}", "{}/{owner=\"team-A\"}/{env=~\"^(?:produ.*)$\",job=~\"^(?:.*)$\"}"}}, {input: model.LabelSet{"group_by": "role"}, result: []*RouteOpts{{Receiver: "notify-def", GroupBy: lset("role"), GroupByAll: false, GroupWait: def.GroupWait, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}}, keys: []string{"{}/{group_by=\"role\"}"}}, {input: model.LabelSet{"env": "testing", "group_by": "role"}, result: []*RouteOpts{{Receiver: "notify-testing", GroupBy: lset("role"), GroupByAll: false, GroupWait: def.GroupWait, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}}, keys: []string{"{}/{group_by=\"role\"}/{env=\"testing\"}"}}, {input: model.LabelSet{"env": "testing", "group_by": "role", "wait": "long"}, result: []*RouteOpts{{Receiver: "notify-testing", GroupBy: lset("role"), GroupByAll: false, GroupWait: 2 * time.Minute, GroupInterval: def.GroupInterval, RepeatInterval: def.RepeatInterval}}, keys: []string{"{}/{group_by=\"role\"}/{env=\"testing\"}/{wait=\"long\"}"}}}
 	for _, test := range tests {
 		var matches []*RouteOpts
 		var keys []string
-
 		for _, r := range tree.Match(test.input) {
 			matches = append(matches, &r.RouteOpts)
 			keys = append(keys, r.Key())
 		}
-
 		if !reflect.DeepEqual(matches, test.result) {
 			t.Errorf("\nexpected:\n%v\ngot:\n%v", test.result, matches)
 		}
-
 		if !reflect.DeepEqual(keys, test.keys) {
 			t.Errorf("\nexpected:\n%v\ngot:\n%v", test.keys, keys)
 		}
