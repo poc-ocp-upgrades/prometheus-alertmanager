@@ -1,16 +1,3 @@
-// Copyright 2018 Prometheus Team
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package cli
 
 import (
@@ -18,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-
 	"github.com/prometheus/alertmanager/client"
 	"github.com/prometheus/alertmanager/dispatch"
 	"github.com/xlab/treeprint"
@@ -40,19 +26,20 @@ Example:
 `
 
 func configureRoutingTestCmd(cc *kingpin.CmdClause, c *routingShow) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var routingTestCmd = cc.Command("test", routingTestHelp)
-
 	routingTestCmd.Flag("verify.receivers", "Checks if specified receivers matches resolved receivers. The command fails if the labelset does not route to the specified receivers.").StringVar(&c.expectedReceivers)
 	routingTestCmd.Flag("tree", "Prints out matching routes tree.").BoolVar(&c.debugTree)
 	routingTestCmd.Arg("labels", "List of labels to be tested against the configured routes.").StringsVar(&c.labels)
 	routingTestCmd.Action(execWithTimeout(c.routingTestAction))
 }
-
-// resolveAlertReceivers returns list of receiver names which given LabelSet resolves to.
 func resolveAlertReceivers(mainRoute *dispatch.Route, labels *client.LabelSet) ([]string, error) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
-		finalRoutes []*dispatch.Route
-		receivers   []string
+		finalRoutes	[]*dispatch.Route
+		receivers	[]string
 	)
 	finalRoutes = mainRoute.Match(convertClientToCommonLabelSet(*labels))
 	for _, r := range finalRoutes {
@@ -60,42 +47,37 @@ func resolveAlertReceivers(mainRoute *dispatch.Route, labels *client.LabelSet) (
 	}
 	return receivers, nil
 }
-
 func printMatchingTree(mainRoute *dispatch.Route, ls client.LabelSet) {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	tree := treeprint.New()
 	getMatchingTree(mainRoute, tree, ls)
 	fmt.Println("Matching routes:")
 	fmt.Println(tree.String())
 	fmt.Print("\n")
 }
-
 func (c *routingShow) routingTestAction(ctx context.Context, _ *kingpin.ParseContext) error {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	cfg, err := loadAlertmanagerConfig(ctx, alertmanagerURL, c.configFile)
 	if err != nil {
 		kingpin.Fatalf("%v\n", err)
 		return err
 	}
-
 	mainRoute := dispatch.NewRoute(cfg.Route, nil)
-
-	// Parse lables to LabelSet.
 	ls, err := parseLabels(c.labels)
 	if err != nil {
 		kingpin.Fatalf("Failed to parse labels: %v\n", err)
 	}
-
 	if c.debugTree {
 		printMatchingTree(mainRoute, ls)
 	}
-
 	receivers, err := resolveAlertReceivers(mainRoute, &ls)
 	receiversSlug := strings.Join(receivers, ",")
 	fmt.Printf("%s\n", receiversSlug)
-
 	if c.expectedReceivers != "" && c.expectedReceivers != receiversSlug {
 		fmt.Printf("WARNING: Expected receivers did not match resolved receivers.\n")
 		os.Exit(1)
 	}
-
 	return err
 }
