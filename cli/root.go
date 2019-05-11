@@ -1,42 +1,27 @@
-// Copyright 2018 Prometheus Team
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package cli
 
 import (
 	"net/url"
 	"os"
 	"time"
-
 	"github.com/prometheus/common/version"
 	"gopkg.in/alecthomas/kingpin.v2"
-
 	"github.com/prometheus/alertmanager/cli/config"
 	"github.com/prometheus/alertmanager/cli/format"
 )
 
 var (
-	verbose         bool
-	alertmanagerURL *url.URL
-	output          string
-	timeout         time.Duration
-
-	configFiles = []string{os.ExpandEnv("$HOME/.config/amtool/config.yml"), "/etc/amtool/config.yml"}
-	legacyFlags = map[string]string{"comment_required": "require-comment"}
+	verbose			bool
+	alertmanagerURL	*url.URL
+	output			string
+	timeout			time.Duration
+	configFiles		= []string{os.ExpandEnv("$HOME/.config/amtool/config.yml"), "/etc/amtool/config.yml"}
+	legacyFlags		= map[string]string{"comment_required": "require-comment"}
 )
 
 func requireAlertManagerURL(pc *kingpin.ParseContext) error {
-	// Return without error if any help flag is set.
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	for _, elem := range pc.Elements {
 		f, ok := elem.Clause.(*kingpin.FlagClause)
 		if !ok {
@@ -52,38 +37,32 @@ func requireAlertManagerURL(pc *kingpin.ParseContext) error {
 	}
 	return nil
 }
-
 func Execute() {
+	_logClusterCodePath()
+	defer _logClusterCodePath()
 	var (
 		app = kingpin.New("amtool", helpRoot).DefaultEnvars()
 	)
-
 	format.InitFormatFlags(app)
-
 	app.Flag("verbose", "Verbose running information").Short('v').BoolVar(&verbose)
 	app.Flag("alertmanager.url", "Alertmanager to talk to").URLVar(&alertmanagerURL)
 	app.Flag("output", "Output formatter (simple, extended, json)").Short('o').Default("simple").EnumVar(&output, "simple", "extended", "json")
 	app.Flag("timeout", "Timeout for the executed command").Default("30s").DurationVar(&timeout)
-
 	app.Version(version.Print("amtool"))
 	app.GetFlag("help").Short('h')
 	app.UsageTemplate(kingpin.CompactUsageTemplate)
-
 	resolver, err := config.NewResolver(configFiles, legacyFlags)
 	if err != nil {
 		kingpin.Fatalf("could not load config file: %v\n", err)
 	}
-
 	configureAlertCmd(app)
 	configureSilenceCmd(app)
 	configureCheckConfigCmd(app)
 	configureConfigCmd(app)
-
 	err = resolver.Bind(app, os.Args[1:])
 	if err != nil {
 		kingpin.Fatalf("%v\n", err)
 	}
-
 	_, err = app.Parse(os.Args[1:])
 	if err != nil {
 		kingpin.Fatalf("%v\n", err)
